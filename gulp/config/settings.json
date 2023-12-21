@@ -1,13 +1,13 @@
 {
-  "projectName": "Новий проект",
-  "menuItems": [
-    {
-      "label": "Стартова сторінка",
-      "url": "/"
-    },
-    {
-      "label": "Головна сторінка",
-      "url": "/page.html"
-    }
-  ]
+	"projectName": "Новий проект",
+	"menuItems": [
+		{
+			"label": "Стартова сторінка",
+			"url": "/"
+		},
+		{
+			"label": "Головна сторінка",
+			"url": "/Skygen/page.html"
+		}
+	]
 }
