@@ -38,7 +38,7 @@ export const page = () => {
 	const settingsData = JSON.parse(fs.readFileSync(settingsPath, 'utf-8'));
 	settingsData.menuItems.push({
 		label: name,
-		url: '/' + fileName + '.html'
+		url: '/Skygen/' + fileName + '.html'
 	});
 	fs.writeFileSync(settingsPath, JSON.stringify(settingsData, null, 2));
 	const htmlStream = file(fileName + '.html', section, { src: true })
