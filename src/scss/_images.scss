@@ -1,0 +1,31 @@
+.images {
+	&__wrapper {
+		display: flex;
+		@include adaptiv-value("gap", toPX(1.75), toPX(1.25), 1);
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+
+		&:nth-child(2n) {
+			@include adaptiv-value("padding-top", toPX(6.25), toPX(3.13), 1);
+		}
+	}
+
+	&__img {
+		img {
+			filter: grayscale(100%);
+			transition: all 0.8s ease-in-out;
+		}
+
+		&:hover {
+			cursor: pointer;
+			img {
+				filter: none;
+				transition: all 0.8s ease-in-out;
+			}
+		}
+	}
+}

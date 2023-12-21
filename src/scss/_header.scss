@@ -1,0 +1,116 @@
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	//padding: 1.25rem 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(56, 40, 40, 0.15);
+	backdrop-filter: blur(15px);
+	z-index: 99;
+
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__logo {
+		@include adaptiv-value("max-width", toPX(8.875), toPX(7.1), 1);
+		@include adaptiv-value("max-height", toPX(1.875), toPX(1.5), 1);
+	}
+
+	&__nav {
+		height: 100%;
+	}
+
+	&__menu {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.88), 1);
+
+		li {
+			transition: $hover-transition;
+			padding: 2.12rem 0;
+			cursor: pointer;
+			a {
+				color: var(--White, #fff);
+				font-family: $font-family;
+				font-size: 1rem;
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;
+				opacity: 0.9;
+				transition: $hover-transition;
+			}
+
+			&.dropdown {
+				display: flex;
+				align-items: center;
+				gap: 0.63rem;
+				&::after {
+					content: "";
+					width: 1.5rem;
+					height: 1.5rem;
+					display: block;
+					background-image: url("../img/arrow-down.svg");
+					background-repeat: no-repeat;
+					background-size: cover;
+					transition: $hover-transition;
+				}
+
+				&:hover {
+					&::after {
+						//background-image: url("../img/arrow-down-hover.svg");
+						transform: rotate(-180deg);
+						transition: $hover-transition;
+					}
+				}
+			}
+
+			&:hover {
+				a {
+					opacity: 1;
+					font-weight: 600;
+					transition: $hover-transition;
+				}
+			}
+		}
+	}
+
+	&__button {
+		padding: 1.25rem 1.875rem;
+	}
+
+	&__burger {
+		display: none;
+	}
+}
+
+@include media-width($md) {
+	.header {
+		&__burger {
+			display: flex;
+			align-items: center;
+			gap: 0.62rem;
+
+			color: #fff;
+			font-family: $font-family;
+			font-size: 1.125rem;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+		}
+		&__wrapper {
+			padding: 1.25rem 0;
+		}
+		&__nav {
+			display: none;
+		}
+
+		&__button {
+			display: none;
+		}
+	}
+}
