@@ -343,6 +343,19 @@ export function mainAnimate() {
 		}
 	});
 
+	gsap.from(".catalog__header", {
+		x: 100,
+		opacity: 0,
+		duration: 1.5,
+		scrollTrigger: {
+			trigger: ".catalog__header",
+			start: "top 80%",
+			end: "top 80%",
+			toggleActions: "play none none none",
+			//markers: true
+		}
+	});
+
 	const textElements = document.querySelectorAll(".text");
 
 	let i = 0.5;
@@ -385,6 +398,42 @@ export function mainAnimate() {
 		i += 0.2;
 		gsap.from(element, {
 			//x: -100 * 1,
+			opacity: 0,
+			scale: 0.6,
+			duration: 0.8,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 80%",
+				end: "top 80%",
+				//markers: true
+			}
+		});
+	});
+
+	const catalogImages = document.querySelectorAll(".catalog__image");
+
+	catalogImages.forEach((element) => {
+		i += 0.2;
+		gsap.from(element, {
+			//x: -100 * 1,
+			opacity: 0,
+			scale: 0.6,
+			duration: 0.8,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 80%",
+				end: "top 80%",
+				//markers: true
+			}
+		});
+	});
+
+	const imagesImages = document.querySelectorAll(".images__img");
+
+	imagesImages.forEach((element) => {
+		i += 0.7;
+		gsap.from(element, {
+			y: -100 * 1,
 			opacity: 0,
 			scale: 0.6,
 			duration: 0.8,
