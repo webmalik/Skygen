@@ -1397,17 +1397,19 @@ img {
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.62rem;
+  transition: all 0.8 ease-in-out;
 }
 .catalog__item.noactive div {
   color: var(--Light-Gray, #aeaeae) !important;
+  transition: all 0.8 ease-in-out;
 }
 .catalog__item.noactive .catalog__link {
   max-height: 0rem;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.8 ease-in-out;
 }
 .catalog__item.noactive .catalog__line {
   background-color: var(--Light-Gray, #aeaeae) !important;
+  transition: all 0.8 ease-in-out;
 }
 .catalog__line {
   height: 0.0625rem;
@@ -1416,13 +1418,14 @@ img {
 .catalog__link {
   color: #000;
   text-align: right;
-  font-family: Gil "Gilroy";
+  font-family: "Gilroy";
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.8 ease-in-out;
   max-height: 1rem;
+  overflow: hidden;
 }
 
 .images__wrapper {

@@ -458,41 +458,46 @@ export function mainGSlider() {
 
 	const tl = gsap.timeline();
 
-	let j = 1;
+	let j = 0; // Починаємо з 0
+	let i = 0; // Починаємо з 0
 
 	catalogImage.forEach(img => {
 		j += 1;
 	});
 
-	j -= 2;
+	tl.fromTo(catalogImageC, { xPercent: 0 }, { xPercent: -103 * j });
 
-	tl.to(catalogImageC, { xPercent: -103 * j });
+	let scrollPos = 0;
 
 	ScrollTrigger.create({
 		animation: tl,
 		trigger: catalogContainer,
 		start: 'top top',
-		end: () => catalogContainer.offsetWidth * j,
+		end: () => catalogContainer.offsetWidth * j * 1.3,
 		scrub: 1,
 		pin: true,
-	});
+		onEnter: (self) => {
+			scrollPos = self.scroll();
+		},
+		onUpdate: (self) => {
+			const scrollPosition = self.scroll() - scrollPos;
 
-	// Додавання анімації для елементів
-	catalogItems.forEach((item, index) => {
-		gsap.to(item, {
-			opacity: 1,
-			x: 0,
-			scrollTrigger: {
-				trigger: catalogContainer,
-				start: 'top 80%',
-				end: 'top 80%',
-				onEnter: () => {
-					item.classList.remove('noactive');
-				},
-				onLeaveBack: () => {
+			console.log(scrollPosition);
+
+			i = Math.floor(scrollPosition / catalogContainer.offsetWidth);
+			console.log(i);
+
+			const currentItem = catalogItems[i];
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+			}
+
+			catalogItems.forEach((item, index) => {
+				if (index !== i) {
 					item.classList.add('noactive');
 				}
-			}
-		});
+			});
+		},
 	});
 }
