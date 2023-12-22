@@ -21,6 +21,18 @@ export function burgerMenu() {
 		body.classList.toggle('lock');
 	});
 
+	const header = document.querySelector('.header');
+	const drop = document.querySelectorAll('.dropdown');
+
+	drop.forEach((d) => {
+		d.addEventListener('mouseover', () => {
+			header.classList.add('drop');
+		})
+		d.addEventListener('mouseleave', () => {
+			header.classList.remove('drop');
+		})
+	})
+
 }
 
 export function accordion(mode = true) {

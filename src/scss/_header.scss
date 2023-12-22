@@ -8,6 +8,12 @@
 	background: rgba(56, 40, 40, 0.15);
 	backdrop-filter: blur(15px);
 	z-index: 99;
+	transition: $hover-transition;
+
+	&.drop {
+		padding-bottom: 2.4375rem;
+		transition: $hover-transition;
+	}
 
 	&__wrapper {
 		display: flex;
@@ -60,7 +66,49 @@
 					transition: $hover-transition;
 				}
 
+				& > ul {
+					position: absolute;
+					top: 5.8rem;
+					left: 0;
+					overflow: hidden;
+					max-height: 0rem;
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border-top: 1px solid transparent;
+					@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+					transition: $hover-transition;
+					li {
+						padding: 0.62rem 0;
+						position: relative;
+						z-index: 3;
+						a {
+							color: var(--White, #fff);
+							font-family: $font-family;
+							font-size: 1rem;
+							font-style: normal;
+							font-weight: 400;
+							line-height: normal;
+							text-transform: uppercase;
+							opacity: 0.9;
+						}
+
+						&:hover {
+							a {
+								opacity: 1;
+								font-weight: 600;
+							}
+						}
+					}
+				}
+
 				&:hover {
+					& > ul {
+						max-height: 3rem;
+						border-top-color: rgba(255, 255, 255, 0.3);
+						transition: $hover-transition;
+					}
 					&::after {
 						//background-image: url("../img/arrow-down-hover.svg");
 						transform: rotate(-180deg);
@@ -85,6 +133,43 @@
 
 	&__burger {
 		display: none;
+	}
+}
+
+.header__wrapper {
+	max-width: $container-width;
+	margin: 0 auto;
+}
+
+@include media-width(1300px) {
+	.header__wrapper {
+		max-width: 1050px;
+	}
+}
+
+@include media-width(1100px) {
+	.header__wrapper {
+		max-width: 920px;
+	}
+}
+
+@include media-width($md) {
+	.header__wrapper {
+		max-width: 800px;
+	}
+}
+
+@include media-width(850px) {
+	.header__wrapper {
+		max-width: $sm;
+		padding: 1.25rem !important;
+	}
+}
+
+@include media-width($sm) {
+	.header__wrapper {
+		max-width: none;
+		padding: 1.25rem !important;
 	}
 }
 

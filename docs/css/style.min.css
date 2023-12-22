@@ -1142,6 +1142,11 @@ img {
   background: rgba(56, 40, 40, 0.15);
   backdrop-filter: blur(15px);
   z-index: 99;
+  transition: all 0.3s ease-in-out;
+}
+.header.drop {
+  padding-bottom: 2.4375rem;
+  transition: all 0.3s ease-in-out;
 }
 .header__wrapper {
   display: flex;
@@ -1207,6 +1212,49 @@ img {
   background-size: cover;
   transition: all 0.3s ease-in-out;
 }
+.header__menu li.dropdown > ul {
+  position: absolute;
+  top: 5.8rem;
+  left: 0;
+  overflow: hidden;
+  max-height: 0rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid transparent;
+  gap: 30.08px;
+  transition: all 0.3s ease-in-out;
+}
+@media (max-width: 1280px) {
+  .header__menu li.dropdown > ul {
+    gap: calc(20px + 10.08 * ((100vw - 360px) / 920));
+  }
+}
+.header__menu li.dropdown > ul li {
+  padding: 0.62rem 0;
+  position: relative;
+  z-index: 3;
+}
+.header__menu li.dropdown > ul li a {
+  color: var(--White, #fff);
+  font-family: "Gilroy";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+.header__menu li.dropdown > ul li:hover a {
+  opacity: 1;
+  font-weight: 600;
+}
+.header__menu li.dropdown:hover > ul {
+  max-height: 3rem;
+  border-top-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+}
 .header__menu li.dropdown:hover::after {
   transform: rotate(-180deg);
   transition: all 0.3s ease-in-out;
@@ -1223,6 +1271,38 @@ img {
   display: none;
 }
 
+.header__wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1300px) {
+  .header__wrapper {
+    max-width: 1050px;
+  }
+}
+@media (max-width: 1100px) {
+  .header__wrapper {
+    max-width: 920px;
+  }
+}
+@media (max-width: 992px) {
+  .header__wrapper {
+    max-width: 800px;
+  }
+}
+@media (max-width: 850px) {
+  .header__wrapper {
+    max-width: 767px;
+    padding: 1.25rem !important;
+  }
+}
+@media (max-width: 767px) {
+  .header__wrapper {
+    max-width: none;
+    padding: 1.25rem !important;
+  }
+}
 @media (max-width: 992px) {
   .header__burger {
     display: flex;
