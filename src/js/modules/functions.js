@@ -1,4 +1,12 @@
 import $ from "jquery";
+import gsap from 'gsap';
+
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
+import { Observer } from "gsap/Observer.js";
+import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');
@@ -265,4 +273,127 @@ export function inputPassword() {
 			})
 		});
 	}
+}
+
+export function mainAnimate() {
+	gsap.from(".hero__title", {
+		x: -200,
+		opacity: 0,
+		duration: 2,
+		scrollTrigger: {
+			trigger: ".hero__title",
+			start: "top 80%",
+			end: "top 80%",
+			toggleActions: "play none none none",
+			//markers: true
+		}
+	});
+
+	gsap.from(".header", {
+		y: -200,
+		opacity: 0,
+		duration: 1,
+		delay: 0.5,
+		scrollTrigger: {
+			trigger: ".header",
+			start: "top 80%",
+			end: "top 80%",
+			toggleActions: "play none none none",
+			//markers: true
+		}
+	});
+
+	gsap.from(".hero__text", {
+		x: -200,
+		opacity: 0,
+		duration: 2,
+		delay: 1,
+		scrollTrigger: {
+			trigger: ".hero__text",
+			start: "top 80%",
+			end: "top 80%",
+			toggleActions: "play none none none",
+			//markers: true
+		}
+	});
+	gsap.from(".hero__button", {
+		y: 100,
+		opacity: 0,
+		duration: 1,
+		delay: 1.5,
+		scrollTrigger: {
+			trigger: ".hero__text",
+			start: "top 80%",
+			end: "top 80%",
+			toggleActions: "play none none none",
+			//markers: true
+		}
+	});
+
+	gsap.from(".about__title", {
+		x: 100,
+		opacity: 0,
+		duration: 1.5,
+		scrollTrigger: {
+			trigger: ".about__title",
+			start: "top 80%",
+			end: "top 80%",
+			toggleActions: "play none none none",
+			//markers: true
+		}
+	});
+
+	const textElements = document.querySelectorAll(".text");
+
+	let i = 0.5;
+
+	textElements.forEach((element) => {
+		i += 0.2;
+		gsap.from(element, {
+			y: 100 * 1,
+			opacity: 0,
+			duration: i,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 80%",
+				end: "top 80%",
+				//markers: true
+			}
+		});
+	});
+
+	const catalogTitles = document.querySelectorAll(".catalog__title");
+
+	catalogTitles.forEach((element) => {
+		i += 0.2;
+		gsap.from(element, {
+			x: -100 * 1,
+			opacity: 0,
+			duration: i,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 80%",
+				end: "top 80%",
+				//markers: true
+			}
+		});
+	});
+
+	const aboutImages = document.querySelectorAll(".about__image");
+
+	aboutImages.forEach((element) => {
+		i += 0.2;
+		gsap.from(element, {
+			//x: -100 * 1,
+			opacity: 0,
+			scale: 0.6,
+			duration: 0.8,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 80%",
+				end: "top 80%",
+				//markers: true
+			}
+		});
+	});
 }

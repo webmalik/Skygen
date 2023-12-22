@@ -56,5 +56,8 @@
 		"webpack": "latest",
 		"webpack-stream": "latest",
 		"yargs": "latest"
+	},
+	"dependencies": {
+		"gsap": "^3.12.4"
 	}
 }
