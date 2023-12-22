@@ -304,9 +304,9 @@ export function mainAnimate() {
 	});
 
 	gsap.from(".header", {
-		y: -500,
+		y: -200,
 		opacity: 0,
-		duration: 2,
+		duration: 1.5,
 		delay: 0.9,
 		scrollTrigger: {
 			trigger: ".header",
