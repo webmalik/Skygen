@@ -304,10 +304,10 @@ export function mainAnimate() {
 	});
 
 	gsap.from(".header", {
-		y: -200,
+		y: -500,
 		opacity: 0,
-		duration: 1,
-		delay: 0.5,
+		duration: 2,
+		delay: 0.9,
 		scrollTrigger: {
 			trigger: ".header",
 			start: "top 80%",
