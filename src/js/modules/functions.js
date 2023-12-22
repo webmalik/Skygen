@@ -303,19 +303,19 @@ export function mainAnimate() {
 		}
 	});
 
-	gsap.from(".header", {
-		y: -200,
-		opacity: 0,
-		duration: 1.5,
-		delay: 0.9,
-		scrollTrigger: {
-			trigger: ".header",
-			start: "top 80%",
-			end: "top 80%",
-			toggleActions: "play none none none",
-			//markers: true
-		}
-	});
+	// gsap.from(".header", {
+	// 	y: -200,
+	// 	opacity: 0,
+	// 	duration: 1.5,
+	// 	delay: 0.9,
+	// 	scrollTrigger: {
+	// 		trigger: ".header",
+	// 		start: "top 80%",
+	// 		end: "top 80%",
+	// 		toggleActions: "play none none none",
+	// 		//markers: true
+	// 	}
+	// });
 
 	gsap.from(".hero__text", {
 		x: -200,
