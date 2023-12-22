@@ -1366,6 +1366,17 @@ img {
 .catalog__header p {
   text-indent: 1rem;
 }
+.catalog__image {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 30.08px;
+}
+@media (max-width: 1280px) {
+  .catalog__image {
+    gap: calc(20px + 10.08 * ((100vw - 360px) / 920));
+  }
+}
 .catalog__wrapper {
   display: flex;
   justify-content: space-between;

@@ -446,3 +446,54 @@ export function mainAnimate() {
 		});
 	});
 }
+
+export function mainGSlider() {
+
+	// Вибираємо елементи
+	const catalogContainer = document.querySelector('.catalog__container');
+	const catalogImage = document.querySelectorAll('.catalog__image img');
+	const catalogItems = document.querySelectorAll('.catalog__item');
+
+	// Встановлюємо початковий стан
+	gsap.set(catalogImage, { x: 0 });
+
+	let j = 1;
+
+	catalogImage.forEach(img => {
+		const imageTween = gsap.to(img, {
+			xPercent: -100 * j,
+			ease: 'none',
+			scrollTrigger: {
+				trigger: catalogContainer,
+				start: 'top top',
+				end: 'bottom top',
+				scrub: 1,
+				markers: true
+			}
+		});
+		j += 1;
+	})
+
+
+
+	// Встановлюємо початковий стан елементів та оброблюємо їхню анімацію
+	catalogItems.forEach((item, index) => {
+		gsap.set(item, { opacity: 0, x: -20 }); // Початковий стан (можна змінити за потребою)
+
+		gsap.to(item, {
+			opacity: 1,
+			x: 0,
+			scrollTrigger: {
+				trigger: catalogImage, // Змінено тригер на картинку
+				start: 'top 80%', // Змінено старт відносно видимої частини картинки
+				end: 'top 80%',
+				onEnter: () => {
+					item.classList.remove('noactive'); // Видаляємо клас noactive при входженні в зону видимості
+				},
+				onLeaveBack: () => {
+					item.classList.add('noactive'); // Додаємо клас noactive при виходженні з зони видимості
+				}
+			}
+		});
+	});
+}

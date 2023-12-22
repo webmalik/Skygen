@@ -6,3 +6,4 @@ wmRoot.project();
 
 wmFunctions.burgerMenu();
 wmFunctions.mainAnimate();
+wmFunctions.mainGSlider();
