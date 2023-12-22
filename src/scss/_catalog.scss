@@ -23,8 +23,11 @@
 	&__text {
 	}
 
-	&__image {
+	&__img-cont {
 		overflow: hidden;
+	}
+
+	&__image {
 		display: flex;
 		align-items: center;
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);

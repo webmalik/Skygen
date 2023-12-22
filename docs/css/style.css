@@ -1366,8 +1366,10 @@ img {
 .catalog__header p {
   text-indent: 1rem;
 }
-.catalog__image {
+.catalog__img-cont {
   overflow: hidden;
+}
+.catalog__image {
   display: flex;
   align-items: center;
   gap: 30.08px;

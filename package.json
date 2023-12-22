@@ -58,6 +58,7 @@
 		"yargs": "latest"
 	},
 	"dependencies": {
-		"gsap": "^3.12.4"
+		"gsap": "^3.12.4",
+		"locomotive-scroll": "^4.1.4"
 	}
 }
