@@ -5,5 +5,5 @@ wmRoot.isWebp();
 wmRoot.project();
 
 wmFunctions.burgerMenu();
-wmFunctions.mainAnimate();
-wmFunctions.mainGSlider();
+// wmFunctions.mainAnimate();
+// wmFunctions.mainGSlider();

@@ -1,0 +1,130 @@
+.why {
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+	}
+
+	&__inner {
+		p {
+			text-indent: 1rem;
+		}
+	}
+
+	&__title {
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 0.62rem;
+		p {
+			font-weight: 600;
+		}
+	}
+
+	&__images {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		@include adaptiv-value("border-radius", toPX(1.25), toPX(1.25), 1);
+		@include adaptiv-value("max-height", toPX(25), toPX(18.75), 1);
+		overflow: hidden;
+		z-index: 1;
+
+		picture,
+		img {
+			transform: rotateY(180deg);
+		}
+
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-image: url("../img/gradient-why.svg");
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center right;
+			z-index: 2;
+		}
+
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-image: url("../img/logo.svg");
+			background-repeat: no-repeat;
+			background-position: center right 6.3rem;
+			z-index: 3;
+		}
+	}
+
+	&__content {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+		div {
+			width: 100%;
+		}
+	}
+
+	&__item {
+	}
+
+	&__stats {
+		border-radius: 1.25rem;
+		background: var(--Black, #171717);
+		display: flex;
+		padding: 1.875rem;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__label {
+		display: flex;
+		flex-direction: column;
+		gap: 0.62rem;
+		border-left: 1px solid #fff;
+		padding-left: 6.25rem;
+		padding-right: 6.25rem;
+
+		&:first-child {
+			padding-left: 0;
+			border-left: none;
+		}
+		&:last-child {
+			padding-right: 0;
+		}
+
+		p {
+			color: var(--White, #fff);
+			@include adaptiv-value("font-size", toPX(4), toPX(2), 1);
+			font-family: $font-family;
+			font-size: 2rem;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+		}
+
+		span {
+			color: var(--White, #fff);
+			font-family: $font-family;
+			@include adaptiv-value("font-size", toPX(1), toPX(1), 1);
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			letter-spacing: -0.03219rem;
+		}
+	}
+}

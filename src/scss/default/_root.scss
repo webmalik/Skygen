@@ -221,3 +221,19 @@ img {
 		color: var(--Dark-Gray, #404141);
 	}
 }
+
+.inner {
+	display: flex;
+	align-items: center;
+	@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+
+	div {
+		width: 100%;
+	}
+
+	.title {
+		p {
+			text-indent: 1rem;
+		}
+	}
+}

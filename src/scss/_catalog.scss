@@ -31,6 +31,9 @@
 		display: flex;
 		align-items: center;
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+		border-radius: 1.25rem;
+		@include adaptiv-value("max-height", toPX(37.5), toPX(18.75), 1);
+		overflow: hidden;
 	}
 
 	&__wrapper {

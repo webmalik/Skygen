@@ -1,0 +1,74 @@
+.benefits {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	&__wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		@include adaptiv-value("gap", toPX(1.81), toPX(1.25), 1);
+	}
+
+	&__item {
+		position: relative;
+		@include adaptiv-value("max-height", toPX(25), toPX(25), 1);
+	}
+
+	&__image {
+		position: relative;
+		border-radius: 1.25rem;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1;
+		overflow: hidden;
+		@include adaptiv-value("max-height", toPX(25), toPX(25), 1);
+		height: 100%;
+
+		picture,
+		img {
+			width: auto;
+			@include adaptiv-value("max-height", toPX(25), toPX(25), 1);
+		}
+
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+			z-index: 2;
+		}
+	}
+
+	&__content {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 3;
+
+		display: flex;
+		flex-direction: column;
+		gap: 0.62rem;
+		justify-content: flex-end;
+		@include adaptiv-value("padding", toPX(1.88), toPX(1.25), 1);
+	}
+
+	&__icon {
+		@include adaptiv-value("max-width", toPX(2), toPX(2), 1);
+		@include adaptiv-value("max-height", toPX(2), toPX(2), 1);
+	}
+
+	&__text {
+		color: var(--White, #fff);
+		line-height: 1.5rem;
+	}
+}
