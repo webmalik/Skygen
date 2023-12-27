@@ -306,8 +306,8 @@ export function mainNewTest() {
 		start: 'top bottom',
 		once: false,
 		onEnter: () => {
-			const homeIntroTitle = new SplitText('.about__title', typeOpts.words)
-			const homeIntroLabel = new SplitText('.about__text', typeOpts.chars)
+			const homeIntroTitle = new SplitText('.about__title', typeOpts.chars)
+			const homeIntroLabel = new SplitText('.about__text', typeOpts.words)
 
 			gsap.set('.about__image', { clipPath: 'inset(10%)' })
 			gsap.set('.about__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
@@ -327,10 +327,10 @@ export function mainNewTest() {
 				}
 			})
 			tl
-				.from(homeIntroLabel.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-				.from(homeIntroTitle.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-				.to('.about__image', { clipPath: 'inset(0%)', duration: 4, ease: 'expo.out' }, '<=.4')
-				.to('.about__image img', { scale: 1, duration: 4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
+				.to('.about__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+				.to('.about__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 
 			if ($(window).width() > 991) {
 				requestAnimationFrame(() => {
