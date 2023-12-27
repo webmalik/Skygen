@@ -58,6 +58,7 @@
 		"yargs": "latest"
 	},
 	"dependencies": {
+		"@studio-freight/lenis": "^1.0.29",
 		"gsap": "^3.12.4",
 		"locomotive-scroll": "^4.1.4"
 	}

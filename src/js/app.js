@@ -3,7 +3,9 @@ import * as wmFunctions from "./modules/functions.js"
 
 wmRoot.isWebp();
 wmRoot.project();
+wmFunctions.lenisScroll();
 
 wmFunctions.burgerMenu();
 // wmFunctions.mainAnimate();
 // wmFunctions.mainGSlider();
+wmFunctions.mainNewTest();

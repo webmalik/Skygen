@@ -215,6 +215,15 @@ img {
 
 	&--indent {
 		text-indent: 5.5rem;
+
+		.g-lines {
+			&:first-child {
+				text-indent: 5.5rem;
+			}
+		}
+		div {
+			text-indent: 0;
+		}
 	}
 
 	&--grey {

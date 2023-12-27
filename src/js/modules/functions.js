@@ -5,10 +5,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
 import { Observer } from "gsap/Observer.js";
 import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
+import Lenis from '@studio-freight/lenis';
 
+import { SplitText } from "./SplitText.js";
 
+let typeOpts = {
+	lines: { type: 'lines', linesClass: 'g-lines' },
+	words: { type: 'words,lines', linesClass: 'g-lines' },
+	chars: { type: 'chars,words,lines', linesClass: 'g-lines' }
+};
+let gOpts = {
+	ease: 'power2.easeOut'
+};
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');
@@ -289,6 +299,79 @@ export function inputPassword() {
 	}
 }
 
+export function mainNewTest() {
+
+	ScrollTrigger.create({
+		trigger: '.about',
+		start: 'top bottom',
+		once: false,
+		onEnter: () => {
+			const homeIntroTitle = new SplitText('.about__title', typeOpts.words)
+			const homeIntroLabel = new SplitText('.about__text', typeOpts.chars)
+
+			gsap.set('.about__image', { clipPath: 'inset(10%)' })
+			gsap.set('.about__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+			let tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.about',
+					start: 'top top+=50%',
+				},
+				defaults: {
+					ease: gOpts.ease
+				},
+				onComplete: () => {
+					homeIntroLabel.revert()
+					homeIntroTitle.revert()
+					new SplitText('.about__title', typeOpts.lines)
+				}
+			})
+			tl
+				.from(homeIntroLabel.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+				.from(homeIntroTitle.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
+				.to('.about__image', { clipPath: 'inset(0%)', duration: 4, ease: 'expo.out' }, '<=.4')
+				.to('.about__image img', { scale: 1, duration: 4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+
+			if ($(window).width() > 991) {
+				requestAnimationFrame(() => {
+					const tlScrub = gsap.timeline({
+						scrollTrigger: {
+							trigger: '.about',
+							start: 'top bottom',
+							end: 'bottom top',
+							scrub: true,
+						}
+					})
+					tlScrub
+						.fromTo('.about__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				})
+			}
+		}
+	})
+	// const homeIntroLabel = new SplitText('.about__title', typeOpts.words)
+	// const homeIntroTitle = new SplitText('.about__text', typeOpts.chars)
+
+	// gsap.from(".about", {
+	// 	scrollTrigger: {
+	// 		trigger: ".about",
+	// 		start: "top 80%",
+	// 		end: "top 80%",
+	// 		//markers: true
+	// 	},
+	// 	onComplete: () => {
+	// 		gsap.set('.about__image', { clipPath: 'inset(10%)' });
+	// 		gsap.set('.about__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 });
+
+	// 		gsap.to('.about__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4');
+	// 		gsap.to('.about__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0');
+
+	// 		// Анімація для розбитого тексту
+	// 		gsap.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: 0.5, stagger: .02 }, '<=.2');
+	// 		gsap.from(homeIntroTitle.chars, { yPercent: 30, autoAlpha: 0, duration: .2, stagger: .01 }, '<=.2');
+	// 	}
+	// });
+}
+
 export function mainAnimate() {
 	gsap.from(".hero__title", {
 		x: -200,
@@ -512,4 +595,29 @@ export function mainGSlider() {
 			});
 		},
 	});
+}
+
+export function lenisScroll() {
+	let lenis
+	if (window.innerWidth > 992) {
+		lenis = new Lenis({
+			smoothTouch: true,
+			duration: 2,
+		})
+
+	} else {
+		lenis = new Lenis({
+			smoothTouch: true,
+			duration: 1.4
+		})
+
+	}
+
+	function raf(time) {
+		lenis.raf(time)
+		requestAnimationFrame(raf)
+	}
+
+	requestAnimationFrame(raf)
+
 }
