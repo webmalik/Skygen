@@ -1,0 +1,38 @@
+.install {
+	&__wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+		div {
+			width: 100%;
+		}
+	}
+
+	&__title {
+		p {
+			text-indent: 2rem;
+		}
+	}
+
+	&__image {
+		border-radius: 1.25rem;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		picture,
+		img {
+			width: auto;
+		}
+	}
+	&__text {
+	}
+	&__item {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+	}
+}

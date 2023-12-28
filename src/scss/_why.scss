@@ -5,12 +5,6 @@
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
 	}
 
-	&__inner {
-		p {
-			text-indent: 1rem;
-		}
-	}
-
 	&__title {
 	}
 

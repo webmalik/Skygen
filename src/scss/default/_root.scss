@@ -216,11 +216,6 @@ img {
 	&--indent {
 		text-indent: 5.5rem;
 
-		.g-lines {
-			&:first-child {
-				text-indent: 5.5rem;
-			}
-		}
 		div {
 			text-indent: 0;
 		}
@@ -242,7 +237,7 @@ img {
 
 	.title {
 		p {
-			text-indent: 1rem;
+			text-indent: 2rem;
 		}
 	}
 }
