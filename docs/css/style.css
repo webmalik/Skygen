@@ -260,13 +260,6 @@ meter {
 @font-face {
   font-family: "Gilroy";
   font-display: swap;
-  src: url("../fonts/Gilroy-500.woff") format("woff"), url("../fonts/Gilroy-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Gilroy";
-  font-display: swap;
   src: url("../fonts/Gilroy-400.woff") format("woff"), url("../fonts/Gilroy-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -274,8 +267,8 @@ meter {
 @font-face {
   font-family: "Gilroy";
   font-display: swap;
-  src: url("../fonts/Gilroy-500.woff") format("woff"), url("../fonts/Gilroy-500.woff2") format("woff2");
-  font-weight: 500;
+  src: url("../fonts/Gilroy-400.woff") format("woff"), url("../fonts/Gilroy-400.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
@@ -288,8 +281,15 @@ meter {
 @font-face {
   font-family: "Gilroy";
   font-display: swap;
-  src: url("../fonts/Gilroy-400.woff") format("woff"), url("../fonts/Gilroy-400.woff2") format("woff2");
-  font-weight: 400;
+  src: url("../fonts/Gilroy-600.woff") format("woff"), url("../fonts/Gilroy-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  font-display: swap;
+  src: url("../fonts/Gilroy-500.woff") format("woff"), url("../fonts/Gilroy-500.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
 }
 @font-face {
@@ -309,8 +309,8 @@ meter {
 @font-face {
   font-family: "Gilroy";
   font-display: swap;
-  src: url("../fonts/Gilroy-600.woff") format("woff"), url("../fonts/Gilroy-600.woff2") format("woff2");
-  font-weight: 600;
+  src: url("../fonts/Gilroy-500.woff") format("woff"), url("../fonts/Gilroy-500.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
 }
 @font-face {
@@ -1438,6 +1438,12 @@ img {
 }
 .about__image {
   width: 100%;
+  max-height: 31.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+  overflow: hidden;
 }
 
 .catalog__container {
