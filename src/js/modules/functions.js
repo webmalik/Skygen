@@ -49,7 +49,7 @@ export function accordion(mode = true) {
 	const accordionTriggers = document.querySelectorAll('.accordion-trigger');
 
 	if (accordionTriggers) {
-		// Додати обробник подій для кожного заголовку
+
 		accordionTriggers.forEach(trigger => {
 			trigger.addEventListener('click', () => {
 				if (mode) {
@@ -620,4 +620,29 @@ export function lenisScroll() {
 
 	requestAnimationFrame(raf)
 
+}
+
+export function faq() {
+	const accordionTriggers = document.querySelectorAll('.faq__header');
+
+	if (accordionTriggers) {
+
+		accordionTriggers.forEach(trigger => {
+			trigger.addEventListener('click', () => {
+
+				trigger.classList.toggle('active');
+
+				const content = trigger.nextElementSibling;
+				const wrapper = trigger.parentNode;
+
+				const img = wrapper.nextElementSibling;
+				if (content) {
+					content.classList.toggle('active');
+				}
+				if (img) {
+					img.classList.toggle('active');
+				}
+			});
+		});
+	}
 }
