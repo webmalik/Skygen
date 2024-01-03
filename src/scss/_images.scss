@@ -7,7 +7,8 @@
 	&__item {
 		display: flex;
 		flex-direction: column;
-		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+		@include adaptiv-value("gap", toPX(1.88), toPX(1.07), 1);
+		transition: all 0.5s ease-in-out;
 
 		&:nth-child(2n) {
 			@include adaptiv-value("padding-top", toPX(6.25), toPX(3.13), 1);
@@ -26,6 +27,18 @@
 				filter: none;
 				transition: all 0.8s ease-in-out;
 			}
+		}
+	}
+}
+
+@include media-width($md) {
+	.images {
+		&__wrapper {
+			//overflow: hidden;
+			gap: 0;
+		}
+		&__item {
+			display: flex !important;
 		}
 	}
 }

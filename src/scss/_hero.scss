@@ -57,4 +57,47 @@
 	&__button {
 		padding: 0.8125rem 1.875rem 0.8125rem 1.5625rem;
 	}
+
+	&__mobile {
+		display: none;
+	}
+}
+
+@include media-width(1250px) {
+	.hero {
+		&__image {
+			overflow: hidden;
+			min-height: 40rem;
+			width: auto;
+			picture,
+			img {
+				width: auto;
+				min-height: 40rem;
+			}
+		}
+	}
+}
+
+@include media-width(420px) {
+	.hero {
+		&__mobile {
+			display: flex !important;
+		}
+		&__image {
+			position: relative;
+			//height: 100%;
+			min-height: 43.75rem;
+			overflow: hidden;
+			height: 100%;
+			display: flex;
+			align-items: end;
+			justify-content: center;
+			picture,
+			img {
+				display: none;
+				max-inline-size: none;
+				max-block-size: none;
+			}
+		}
+	}
 }

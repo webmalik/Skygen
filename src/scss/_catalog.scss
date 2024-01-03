@@ -92,3 +92,11 @@
 		overflow: hidden;
 	}
 }
+
+@include media-width($md) {
+	.catalog {
+		&__wrapper {
+			flex-direction: column;
+		}
+	}
+}

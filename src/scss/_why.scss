@@ -43,7 +43,7 @@
 			right: 0;
 			background-image: url("../img/gradient-why.svg");
 			background-repeat: no-repeat;
-			background-size: contain;
+			background-size: cover;
 			background-position: center right;
 			z-index: 2;
 		}
@@ -119,6 +119,66 @@
 			font-weight: 400;
 			line-height: normal;
 			letter-spacing: -0.03219rem;
+		}
+	}
+}
+
+@include media-width($md) {
+	.why {
+		&__content {
+			flex-direction: column;
+		}
+		&__stats {
+			flex-direction: column;
+			padding: 1.25rem 1.88rem;
+			gap: 1.25rem;
+		}
+
+		&__images {
+			&::after,
+			&::before {
+				display: none;
+			}
+		}
+
+		&__label {
+			display: flex;
+			flex-direction: column;
+			gap: 0.62rem;
+			border-left: none;
+			border-bottom: 1px solid #fff;
+			padding: 0;
+			padding-bottom: 1.25rem;
+			width: 100%;
+
+			&:first-child {
+				padding-left: 0;
+				border-left: none;
+			}
+			&:last-child {
+				padding-right: 0;
+				border-bottom: none;
+			}
+
+			p {
+				color: var(--White, #fff);
+				@include adaptiv-value("font-size", toPX(4), toPX(2), 1);
+				font-family: $font-family;
+				font-size: 2rem;
+				font-style: normal;
+				font-weight: 600;
+				line-height: normal;
+			}
+
+			span {
+				color: var(--White, #fff);
+				font-family: $font-family;
+				@include adaptiv-value("font-size", toPX(1), toPX(1), 1);
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;
+				letter-spacing: -0.03219rem;
+			}
 		}
 	}
 }

@@ -36,3 +36,15 @@
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
 	}
 }
+
+@include media-width($md) {
+	.install {
+		&__wrapper {
+			flex-direction: column;
+		}
+
+		&__image {
+			max-height: 18.75rem;
+		}
+	}
+}

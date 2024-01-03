@@ -137,13 +137,18 @@ img {
 
 @include media-width(1300px) {
 	.container {
-		max-width: 1050px;
+		max-width: 1150px;
 	}
 }
 
-@include media-width(1100px) {
+@include media-width(1170px) {
 	.container {
-		max-width: 920px;
+		max-width: 1050px;
+	}
+}
+@include media-width(1070px) {
+	.container {
+		max-width: 972px;
 	}
 }
 
@@ -238,6 +243,32 @@ img {
 	.title {
 		p {
 			text-indent: 2rem;
+		}
+	}
+}
+
+@include media-width($md) {
+	.inner {
+		flex-direction: column;
+	}
+	.pagination {
+		margin-top: 1.25rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		span {
+			width: 0.375rem;
+			height: 0.375rem;
+			opacity: 0.5;
+			background-color: $black_color;
+			transition: all 0.5s ease-in-out;
+
+			&.swiper-pagination-bullet-active {
+				width: 0.625rem;
+				height: 0.625rem;
+				opacity: 1;
+				transition: all 0.5s ease-in-out;
+			}
 		}
 	}
 }

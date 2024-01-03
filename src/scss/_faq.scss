@@ -3,7 +3,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		@include adaptiv-value("gap", toPX(1.88), toPX(1.88), 1);
+		@include adaptiv-value("gap", toPX(1.88), toPX(1), 1);
 		border-radius: 1.25rem;
 		background: var(--Black, #171717);
 		@include adaptiv-value("padding", toPX(1.88), toPX(1.25), 1);
@@ -33,6 +33,7 @@
 		gap: 0.62rem;
 		span {
 			display: block;
+			@include adaptiv-value("padding-left", toPX(2), toPX(1), 1);
 			padding-left: 2rem;
 		}
 		p {
@@ -166,6 +167,22 @@
 				transform: translateY(0);
 				transition: all 0.5s ease-in-out;
 			}
+		}
+	}
+}
+
+@include media-width($md) {
+	.faq {
+		&__header-title {
+			p {
+				padding-left: 0;
+			}
+			svg {
+				width: 1.875rem;
+				height: 1.875rem;
+			}
+		}
+		&__header-icon {
 		}
 	}
 }

@@ -18,30 +18,48 @@ let gOpts = {
 	ease: 'power2.easeOut'
 };
 
+let lenis
+
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');
-	const box = document.querySelector('.header__box');
+	const box = document.querySelector('.header');
 	const body = document.body;
 
 	burger.addEventListener('click', () => {
 		burger.classList.toggle('open');
 		box.classList.toggle('active');
 		body.classList.toggle('lock');
+		if (body.classList.contains('lock')) {
+			lenis.stop();
+		} else {
+			lenis.start();
+		}
 	});
 
 	const header = document.querySelector('.header');
 	const drop = document.querySelectorAll('.dropdown');
 
-	drop.forEach((d) => {
-		d.addEventListener('mouseover', () => {
-			header.classList.add('drop');
+
+	if (window.innerWidth > 1070) {
+		drop.forEach((d) => {
+			d.addEventListener('mouseover', () => {
+				header.classList.add('drop');
+			})
+			d.addEventListener('mouseleave', () => {
+				header.classList.remove('drop');
+			})
 		})
-		d.addEventListener('mouseleave', () => {
-			header.classList.remove('drop');
+
+	} else {
+		drop.forEach((d) => {
+			d.addEventListener('click', (e) => {
+				e.preventDefault();
+				d.classList.toggle('active');
+			})
 		})
-	})
+	}
 
 }
 
@@ -598,23 +616,26 @@ export function mainGSlider() {
 }
 
 export function lenisScroll() {
-	let lenis
+
 	if (window.innerWidth > 992) {
 		lenis = new Lenis({
 			smoothTouch: true,
 			duration: 2,
+			autoResize: true
 		})
 
 	} else {
 		lenis = new Lenis({
 			smoothTouch: true,
-			duration: 1.4
+			duration: 1.4,
+			autoResize: true
 		})
 
 	}
 
 	function raf(time) {
 		lenis.raf(time)
+		lenis.resize()
 		requestAnimationFrame(raf)
 	}
 

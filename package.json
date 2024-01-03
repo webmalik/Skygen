@@ -50,7 +50,7 @@
 		"sass": "^1.63.6",
 		"siema": "latest",
 		"style-loader": "latest",
-		"swiper": "latest",
+		"swiper": "^11.0.5",
 		"vinyl-ftp": "latest",
 		"webp-converter": "2.2.3",
 		"webpack": "latest",

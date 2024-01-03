@@ -72,3 +72,26 @@
 		line-height: 1.5rem;
 	}
 }
+
+@include media-width($md) {
+	.benefits {
+		&__container {
+			display: block;
+		}
+		&__wrapper {
+			gap: 0;
+		}
+		&__slider {
+			margin-top: 1.25rem;
+		}
+		&__image {
+			min-height: 25rem;
+
+			picture,
+			img {
+				width: auto;
+				min-height: 25rem;
+			}
+		}
+	}
+}
