@@ -16,11 +16,22 @@ wmFunctions.faq();
 
 //Animations variables
 
-const mainSlider = document.querySelector('.main__slider');
+const windowSlider = document.querySelector('.window__slider');
+const doorSlider = document.querySelector('.door__slider');
+const otherSlider = document.querySelector('.other__slider');
 
 //Animations functions
 // wmAnimations.mainAnimate();
-wmAnimations.mainSlider(mainSlider);
+if (window.innerWidth > 992) {
+
+	wmAnimations.mainSlider(windowSlider);
+	wmAnimations.doorSlider(doorSlider);
+	wmAnimations.otherSlider(otherSlider);
+} else {
+	wmAnimations.mainSliderMobile(windowSlider);
+	wmAnimations.doorSliderMobile(doorSlider);
+	wmAnimations.otherSliderMobile(otherSlider);
+}
 //wmAnimations.mainNewTest();
 
 // Mobile functions

@@ -272,9 +272,19 @@ function calculateGap() {
 	return calculatedValue;
 }
 
+function getElementOffsetTop(element) {
+	let offsetTop = 0;
+
+	while (element) {
+		offsetTop += element.offsetTop;
+		element = element.offsetParent;
+	}
+
+	return offsetTop;
+}
+
 export function mainSlider(mainSlider) {
 
-	// Вибираємо елементи
 	const catalogContainer = mainSlider.querySelector('.catalog__container');
 	const catalogImage = mainSlider.querySelectorAll('.catalog__image img');
 	const catalogImageC = mainSlider.querySelector('.catalog__image');
@@ -286,13 +296,15 @@ export function mainSlider(mainSlider) {
 
 	let gapPersent = gap / catalogImageC.offsetWidth * 100;
 
-	console.log(gapPersent)
-
 	let allWidth = 0
+
+	let slides = catalogImage.length - 1;
 
 	catalogImage.forEach((imageWidth) => {
 		allWidth = allWidth + imageWidth.offsetWidth
 	})
+
+	const elementOffsetTop = getElementOffsetTop(catalogContainer);
 
 	allWidth = allWidth + gapAll
 
@@ -301,40 +313,382 @@ export function mainSlider(mainSlider) {
 
 	tl.fromTo(catalogImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (catalogImage.length - 1) + gapPersent });
 
-	let scrollPos = 0;
-
 	ScrollTrigger.create({
 		animation: tl,
 		trigger: catalogContainer,
 		start: 'top top',
-		end: () => allWidth,
+		end: () => {
+			return elementOffsetTop + 3000;
+		},
 		scrub: 1,
 		pin: true,
-		onUpdate: (self) => {
+		onUpdate: () => {
 
-			// Отримати поточне значення xPercent
 			const currentXPercent = gsap.getProperty(catalogImageC, 'xPercent');
 
-			// Розрахувати відсоткову позицію відносно всього блока слайдера
 			const percentScrolled = -currentXPercent;
 
-			// Розрахувати загальну ширину блока з урахуванням проміжку
 			const totalWidth = catalogImageC.offsetWidth + gap * (catalogImage.length - 1);
 
-			// Розрахувати позицію в пікселях в межах всього блока
 			const positionInPixels = (percentScrolled / 100) * totalWidth;
 
-			// Розрахувати індекс від 0 до catalogImage.length - 1 з врахуванням gap
 			const i = Math.floor(positionInPixels / (catalogImageC.offsetWidth + gap));
-			console.log(i);
+
+			const currentItem = catalogItems[i];
+
+			let normalizedPercentScrolled = ((percentScrolled % totalWidth) / totalWidth) * (100 * slides);
+			normalizedPercentScrolled = normalizedPercentScrolled - (gapPersent * slides) - gapPersent;
+			console.log(normalizedPercentScrolled)
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+			}
+
+			catalogItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function doorSlider(doorSlider) {
+
+	const doorContainer = doorSlider.querySelector('.door__container');
+	const doorImage = doorSlider.querySelectorAll('.door__image img');
+	const doorImageC = doorSlider.querySelector('.door__image');
+	const doorItems = doorSlider.querySelectorAll('.door__item');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * doorImage.length;
+
+	let gapPersent = gap / doorImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = doorImage.length - 1;
+
+	doorImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const doorOffsetTop = getElementOffsetTop(doorContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl2 = gsap.timeline();
+
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl2,
+		trigger: doorContainer,
+		start: 'top top',
+		end: () => {
+			return doorOffsetTop + 4500;
+		},
+		scrub: 1,
+		pin: true,
+		onUpdate: () => {
+
+			const currentXPercent = gsap.getProperty(doorImageC, 'xPercent');
+
+			const percentScrolled = -currentXPercent;
+
+			const totalWidth = doorImageC.offsetWidth + gap * (doorImage.length - 1);
+
+			const positionInPixels = (percentScrolled / 100) * totalWidth;
+
+			i = Math.floor(positionInPixels / (doorImageC.offsetWidth + gap));
+			console.log(i)
+
+			const currentItem = doorItems[i];
+
+			let normalizedPercentScrolled = percentScrolled / slides;
+			//let normalizedPercentScrolled = (((percentScrolled % totalWidth) + totalWidth) % totalWidth) / totalWidth * 100;
+
+			console.log(percentScrolled)
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+			}
+
+			doorItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function otherSlider(otherSlider) {
+
+	const otherContainer = otherSlider.querySelector('.other__container');
+	const otherImage = otherSlider.querySelectorAll('.other__image img');
+	const otherImageC = otherSlider.querySelector('.other__image');
+	const otherItems = otherSlider.querySelectorAll('.other__item');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * otherImage.length;
+
+	let gapPersent = gap / otherImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = otherImage.length - 1;
+
+	otherImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const otherOffsetTop = getElementOffsetTop(otherContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl3 = gsap.timeline();
+
+	tl3.fromTo(otherImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (otherImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl3,
+		trigger: otherContainer,
+		start: 'top top',
+		end: () => {
+			return otherOffsetTop + 6000;
+		},
+		scrub: 1,
+		pin: true,
+		onUpdate: () => {
+
+			const currentXPercent = gsap.getProperty(otherImageC, 'xPercent');
+
+			const percentScrolled = -currentXPercent;
+
+			const totalWidth = otherImageC.offsetWidth + gap * (otherImage.length - 1);
+
+			const positionInPixels = (percentScrolled / 100) * totalWidth;
+
+			i = Math.floor(positionInPixels / (otherImageC.offsetWidth / 1.5));
+			console.log(i)
+
+			const currentItem = otherItems[i];
+
+			let normalizedPercentScrolled = percentScrolled / slides;
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+			}
+
+			otherItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function mainSliderMobile(mainSlider) {
+
+	const catalogContainer = mainSlider.querySelector('.catalog__container');
+	const catalogImage = mainSlider.querySelectorAll('.catalog__image img');
+	const catalogImageC = mainSlider.querySelector('.catalog__image');
+	const catalogItems = mainSlider.querySelectorAll('.catalog__item');
+	const catalogWrapper = mainSlider.querySelector('.catalog__wrapper');
+
+
+	let gap = calculateGap();
+	let gapAll = gap * catalogImage.length;
+
+	let gapPersent = gap / catalogImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	catalogImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const elementOffsetTop = getElementOffsetTop(catalogContainer);
+
+	allWidth = allWidth + gapAll
+
+
+	const tl = gsap.timeline();
+
+	tl.fromTo(catalogImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (catalogImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl,
+		trigger: catalogContainer,
+		start: 'center center',
+		end: () => {
+			return elementOffsetTop + 3000;
+		},
+		scrub: 1,
+		pin: true,
+		onUpdate: () => {
+
+			const currentXPercent = gsap.getProperty(catalogImageC, 'xPercent');
+
+			const percentScrolled = -currentXPercent;
+
+			const totalWidth = catalogImageC.offsetWidth + gap * (catalogImage.length - 1);
+
+			const positionInPixels = (percentScrolled / 100) * totalWidth;
+
+			const i = Math.floor(positionInPixels / (catalogImageC.offsetWidth + gap));
 
 			const currentItem = catalogItems[i];
 
 			if (currentItem) {
 				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
 			}
 
 			catalogItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+
+					if (window.innerWidth < 992) {
+
+					}
+				}
+			});
+		},
+	});
+}
+
+export function doorSliderMobile(doorSlider) {
+
+	const doorContainer = doorSlider.querySelector('.door__container');
+	const doorImage = doorSlider.querySelectorAll('.door__image img');
+	const doorImageC = doorSlider.querySelector('.door__image');
+	const doorItems = doorSlider.querySelectorAll('.door__item');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * doorImage.length;
+
+	let gapPersent = gap / doorImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	doorImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const doorOffsetTop = getElementOffsetTop(doorContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl2 = gsap.timeline();
+
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl2,
+		trigger: doorContainer,
+		start: 'top top',
+		end: () => {
+			return doorOffsetTop + 4500;
+		},
+		scrub: 1,
+		pin: true,
+		onUpdate: () => {
+
+			const currentXPercent = gsap.getProperty(doorImageC, 'xPercent');
+
+			const percentScrolled = -currentXPercent;
+
+			const totalWidth = doorImageC.offsetWidth + gap * (doorImage.length - 1);
+
+			const positionInPixels = (percentScrolled / 100) * totalWidth;
+
+			i = Math.floor(positionInPixels / (doorImageC.offsetWidth + gap));
+			console.log(i)
+
+			const currentItem = doorItems[i];
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+			}
+
+			doorItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function otherSliderMobile(otherSlider) {
+
+	const otherContainer = otherSlider.querySelector('.other__container');
+	const otherImage = otherSlider.querySelectorAll('.other__image img');
+	const otherImageC = otherSlider.querySelector('.other__image');
+	const otherItems = otherSlider.querySelectorAll('.other__item');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * otherImage.length;
+
+	let gapPersent = gap / otherImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	otherImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const otherOffsetTop = getElementOffsetTop(otherContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl3 = gsap.timeline();
+
+	tl3.fromTo(otherImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (otherImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl3,
+		trigger: otherContainer,
+		start: 'top top',
+		end: () => {
+			return otherOffsetTop + 6000;
+		},
+		scrub: 1,
+		pin: true,
+		onUpdate: () => {
+
+			const currentXPercent = gsap.getProperty(otherImageC, 'xPercent');
+
+			const percentScrolled = -currentXPercent;
+
+			const totalWidth = otherImageC.offsetWidth + gap * (otherImage.length - 1);
+
+			const positionInPixels = (percentScrolled / 100) * totalWidth;
+
+			i = Math.floor(positionInPixels / (otherImageC.offsetWidth / 1.5));
+			console.log(i)
+
+			const currentItem = otherItems[i];
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+			}
+
+			otherItems.forEach((item, index) => {
 				if (index !== i) {
 					item.classList.add('noactive');
 				}

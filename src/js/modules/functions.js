@@ -5,7 +5,7 @@
 // import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
 // import { Observer } from "gsap/Observer.js";
 // import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
-// import Lenis from '@studio-freight/lenis';
+import Lenis from '@studio-freight/lenis';
 
 // import { SplitText } from "./SplitText.js";
 
