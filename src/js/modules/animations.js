@@ -1,10 +1,10 @@
-import $ from "jquery";
+//import $ from "jquery";
 import gsap from 'gsap';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
-import { Observer } from "gsap/Observer.js";
-import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
+// import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
+// import { Observer } from "gsap/Observer.js";
+// import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
 
 import { SplitText } from "./SplitText.js";
 

@@ -1,26 +1,26 @@
-import $ from "jquery";
-import gsap from 'gsap';
+// import $ from "jquery";
+// import gsap from 'gsap';
 
-import { ScrollTrigger } from "gsap/ScrollTrigger.js";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
-import { Observer } from "gsap/Observer.js";
-import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
-import Lenis from '@studio-freight/lenis';
+// import { ScrollTrigger } from "gsap/ScrollTrigger.js";
+// import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
+// import { Observer } from "gsap/Observer.js";
+// import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
+// import Lenis from '@studio-freight/lenis';
 
-import { SplitText } from "./SplitText.js";
+// import { SplitText } from "./SplitText.js";
 
-let typeOpts = {
-	lines: { type: 'lines', linesClass: 'g-lines' },
-	words: { type: 'words,lines', linesClass: 'g-lines' },
-	chars: { type: 'chars,words,lines', linesClass: 'g-lines' }
-};
-let gOpts = {
-	ease: 'power2.easeOut'
-};
+// let typeOpts = {
+// 	lines: { type: 'lines', linesClass: 'g-lines' },
+// 	words: { type: 'words,lines', linesClass: 'g-lines' },
+// 	chars: { type: 'chars,words,lines', linesClass: 'g-lines' }
+// };
+// let gOpts = {
+// 	ease: 'power2.easeOut'
+// };
 
 let lenis
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+// gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');
@@ -316,6 +316,7 @@ export function inputPassword() {
 		});
 	}
 }
+
 
 
 export function lenisScroll() {
