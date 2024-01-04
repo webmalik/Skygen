@@ -335,14 +335,15 @@ export function lenisScroll() {
 			autoResize: true
 		})
 
-	} else {
-		lenis = new Lenis({
-			smoothTouch: true,
-			duration: 0,
-			autoResize: true
-		})
-
 	}
+	// else {
+	// 	lenis = new Lenis({
+	// 		smoothTouch: true,
+	// 		duration: 0,
+	// 		autoResize: true
+	// 	})
+
+	// }
 
 	function raf(time) {
 		lenis.raf(time)
