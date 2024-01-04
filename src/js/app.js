@@ -25,10 +25,10 @@ const otherSlider = document.querySelector('.other__slider');
 // wmAnimations.mainAnimate();
 wmAnimations.benefitsZoom();
 wmAnimations.mainAnimations();
+wmAnimations.mainSlider(windowSlider);
+wmAnimations.doorSlider(doorSlider);
+wmAnimations.otherSlider(otherSlider);
 if (window.innerWidth > 992) {
-	wmAnimations.mainSlider(windowSlider);
-	wmAnimations.doorSlider(doorSlider);
-	wmAnimations.otherSlider(otherSlider);
 
 }
 
