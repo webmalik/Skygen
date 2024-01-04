@@ -35,5 +35,5 @@ export const path = {
 	srcFolder: srcFolder,
 	docsFolder: docsFolder,
 	rootFolder: rootFolder,
-	ftp: `dev`
+	ftp: ``
 }

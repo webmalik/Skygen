@@ -27,8 +27,10 @@ wmAnimations.mainSlider(windowSlider);
 wmAnimations.doorSlider(doorSlider);
 wmAnimations.otherSlider(otherSlider);
 wmAnimations.benefitsZoom();
+if (window.innerWidth > 992) {
 
-wmAnimations.mainAnimations();
+	wmAnimations.mainAnimations();
+}
 
 // Mobile functions
 if (window.innerWidth < 992) {

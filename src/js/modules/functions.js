@@ -1,26 +1,7 @@
-// import $ from "jquery";
-// import gsap from 'gsap';
 
-// import { ScrollTrigger } from "gsap/ScrollTrigger.js";
-// import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
-// import { Observer } from "gsap/Observer.js";
-// import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
+
 import Lenis from '@studio-freight/lenis';
-
-// import { SplitText } from "./SplitText.js";
-
-// let typeOpts = {
-// 	lines: { type: 'lines', linesClass: 'g-lines' },
-// 	words: { type: 'words,lines', linesClass: 'g-lines' },
-// 	chars: { type: 'chars,words,lines', linesClass: 'g-lines' }
-// };
-// let gOpts = {
-// 	ease: 'power2.easeOut'
-// };
-
-let lenis
-
-// gsap.registerPlugin(ScrollTrigger, SplitText);
+let lenisS
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');
@@ -32,9 +13,9 @@ export function burgerMenu() {
 		box.classList.toggle('active');
 		body.classList.toggle('lock');
 		if (body.classList.contains('lock')) {
-			lenis.stop();
+			// lenisS.stop();
 		} else {
-			lenis.start();
+			// lenisS.start();
 		}
 	});
 
@@ -218,7 +199,7 @@ export function modal() {
 				if (mod.classList.contains('active')) {
 					mod.classList.remove('active');
 					body.classList.remove('lock');
-					lenis.start();
+					// lenisS.start();
 				}
 			});
 
@@ -227,7 +208,7 @@ export function modal() {
 					window = mod;
 					window.classList.add('active');
 					body.classList.add('lock');
-					lenis.stop();
+					// lenisS.stop();
 
 				}
 			});
@@ -239,21 +220,21 @@ export function modal() {
 			//window.classList.remove('close__modal--animations');
 			window.classList.add('active');
 			body.classList.add('lock');
-			lenis.stop();
+			// lenisS.stop();
 
 			window.addEventListener('click', (e) => {
 				if (e.target != wrapper && !wrapper.contains(e.target)) {
 					//window.classList.add('close__modal--animations');
 					window.classList.remove('active');
 					body.classList.remove('lock');
-					lenis.start();
+					// lenisS.start();
 				}
 			});
 			close.addEventListener('click', () => {
 				//window.classList.add('close__modal--animations');
 				window.classList.remove('active');
 				body.classList.remove('lock');
-				lenis.start();
+				// lenisS.start();
 			});
 
 		});
@@ -329,7 +310,7 @@ export function inputPassword() {
 export function lenisScroll() {
 
 	if (window.innerWidth > 992) {
-		lenis = new Lenis({
+		lenisS = new Lenis({
 			smoothTouch: true,
 			duration: 1.2,
 			autoResize: true
@@ -337,7 +318,7 @@ export function lenisScroll() {
 
 	}
 	// else {
-	// 	lenis = new Lenis({
+	// 	lenisS = new lenisS({
 	// 		smoothTouch: true,
 	// 		duration: 0,
 	// 		autoResize: true
@@ -346,8 +327,8 @@ export function lenisScroll() {
 	// }
 
 	function raf(time) {
-		lenis.raf(time)
-		lenis.resize()
+		lenisS.raf(time)
+		lenisS.resize()
 		requestAnimationFrame(raf)
 	}
 
