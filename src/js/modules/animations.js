@@ -389,7 +389,7 @@ export function doorSlider(doorSlider) {
 		trigger: doorContainer,
 		start: 'top top',
 		end: () => {
-			return doorOffsetTop + 4500;
+			return doorOffsetTop + 5500;
 		},
 		scrub: 1,
 		pin: true,
@@ -462,7 +462,7 @@ export function otherSlider(otherSlider) {
 		trigger: otherContainer,
 		start: 'top top',
 		end: () => {
-			return otherOffsetTop + 6000;
+			return otherOffsetTop + 8000;
 		},
 		scrub: 1,
 		pin: true,
@@ -552,17 +552,11 @@ export function mainSliderMobile(mainSlider) {
 
 			if (currentItem) {
 				currentItem.classList.remove('noactive');
-				let currentLine = currentItem.querySelector('.catalog__active-line');
-				currentLine.style.width = normalizedPercentScrolled + '%';
 			}
 
 			catalogItems.forEach((item, index) => {
 				if (index !== i) {
 					item.classList.add('noactive');
-
-					if (window.innerWidth < 992) {
-
-					}
 				}
 			});
 		},

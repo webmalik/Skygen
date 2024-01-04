@@ -118,9 +118,17 @@
 	.catalog {
 		&__wrapper {
 			overflow: hidden;
+			gap: 0;
 		}
 		&__item {
 			min-width: 100%;
+			transition: all 0.8s ease-in-out;
+
+			&.noactive {
+				max-width: 0;
+				overflow: hidden;
+				transition: all 0.8s ease-in-out;
+			}
 		}
 	}
 }
