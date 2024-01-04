@@ -208,50 +208,57 @@ export function modal() {
 	const open = document.querySelectorAll('.open__modal');
 	const modal = document.querySelectorAll('.modal');
 	let dataModal, window;
+	const body = document.body;
 
-	if (modal) {
-		open.forEach(function (el) {
-			el.addEventListener('click', () => {
-				dataModal = el.getAttribute('data-modal');
+	open.forEach(function (el) {
+		el.addEventListener('click', () => {
+			dataModal = el.getAttribute('data-modal');
 
-				modal.forEach(function (mod) {
-					if (mod.classList.contains('active')) {
-						mod.classList.remove('active');
-					}
-				});
-
-				modal.forEach(function (mod) {
-					if (mod.getAttribute('data-modal') === dataModal) {
-						window = mod;
-						setTimeout(() => {
-							window.classList.remove('close__modal--animations');
-							window.classList.add('active');
-						}, 1200);
-
-					}
-				});
+			modal.forEach(function (mod) {
+				if (mod.classList.contains('active')) {
+					mod.classList.remove('active');
+					body.classList.remove('lock');
+					lenis.start();
+				}
 			});
 
-			el.addEventListener('click', () => {
-				let close = window.querySelector('.modal__close');
-				let wrapper = window.querySelector('.modal__wrapper');
-				window.classList.remove('close__modal--animations');
-				window.classList.add('active');
+			modal.forEach(function (mod) {
+				if (mod.getAttribute('data-modal') === dataModal) {
+					window = mod;
+					window.classList.add('active');
+					body.classList.add('lock');
+					lenis.stop();
 
-				window.addEventListener('click', (e) => {
-					if (e.target != wrapper && !wrapper.contains(e.target)) {
-						window.classList.add('close__modal--animations');
-						window.classList.remove('active');
-					}
-				});
-				close.addEventListener('click', () => {
-					window.classList.add('close__modal--animations');
-					window.classList.remove('active');
-				});
-
+				}
 			});
 		});
-	}
+
+		el.addEventListener('click', () => {
+			let close = window.querySelector('.modal__close');
+			let wrapper = window.querySelector('.modal__wrapper');
+			//window.classList.remove('close__modal--animations');
+			window.classList.add('active');
+			body.classList.add('lock');
+			lenis.stop();
+
+			window.addEventListener('click', (e) => {
+				if (e.target != wrapper && !wrapper.contains(e.target)) {
+					//window.classList.add('close__modal--animations');
+					window.classList.remove('active');
+					body.classList.remove('lock');
+					lenis.start();
+				}
+			});
+			close.addEventListener('click', () => {
+				//window.classList.add('close__modal--animations');
+				window.classList.remove('active');
+				body.classList.remove('lock');
+				lenis.start();
+			});
+
+		});
+	});
+
 }
 
 export function sticky() {

@@ -13,6 +13,7 @@ wmFunctions.lenisScroll();
 wmFunctions.burgerMenu();
 wmFunctions.accordion();
 wmFunctions.faq();
+wmFunctions.modal();
 
 //Animations variables
 
