@@ -289,6 +289,7 @@ export function mainSlider(mainSlider) {
 	const catalogImage = mainSlider.querySelectorAll('.catalog__image img');
 	const catalogImageC = mainSlider.querySelector('.catalog__image');
 	const catalogItems = mainSlider.querySelectorAll('.catalog__item');
+	const catalogWrapper = mainSlider.querySelector('.catalog__wrapper');
 
 
 	let gap = calculateGap();
@@ -336,14 +337,18 @@ export function mainSlider(mainSlider) {
 
 			const currentItem = catalogItems[i];
 
-			let normalizedPercentScrolled = ((percentScrolled % totalWidth) / totalWidth) * (100 * slides);
-			normalizedPercentScrolled = normalizedPercentScrolled - (gapPersent * slides) - gapPersent;
-			console.log(normalizedPercentScrolled)
+			// let normalizedPercentScrolled = ((percentScrolled % totalWidth) / totalWidth) * (100 * slides);
+			// normalizedPercentScrolled = normalizedPercentScrolled - (gapPersent * slides) - gapPersent;
+			// console.log(normalizedPercentScrolled)
+			let normalizedPercentScrolled = percentScrolled / slides;
 
 			if (currentItem) {
 				currentItem.classList.remove('noactive');
 				let currentLine = currentItem.querySelector('.catalog__active-line');
 				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(catalogWrapper, { xPercent: -i * 100, duration: 1 })
+				}
 			}
 
 			catalogItems.forEach((item, index) => {
@@ -361,6 +366,7 @@ export function doorSlider(doorSlider) {
 	const doorImage = doorSlider.querySelectorAll('.door__image img');
 	const doorImageC = doorSlider.querySelector('.door__image');
 	const doorItems = doorSlider.querySelectorAll('.door__item');
+	const doorWrapper = doorSlider.querySelector('.door__wrapper');
 
 	let i = 0;
 	let gap = calculateGap();
@@ -417,6 +423,9 @@ export function doorSlider(doorSlider) {
 				currentItem.classList.remove('noactive');
 				let currentLine = currentItem.querySelector('.catalog__active-line');
 				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(doorWrapper, { xPercent: -i * 100, duration: 1 })
+				}
 			}
 
 			doorItems.forEach((item, index) => {
@@ -434,6 +443,7 @@ export function otherSlider(otherSlider) {
 	const otherImage = otherSlider.querySelectorAll('.other__image img');
 	const otherImageC = otherSlider.querySelector('.other__image');
 	const otherItems = otherSlider.querySelectorAll('.other__item');
+	const otherWrapper = otherSlider.querySelector('.other__wrapper');
 
 	let i = 0;
 	let gap = calculateGap();
@@ -487,6 +497,9 @@ export function otherSlider(otherSlider) {
 				currentItem.classList.remove('noactive');
 				let currentLine = currentItem.querySelector('.catalog__active-line');
 				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(otherWrapper, { xPercent: -i * 100, duration: 1 })
+				}
 			}
 
 			otherItems.forEach((item, index) => {

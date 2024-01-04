@@ -324,7 +324,7 @@ export function lenisScroll() {
 	if (window.innerWidth > 992) {
 		lenis = new Lenis({
 			smoothTouch: true,
-			duration: 2,
+			duration: 1.2,
 			autoResize: true
 		})
 

@@ -116,17 +116,20 @@
 
 @include media-width($md) {
 	.catalog {
-		&__wrapper {
+		&__cont {
 			overflow: hidden;
+		}
+		&__wrapper {
 			gap: 0;
+		}
+		&__inner {
+			flex-direction: column;
 		}
 		&__item {
 			min-width: 100%;
 			transition: all 0.8s ease-in-out;
 
 			&.noactive {
-				max-width: 0;
-				overflow: hidden;
 				transition: all 0.8s ease-in-out;
 			}
 		}

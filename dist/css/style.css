@@ -1790,17 +1790,20 @@ img {
 }
 
 @media (max-width: 992px) {
-  .catalog__wrapper {
+  .catalog__cont {
     overflow: hidden;
+  }
+  .catalog__wrapper {
     gap: 0;
+  }
+  .catalog__inner {
+    flex-direction: column;
   }
   .catalog__item {
     min-width: 100%;
     transition: all 0.8s ease-in-out;
   }
   .catalog__item.noactive {
-    max-width: 0;
-    overflow: hidden;
     transition: all 0.8s ease-in-out;
   }
 }
