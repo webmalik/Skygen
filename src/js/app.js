@@ -22,19 +22,10 @@ const otherSlider = document.querySelector('.other__slider');
 
 //Animations functions
 // wmAnimations.mainAnimate();
-if (window.innerWidth > 992) {
+wmAnimations.mainSlider(windowSlider);
+wmAnimations.doorSlider(doorSlider);
+wmAnimations.otherSlider(otherSlider);
 
-	wmAnimations.mainSlider(windowSlider);
-	wmAnimations.doorSlider(doorSlider);
-	wmAnimations.otherSlider(otherSlider);
-} else {
-	// wmAnimations.mainSliderMobile(windowSlider);
-	// wmAnimations.doorSliderMobile(doorSlider);
-	// wmAnimations.otherSliderMobile(otherSlider);
-	wmAnimations.mainSlider(windowSlider);
-	wmAnimations.doorSlider(doorSlider);
-	wmAnimations.otherSlider(otherSlider);
-}
 //wmAnimations.mainNewTest();
 
 // Mobile functions
