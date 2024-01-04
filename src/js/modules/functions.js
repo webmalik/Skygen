@@ -13,9 +13,9 @@ export function burgerMenu() {
 		box.classList.toggle('active');
 		body.classList.toggle('lock');
 		if (body.classList.contains('lock')) {
-			// lenisS.stop();
+			lenisS.stop();
 		} else {
-			// lenisS.start();
+			lenisS.start();
 		}
 	});
 
@@ -199,7 +199,7 @@ export function modal() {
 				if (mod.classList.contains('active')) {
 					mod.classList.remove('active');
 					body.classList.remove('lock');
-					// lenisS.start();
+					lenisS.start();
 				}
 			});
 
@@ -208,7 +208,7 @@ export function modal() {
 					window = mod;
 					window.classList.add('active');
 					body.classList.add('lock');
-					// lenisS.stop();
+					lenisS.stop();
 
 				}
 			});
@@ -220,21 +220,21 @@ export function modal() {
 			//window.classList.remove('close__modal--animations');
 			window.classList.add('active');
 			body.classList.add('lock');
-			// lenisS.stop();
+			lenisS.stop();
 
 			window.addEventListener('click', (e) => {
 				if (e.target != wrapper && !wrapper.contains(e.target)) {
 					//window.classList.add('close__modal--animations');
 					window.classList.remove('active');
 					body.classList.remove('lock');
-					// lenisS.start();
+					lenisS.start();
 				}
 			});
 			close.addEventListener('click', () => {
 				//window.classList.add('close__modal--animations');
 				window.classList.remove('active');
 				body.classList.remove('lock');
-				// lenisS.start();
+				lenisS.start();
 			});
 
 		});
@@ -317,14 +317,14 @@ export function lenisScroll() {
 		})
 
 	}
-	// else {
-	// 	lenisS = new lenisS({
-	// 		smoothTouch: true,
-	// 		duration: 0,
-	// 		autoResize: true
-	// 	})
+	else {
+		lenisS = new Lenis({
+			smoothTouch: true,
+			duration: 0.8,
+			autoResize: true
+		})
 
-	// }
+	}
 
 	function raf(time) {
 		lenisS.raf(time)
