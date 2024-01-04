@@ -331,7 +331,7 @@ export function lenisScroll() {
 	} else {
 		lenis = new Lenis({
 			smoothTouch: true,
-			duration: 1.4,
+			duration: 0,
 			autoResize: true
 		})
 
@@ -344,6 +344,22 @@ export function lenisScroll() {
 	}
 
 	requestAnimationFrame(raf)
+	const header = document.querySelector('.header');
+	let prevScrollPos = window.pageYOffset;
+	window.addEventListener('scroll', () => {
+		const currentScrollPos = window.pageYOffset;
+		if (currentScrollPos <= 0) {
+			header.classList.add('default');
+		} else {
+			header.classList.remove('default');
+		}
+		if (prevScrollPos > currentScrollPos) {
+			header.classList.add('visible');
+		} else {
+			header.classList.remove('visible');
+		}
+		prevScrollPos = currentScrollPos;
+	});
 
 }
 

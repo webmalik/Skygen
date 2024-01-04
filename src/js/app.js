@@ -25,8 +25,9 @@ const otherSlider = document.querySelector('.other__slider');
 wmAnimations.mainSlider(windowSlider);
 wmAnimations.doorSlider(doorSlider);
 wmAnimations.otherSlider(otherSlider);
+wmAnimations.benefitsZoom();
 
-//wmAnimations.mainNewTest();
+wmAnimations.mainAnimations();
 
 // Mobile functions
 if (window.innerWidth < 992) {

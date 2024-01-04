@@ -10,8 +10,8 @@ import { SplitText } from "./SplitText.js";
 
 let typeOpts = {
 	lines: { type: 'lines', linesClass: 'g-lines' },
-	words: { type: 'words,lines', linesClass: 'g-lines' },
-	chars: { type: 'chars,words,lines', linesClass: 'g-lines' }
+	words: { type: 'words', },
+	chars: { type: 'chars', }
 };
 let gOpts = {
 	ease: 'power2.easeOut'
@@ -21,22 +21,43 @@ let lenis;
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-export function mainNewTest() {
+
+export function benefitsZoom() {
+	const contents = document.querySelectorAll('.benefits__content');
+	if (contents) {
+		contents.forEach(content => {
+			let image = content.previousElementSibling.children;
+			content.addEventListener('mouseover', () => {
+				gsap.to(image, { scale: 1.3, duration: 0 })
+			})
+			content.addEventListener('mouseleave', () => {
+				gsap.to(image, { scale: 1, duration: 0 })
+			})
+		});
+	}
+}
+
+function createScrollTriggerAbout(triggerName = "about") {
+	const triggerSelector = `.${triggerName}`;
+	const titleSelector = `.${triggerName}__title`;
+	const textSelector = `.${triggerName}__text`;
+	const imageSelector = `.${triggerName}__image`;
+	const imageSelectorIMG = `.${triggerName}__image img`;
 
 	ScrollTrigger.create({
-		trigger: '.about',
+		trigger: triggerSelector,
 		start: 'top bottom',
 		once: false,
 		onEnter: () => {
-			const homeIntroTitle = new SplitText('.about__title', typeOpts.chars)
-			const homeIntroLabel = new SplitText('.about__text', typeOpts.words)
+			const homeIntroTitle = new SplitText(titleSelector, typeOpts.chars)
+			const homeIntroLabel = new SplitText(textSelector, typeOpts.words)
 
-			gsap.set('.about__image', { clipPath: 'inset(10%)' })
-			gsap.set('.about__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+			gsap.set(imageSelector, { clipPath: 'inset(10%)' })
+			gsap.set(imageSelectorIMG, { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
 			let tl = gsap.timeline({
 				scrollTrigger: {
-					trigger: '.about',
+					trigger: textSelector,
 					start: 'top top+=50%',
 				},
 				defaults: {
@@ -45,31 +66,198 @@ export function mainNewTest() {
 				onComplete: () => {
 					homeIntroLabel.revert()
 					homeIntroTitle.revert()
-					new SplitText('.about__title', typeOpts.lines)
+					new SplitText(titleSelector, typeOpts.lines)
 				}
 			})
 			tl
 				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-				.to('.about__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
-				.to('.about__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+				.to(imageSelector, { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+				.to(imageSelectorIMG, { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 
-			if ($(window).width() > 991) {
+			if (window.innerWidth > 991) {
 				requestAnimationFrame(() => {
 					const tlScrub = gsap.timeline({
 						scrollTrigger: {
-							trigger: '.about',
+							trigger: textSelector,
 							start: 'top bottom',
 							end: 'bottom top',
 							scrub: true,
 						}
 					})
 					tlScrub
-						.fromTo('.about__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+						.fromTo(imageSelectorIMG, { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
 				})
 			}
 		}
 	})
+}
+
+
+export function mainAnimations() {
+	createScrollTriggerAbout('about');
+
+
+	ScrollTrigger.create({
+		trigger: '.why',
+		start: 'top bottom',
+		once: false,
+		onEnter: () => {
+			const homeIntroTitle = new SplitText('.why__title', typeOpts.chars)
+			const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
+			const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
+
+			gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
+			gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+			let tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.why',
+					start: 'top top+=50%',
+				},
+				defaults: {
+					ease: gOpts.ease
+				},
+				onComplete: () => {
+					homeIntroLabel.revert()
+					homeIntroLabelD.revert()
+					homeIntroTitle.revert()
+					new SplitText('.why__title', typeOpts.lines)
+				}
+			})
+			tl
+				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 })
+				.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 })
+				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 }, '<=.1')
+				.to('.why__image', { clipPath: 'inset(0%)', duration: 2, maxHeight: 400, ease: 'expo.out' }, '<=.4')
+				.to('.why__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+
+			if (window.innerWidth > 991) {
+				requestAnimationFrame(() => {
+					const tlScrub = gsap.timeline({
+						scrollTrigger: {
+							trigger: '.why',
+							start: 'top bottom',
+							end: 'bottom top',
+							scrub: true,
+						}
+					})
+					tlScrub
+						.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				})
+			}
+		}
+	})
+
+
+	ScrollTrigger.create({
+		trigger: '.install',
+		start: 'top bottom',
+		once: false,
+		onEnter: () => {
+			const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
+			const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
+
+			gsap.set('.install__image', { clipPath: 'inset(10%)' })
+			gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+			let tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.install',
+					start: 'top top+=50%',
+				},
+				defaults: {
+					ease: gOpts.ease
+				},
+				onComplete: () => {
+					homeIntroLabel.revert()
+					homeIntroTitle.revert()
+					new SplitText('.install__title div', typeOpts.lines)
+				}
+			})
+			tl
+				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
+				.to('.install__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+				.to('.install__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+
+			if (window.innerWidth > 991) {
+				requestAnimationFrame(() => {
+					const tlScrub = gsap.timeline({
+						scrollTrigger: {
+							trigger: '.install',
+							start: 'top bottom',
+							end: 'bottom top',
+							scrub: true,
+						}
+					})
+					tlScrub
+						.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				})
+			}
+		}
+	})
+
+
+	ScrollTrigger.create({
+		trigger: '.faq',
+		start: 'top bottom',
+		once: false,
+		onEnter: () => {
+			const homeIntroTitle = new SplitText('.faq__header-title', typeOpts.chars)
+			const faq = document.querySelector('.faq__header')
+
+			let tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.faq',
+					start: 'top top+=50%',
+				},
+				defaults: {
+					ease: gOpts.ease
+				},
+				onComplete: () => {
+					homeIntroTitle.revert()
+					new SplitText('.faq__title', typeOpts.lines)
+				}
+			})
+			tl
+				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
+
+			if (window.innerWidth > 991) {
+				requestAnimationFrame(() => {
+					const tlScrub = gsap.timeline({
+						scrollTrigger: {
+							trigger: '.install',
+							start: 'top bottom',
+							end: 'bottom top',
+							scrub: true,
+						}
+					})
+					tlScrub
+						.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				})
+			}
+		}
+	})
+	let i = 0;
+	const imagesImages = document.querySelectorAll(".images__img");
+
+	imagesImages.forEach((element) => {
+		i += 0.5;
+		gsap.from(element, {
+			y: -10 * i,
+			duration: 0.2,
+			scrollTrigger: {
+				trigger: element,
+				start: "top 80%",
+				end: "bottom 80%",
+				scrub: 1,
+				//markers: true
+			}
+		});
+	});
+
+
 	// const homeIntroLabel = new SplitText('.about__title', typeOpts.words)
 	// const homeIntroTitle = new SplitText('.about__text', typeOpts.chars)
 

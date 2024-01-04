@@ -228,7 +228,7 @@ img {
 	&--indent {
 		text-indent: 5.5rem;
 
-		div {
+		& > div {
 			text-indent: 0;
 		}
 	}
@@ -243,13 +243,29 @@ img {
 	align-items: center;
 	@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
 
-	div {
+	& > div {
 		width: 100%;
 	}
 
-	.title {
-		p {
+	& > .title {
+		& > p {
 			text-indent: 2rem;
+
+			div {
+				text-indent: 0;
+
+				& > p {
+					text-indent: 2rem;
+				}
+			}
+		}
+
+		div {
+			text-indent: 0;
+
+			& > p {
+				text-indent: 2rem;
+			}
 		}
 	}
 }

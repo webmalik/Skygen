@@ -27,11 +27,13 @@
 		overflow: hidden;
 		@include adaptiv-value("max-height", toPX(25), toPX(25), 1);
 		height: 100%;
+		z-index: 3;
 
 		picture,
 		img {
 			width: auto;
 			@include adaptiv-value("max-height", toPX(25), toPX(25), 1);
+			transition: all 0.8s ease-in-out;
 		}
 
 		&::after {

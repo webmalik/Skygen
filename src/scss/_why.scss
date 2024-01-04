@@ -14,11 +14,16 @@
 		justify-content: flex-start;
 		gap: 0.62rem;
 		p {
+			display: block;
 			font-weight: 600;
+		}
+
+		span {
+			display: block;
 		}
 	}
 
-	&__images {
+	&__image {
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -68,7 +73,7 @@
 		align-items: flex-start;
 		justify-content: space-between;
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
-		div {
+		& > div {
 			width: 100%;
 		}
 	}
@@ -134,7 +139,7 @@
 			gap: 1.25rem;
 		}
 
-		&__images {
+		&__image {
 			&::after,
 			&::before {
 				display: none;

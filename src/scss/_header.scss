@@ -9,6 +9,18 @@
 	backdrop-filter: blur(15px);
 	z-index: 99;
 	transition: $hover-transition;
+	max-height: 0;
+	overflow: hidden;
+
+	&.visible {
+		position: fixed;
+		max-height: 9rem;
+		transition: $hover-transition;
+	}
+
+	&.default {
+		max-height: 9rem;
+	}
 
 	&.drop {
 		padding-bottom: 2.4375rem;
@@ -217,6 +229,15 @@
 		transition: all 0.6s ease-in-out;
 		height: 4rem;
 		border-bottom: none;
+
+		&.visible {
+			position: fixed;
+			max-height: 100dvh;
+		}
+
+		&.default {
+			max-height: 100dvh;
+		}
 
 		&.active {
 			bottom: 0;

@@ -25,6 +25,7 @@
 
 	&__img-cont {
 		overflow: hidden;
+		border-radius: 1.25rem;
 	}
 
 	&__image {
@@ -34,6 +35,10 @@
 		border-radius: 1.25rem;
 		@include adaptiv-value("max-height", toPX(37.5), toPX(18.75), 1);
 		//	overflow: hidden;
+
+		picture,
+		img {
+		}
 	}
 
 	&__wrapper {
