@@ -23,13 +23,13 @@ const otherSlider = document.querySelector('.other__slider');
 
 //Animations functions
 // wmAnimations.mainAnimate();
-wmAnimations.mainSlider(windowSlider);
-wmAnimations.doorSlider(doorSlider);
-wmAnimations.otherSlider(otherSlider);
 wmAnimations.benefitsZoom();
+wmAnimations.mainAnimations();
 if (window.innerWidth > 992) {
+	wmAnimations.mainSlider(windowSlider);
+	wmAnimations.doorSlider(doorSlider);
+	wmAnimations.otherSlider(otherSlider);
 
-	wmAnimations.mainAnimations();
 }
 
 // Mobile functions
