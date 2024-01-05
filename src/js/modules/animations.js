@@ -228,7 +228,7 @@ export function mainAnimations() {
 				scrub: true,
 				start: "500% center",
 				end: "580% bottom",
-				markers: true
+				//markers: true
 			}
 		});
 
