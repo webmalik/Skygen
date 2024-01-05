@@ -133,7 +133,18 @@
 				}
 
 				&[for="file"] {
+					display: flex;
+					span {
+						color: var(--Light-Gray, #aeaeae);
+						font-family: $font-family;
+						font-size: 0.875rem;
+						font-style: normal;
+						font-weight: 400;
+						line-height: 1.0625rem; /* 121.429% */
+						letter-spacing: -0.02819rem;
+					}
 					cursor: pointer;
+
 					&:hover {
 						span {
 							transition: all 0.5s ease-in-out;
