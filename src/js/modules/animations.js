@@ -126,9 +126,9 @@ export function mainAnimations() {
 				}
 			})
 			tl
-				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 })
-				.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 })
-				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 }, '<=.1')
+				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+				.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
 				.to('.why__image', { clipPath: 'inset(0%)', duration: 2, maxHeight: 400, ease: 'expo.out' }, '<=.4')
 				.to('.why__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 
@@ -540,13 +540,16 @@ export function mainSlider(mainSlider) {
 			// console.log(i)
 			//const i = Math.floor(positionInPixels / (catalogImageC.offsetWidth + gap));
 
-			let i = Math.floor(self.progress * (slides + 1));
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
 			if (i >= slides + 1) {
 				i = slides + 1
 			}
 			const currentItem = catalogItems[i];
 
-			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+			let normalizedPercentScrolled = (((self.progress + 0.5) * (slides + 1)) * 100) % 100;
+			if (normalizedPercentScrolled >= 100) {
+				normalizedPercentScrolled = 100
+			}
 
 			//console.log(normalizedPercentScrolled)
 
@@ -610,13 +613,16 @@ export function doorSlider(doorSlider) {
 		//once: true,
 		onUpdate: (self) => {
 
-			let i = Math.floor(self.progress * (slides + 1));
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
 			if (i >= slides + 1) {
 				i = slides + 1
 			}
 			const currentItem = doorItems[i];
 
-			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+			let normalizedPercentScrolled = (((self.progress + 0.1) * (slides + 1)) * 100) % 100;
+			if (normalizedPercentScrolled >= 100) {
+				normalizedPercentScrolled = 100
+			}
 			if (currentItem) {
 				currentItem.classList.remove('noactive');
 				let currentLine = currentItem.querySelector('.catalog__active-line');
@@ -676,12 +682,12 @@ export function otherSlider(otherSlider) {
 		pin: true,
 		onUpdate: (self) => {
 
-			let i = Math.floor(self.progress * (slides + 1));
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
 			if (i >= slides + 1) {
 				i = slides + 1
 			}
 
-			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+			let normalizedPercentScrolled = (((self.progress + 0.1) * (slides + 1)) * 100) % 100;
 
 			const currentItem = otherItems[i];
 
@@ -767,14 +773,16 @@ export function mainSliderM(mainSlider) {
 			// console.log(i)
 			//const i = Math.floor(positionInPixels / (catalogImageC.offsetWidth + gap));
 
-			let i = Math.floor(self.progress * (slides + 1));
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
 			if (i >= slides + 1) {
 				i = slides + 1
 			}
 			const currentItem = catalogItems[i];
 
-			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
-
+			let normalizedPercentScrolled = (((self.progress + 0.5) * (slides + 1)) * 100) % 100;
+			if (normalizedPercentScrolled >= 100) {
+				normalizedPercentScrolled = 100
+			}
 			//console.log(normalizedPercentScrolled)
 
 			if (currentItem) {
@@ -837,13 +845,17 @@ export function doorSliderM(doorSlider) {
 		//once: true,
 		onUpdate: (self) => {
 
-			let i = Math.floor(self.progress * (slides + 1));
+
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
 			if (i >= slides + 1) {
 				i = slides + 1
 			}
 			const currentItem = doorItems[i];
 
-			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+			let normalizedPercentScrolled = (((self.progress + 0.1) * (slides + 1)) * 100) % 100;
+			if (normalizedPercentScrolled >= 100) {
+				normalizedPercentScrolled = 100
+			}
 			if (currentItem) {
 				currentItem.classList.remove('noactive');
 				let currentLine = currentItem.querySelector('.catalog__active-line');
@@ -903,13 +915,12 @@ export function otherSliderM(otherSlider) {
 		pin: true,
 		onUpdate: (self) => {
 
-			let i = Math.floor(self.progress * (slides + 1));
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
 			if (i >= slides + 1) {
 				i = slides + 1
 			}
 
-			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
-
+			let normalizedPercentScrolled = (((self.progress + 0.1) * (slides + 1)) * 100) % 100;
 			const currentItem = otherItems[i];
 
 			if (currentItem) {

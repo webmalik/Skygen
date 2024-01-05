@@ -39,10 +39,10 @@
 		<nav class="header__nav">
 			<ul class="header__menu">
 				<li>
-					<a href="#">ABOUT US</a>
+					<a href="#about" class="header__link">ABOUT US</a>
 				</li>
 				<li class="dropdown">
-					<a href="#">PRODUCTS</a>
+					<a href="#prod" class="header__link">PRODUCTS</a>
 					<ul>
 						<li><a href="#">window</a></li>
 						<li><a href="#">door</a></li>
@@ -50,7 +50,7 @@
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#">CATALOGS</a>
+					<a href="#catalog" class="header__link">CATALOGS</a>
 					<ul>
 						<li><a href="#">window</a></li>
 						<li><a href="#">door</a></li>
@@ -58,19 +58,19 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#">WHY US</a>
+					<a href="#why" class="header__link">WHY US</a>
 				</li>
 				<li>
-					<a href="#">BENEFITS</a>
+					<a href="#ben" class="header__link">BENEFITS</a>
 				</li>
 				<li>
-					<a href="#">PROFESSIONAL</a>
+					<a href="#install" class="header__link">PROFESSIONAL</a>
 				</li>
 				<li>
-					<a href="#">FAQ</a>
+					<a href="#faq" class="header__link">FAQ</a>
 				</li>
 				<li>
-					<a href="#">CONTACT US</a>
+					<a href="#contacts" class="header__link">CONTACT US</a>
 				</li>
 			</ul>
 		</nav>
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="about mt">
+	<section class="about mt" id="about">
 		<div class="container">
 			<div class="about__wrapper">
 				<div class="about__title title title--medium">
@@ -161,7 +161,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="catalog mt window__slider">
+	<section class="catalog mt window__slider" id="prod">
 		<div class="container">
 			<div class="catalog__container">
 				<div class="catalog__inner">
@@ -320,7 +320,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="why mt">
+	<section class="why mt" id="why">
 		<div class="container">
 			<div class="why__wrapper">
 				<div class="why__inner inner">
@@ -396,7 +396,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="catalog mt door__slider">
+	<section class="catalog mt door__slider" id="catalog">
 		<div class="container">
 			<div class="catalog__container door__container">
 				<div class="catalog__inner">
@@ -478,7 +478,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="benefits mt">
+	<section class="benefits mt" id="ben">
 		<div class="container benefits__container">
 			<div class="benefits__inner inner">
 				<div class="benefits__header title title--medium">
@@ -615,7 +615,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="install mt">
+	<section class="install mt" id="install">
 		<div class="container">
 			<div class="install__wrapper">
 				<div class="install__item">
@@ -646,7 +646,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="faq mt">
+	<section class="faq mt" id="faq">
 		<div class="container">
 			<div class="faq__header">
 				<div class="faq__header-title ">
@@ -1385,7 +1385,7 @@
 		</div>
 	</section>
 </section>
-		<footer class="footer mt">
+		<footer class="footer mt" id="contacts">
 	<div class="container">
 		<div class="footer__wrapper">
 			<div class="contacts">
@@ -1503,7 +1503,7 @@
 					<input type="submit" value="get catalog" class="button modal__button">
 				</form>
 				<div class="modal__remember">
-					<input type="checkbox" id="rem" name="rem" checked>
+					<input type="checkbox" id="rem" name="rem">
 					<label for="rem">
 						Remember me
 					</label>

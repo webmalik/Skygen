@@ -166,6 +166,7 @@
 	&__remember {
 		padding: 0.625rem 0rem;
 		margin-top: 0.92rem;
+		cursor: pointer;
 
 		input[type="checkbox"] {
 			display: none;
@@ -203,7 +204,7 @@
 				position: absolute;
 				width: 1.25rem;
 				height: 1.25rem;
-				background-image: url("../../img/check.svg");
+				background-image: url("../img/check.svg");
 				background-repeat: no-repeat;
 				background-size: cover;
 				transition: $hover-transition;

@@ -14,6 +14,7 @@ wmFunctions.burgerMenu();
 wmFunctions.accordion();
 wmFunctions.faq();
 wmFunctions.modal();
+wmFunctions.pageNav();
 
 //Animations variables
 

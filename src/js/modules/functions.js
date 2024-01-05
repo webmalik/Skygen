@@ -1,4 +1,4 @@
-
+import $ from "jquery";
 
 import Lenis from '@studio-freight/lenis';
 let lenisS
@@ -257,7 +257,7 @@ export function pageNav() {
 
 			const targetId = $(this).attr('href');
 			const targetElement = $(`${targetId}:first`);
-			const targetOffset = targetElement.offset().top - 100;
+			const targetOffset = targetElement.offset().top;
 			$('html, body').animate({
 				scrollTop: targetOffset
 			}, 800);
