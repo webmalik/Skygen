@@ -199,22 +199,68 @@ export function mainAnimations() {
 	})
 
 	let i = 0;
-	const imagesImages = document.querySelectorAll(".images__img");
+	const imagesImages = document.querySelectorAll(".images__item");
+	const imagesWrapper = document.querySelector(".images__wrapper");
+	const imagesActive = imagesImages[2];
+	console.log(imagesActive)
+	if (window.innerWidth > 992) {
+		imagesImages.forEach((element) => {
+			i += 0.5;
+			gsap.from(element, {
+				y: -10 * i,
+				duration: 1,
+				scrollTrigger: {
+					trigger: element,
+					start: "500% center",
+					end: "560% bottom",
+					scrub: true,
+					//markers: true
+				}
+			});
+		});
 
-	imagesImages.forEach((element) => {
-		i += 0.5;
-		gsap.from(element, {
-			y: -10 * i,
-			duration: 0.2,
+		gsap.from(imagesActive, {
+			y: 100,
+			duration: 2,
+
 			scrollTrigger: {
-				trigger: element,
-				start: "top 80%",
-				end: "bottom 80%",
-				scrub: 1,
+				trigger: imagesWrapper,
+				scrub: true,
+				start: "500% center",
+				end: "580% bottom",
+				markers: true
+			}
+		});
+
+	} else {
+		imagesImages.forEach((element) => {
+			i += 0.5;
+			gsap.from(element, {
+				y: -10 * i,
+				duration: 3,
+				scrollTrigger: {
+					trigger: element,
+					start: "4150% center",
+					end: "4330% bottom",
+					scrub: 2,
+					//markers: true
+				}
+			});
+		});
+
+		gsap.from(imagesActive, {
+			y: 50,
+			duration: 2,
+
+			scrollTrigger: {
+				trigger: imagesWrapper,
+				scrub: 2,
+				start: "3600% center",
+				end: "3730% bottom",
 				//markers: true
 			}
 		});
-	});
+	}
 
 
 	// const homeIntroLabel = new SplitText('.about__title', typeOpts.words)
@@ -695,7 +741,7 @@ export function mainSliderM(mainSlider) {
 		end: () => {
 			return elementOffsetTop + 13000;
 		},
-		scrub: 3,
+		scrub: 5,
 		pin: true,
 		//once: true,
 		// onComplete: () => {

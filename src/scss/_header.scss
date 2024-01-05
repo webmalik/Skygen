@@ -7,6 +7,10 @@
 	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	background: rgba(56, 40, 40, 0.15);
 	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
+	-moz-backdrop-filter: blur(15px);
+	-o-backdrop-filter: blur(15px);
+	-ms-backdrop-filter: blur(15px);
 	z-index: 99;
 	transition: $hover-transition;
 	max-height: 0;

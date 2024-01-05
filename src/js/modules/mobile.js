@@ -105,6 +105,7 @@ export function imagesMobile() {
 		loop: true,
 		modules: [Pagination],
 		spaceBetween: 15,
+		initialSlide: 2,
 		freeMode: {
 			enabled: true,
 		},
