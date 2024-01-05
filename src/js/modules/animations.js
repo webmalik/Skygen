@@ -198,47 +198,6 @@ export function mainAnimations() {
 		}
 	})
 
-
-	ScrollTrigger.create({
-		trigger: '.faq',
-		start: 'top bottom',
-		once: false,
-		onEnter: () => {
-			const homeIntroTitle = new SplitText('.faq__header-title', typeOpts.chars)
-			const faq = document.querySelector('.faq__header')
-
-			let tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: '.faq',
-					start: 'top top+=50%',
-				},
-				defaults: {
-					ease: gOpts.ease
-				},
-				onComplete: () => {
-					homeIntroTitle.revert()
-					new SplitText('.faq__title', typeOpts.lines)
-				}
-			})
-			tl
-				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-
-			if (window.innerWidth > 991) {
-				requestAnimationFrame(() => {
-					const tlScrub = gsap.timeline({
-						scrollTrigger: {
-							trigger: '.install',
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true,
-						}
-					})
-					tlScrub
-						.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-				})
-			}
-		}
-	})
 	let i = 0;
 	const imagesImages = document.querySelectorAll(".images__img");
 
@@ -505,7 +464,7 @@ export function mainSlider(mainSlider) {
 	ScrollTrigger.create({
 		animation: tl,
 		trigger: catalogContainer,
-		start: 'top top',
+		start: 'top -100px',
 		end: () => {
 			return elementOffsetTop + 3000;
 		},
@@ -596,7 +555,7 @@ export function doorSlider(doorSlider) {
 	ScrollTrigger.create({
 		animation: tl2,
 		trigger: doorContainer,
-		start: 'top top',
+		start: 'top -100px',
 		end: () => {
 			return doorOffsetTop + 5500;
 		},
@@ -663,11 +622,238 @@ export function otherSlider(otherSlider) {
 	ScrollTrigger.create({
 		animation: tl3,
 		trigger: otherContainer,
-		start: 'top top',
+		start: 'top -100px',
 		end: () => {
 			return otherOffsetTop + 8000;
 		},
 		scrub: 1,
+		pin: true,
+		onUpdate: (self) => {
+
+			let i = Math.floor(self.progress * (slides + 1));
+			if (i >= slides + 1) {
+				i = slides + 1
+			}
+
+			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+
+			const currentItem = otherItems[i];
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(otherWrapper, { xPercent: -i * 100, duration: 1 })
+				}
+			}
+
+			otherItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function mainSliderM(mainSlider) {
+
+	const catalogContainer = mainSlider.querySelector('.catalog__container');
+	const catalogImage = mainSlider.querySelectorAll('.catalog__image img');
+	const catalogImageC = mainSlider.querySelector('.catalog__image');
+	const catalogItems = mainSlider.querySelectorAll('.catalog__item');
+	const catalogWrapper = mainSlider.querySelector('.catalog__wrapper');
+
+
+	let gap = calculateGap();
+	let gapAll = gap * catalogImage.length;
+
+	let gapPersent = gap / catalogImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = catalogImage.length - 1;
+
+	catalogImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const elementOffsetTop = getElementOffsetTop(catalogContainer);
+
+	allWidth = allWidth + gapAll
+
+
+	const tl = gsap.timeline();
+
+	tl.fromTo(catalogImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (catalogImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl,
+		trigger: catalogContainer,
+		start: 'top top',
+		end: () => {
+			return elementOffsetTop + 13000;
+		},
+		scrub: 3,
+		pin: true,
+		//once: true,
+		// onComplete: () => {
+		// 	tl.progress(1);
+		// 	tl.kill();
+		// 	ScrollTrigger.pin = false;
+		// 	console.log("ScrollTrigger.pin")
+		// },
+		// onComplete: (self) => {
+		// 	self.scrollTrigger.kill(true);
+		// },
+		onUpdate: (self) => {
+
+			// const currentXPercent = gsap.getProperty(catalogImageC, 'xPercent');
+
+			// const percentScrolled = -currentXPercent;
+
+			// const totalWidth = catalogImageC.offsetWidth + gap * (catalogImage.length - 1);
+
+			// const positionInPixels = (percentScrolled / 100) * totalWidth;
+
+
+			// console.log(i)
+			//const i = Math.floor(positionInPixels / (catalogImageC.offsetWidth + gap));
+
+			let i = Math.floor(self.progress * (slides + 1));
+			if (i >= slides + 1) {
+				i = slides + 1
+			}
+			const currentItem = catalogItems[i];
+
+			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+
+			//console.log(normalizedPercentScrolled)
+
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(catalogWrapper, { xPercent: -i * 100, duration: 1 })
+				}
+			}
+
+			catalogItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function doorSliderM(doorSlider) {
+
+	const doorContainer = doorSlider.querySelector('.door__container');
+	const doorImage = doorSlider.querySelectorAll('.door__image img');
+	const doorImageC = doorSlider.querySelector('.door__image');
+	const doorItems = doorSlider.querySelectorAll('.door__item');
+	const doorWrapper = doorSlider.querySelector('.door__wrapper');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * doorImage.length;
+
+	let gapPersent = gap / doorImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = doorImage.length - 1;
+
+	doorImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const doorOffsetTop = getElementOffsetTop(doorContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl2 = gsap.timeline();
+
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl2,
+		trigger: doorContainer,
+		start: 'top top',
+		end: () => {
+			return doorOffsetTop + 20000;
+		},
+		scrub: 5,
+		pin: true,
+		//once: true,
+		onUpdate: (self) => {
+
+			let i = Math.floor(self.progress * (slides + 1));
+			if (i >= slides + 1) {
+				i = slides + 1
+			}
+			const currentItem = doorItems[i];
+
+			let normalizedPercentScrolled = ((self.progress * (slides + 1)) * 100) % 100;
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(doorWrapper, { xPercent: -i * 100, duration: 1 })
+				}
+			}
+
+			doorItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function otherSliderM(otherSlider) {
+
+	const otherContainer = otherSlider.querySelector('.other__container');
+	const otherImage = otherSlider.querySelectorAll('.other__image img');
+	const otherImageC = otherSlider.querySelector('.other__image');
+	const otherItems = otherSlider.querySelectorAll('.other__item');
+	const otherWrapper = otherSlider.querySelector('.other__wrapper');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * otherImage.length;
+
+	let gapPersent = gap / otherImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = otherImage.length - 1;
+
+	otherImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const otherOffsetTop = getElementOffsetTop(otherContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl3 = gsap.timeline();
+
+	tl3.fromTo(otherImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (otherImage.length - 1) + gapPersent });
+
+	ScrollTrigger.create({
+		animation: tl3,
+		trigger: otherContainer,
+		start: 'top top',
+		end: () => {
+			return otherOffsetTop + 28000;
+		},
+		scrub: 5,
 		pin: true,
 		onUpdate: (self) => {
 

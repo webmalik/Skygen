@@ -42,7 +42,6 @@
 	}
 }
 .file {
-	cursor: pointer;
 	&__label {
 		color: var(--White, #fff);
 		font-family: $font-family;
@@ -51,7 +50,6 @@
 		font-weight: 400;
 		line-height: 0.625rem;
 		opacity: 0.5;
-		cursor: pointer;
 	}
 }
 .links {
@@ -118,10 +116,38 @@
 				line-height: 0.875rem;
 				letter-spacing: 0.025rem;
 				text-transform: uppercase;
+				transition: all 0.5s ease-in-out;
 
 				display: flex;
 				align-items: center;
 				gap: 0.62rem;
+
+				span {
+					transition: all 0.5s ease-in-out;
+				}
+
+				svg {
+					path {
+						transition: all 0.5s ease-in-out;
+					}
+				}
+
+				&[for="file"] {
+					cursor: pointer;
+					&:hover {
+						span {
+							transition: all 0.5s ease-in-out;
+							color: var(--Light-Blue, #b8d1fb);
+						}
+
+						svg {
+							path {
+								transition: all 0.5s ease-in-out;
+								stroke: #b8d1fb;
+							}
+						}
+					}
+				}
 			}
 
 			input {
@@ -182,7 +208,6 @@
 
 			input[type="submit"] {
 				border-radius: 1.25rem;
-				background: var(--White, #fff);
 				padding: 1.25rem 1.875rem;
 				width: 100%;
 				cursor: pointer;

@@ -54,9 +54,8 @@
 			picture,
 			img {
 				width: auto;
-
+				max-width: 130%;
 				height: 100% !important;
-				max-inline-size: none;
 				max-block-size: none;
 			}
 		}

@@ -25,11 +25,15 @@ const otherSlider = document.querySelector('.other__slider');
 // wmAnimations.mainAnimate();
 wmAnimations.benefitsZoom();
 wmAnimations.mainAnimations();
-wmAnimations.mainSlider(windowSlider);
-wmAnimations.doorSlider(doorSlider);
-wmAnimations.otherSlider(otherSlider);
-if (window.innerWidth > 992) {
 
+if (window.innerWidth < 992) {
+	wmAnimations.mainSliderM(windowSlider);
+	wmAnimations.doorSliderM(doorSlider);
+	wmAnimations.otherSliderM(otherSlider);
+} else {
+	wmAnimations.mainSlider(windowSlider);
+	wmAnimations.doorSlider(doorSlider);
+	wmAnimations.otherSlider(otherSlider);
 }
 
 // Mobile functions
