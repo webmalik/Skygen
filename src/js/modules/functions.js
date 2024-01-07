@@ -5,9 +5,39 @@ let lenisS
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');
+	const links = document.querySelectorAll('.header__link');
+	const links2 = document.querySelectorAll('.dropdown ul li a');
 	const box = document.querySelector('.header');
 	const body = document.body;
+	if (window.innerWidth < 992) {
 
+		links.forEach(link => {
+			link.addEventListener('click', () => {
+				burger.classList.toggle('open');
+				box.classList.toggle('active');
+				body.classList.toggle('lock');
+				if (body.classList.contains('lock')) {
+					lenisS.stop();
+				} else {
+					lenisS.start();
+				}
+				console.log('link')
+			})
+		})
+		links2.forEach(link => {
+			link.addEventListener('click', () => {
+				burger.classList.toggle('open');
+				box.classList.toggle('active');
+				body.classList.toggle('lock');
+				if (body.classList.contains('lock')) {
+					lenisS.stop();
+				} else {
+					lenisS.start();
+				}
+				console.log('link')
+			})
+		})
+	}
 	burger.addEventListener('click', () => {
 		burger.classList.toggle('open');
 		box.classList.toggle('active');
@@ -242,6 +272,8 @@ export function modal() {
 
 }
 
+
+
 export function sticky() {
 	window.addEventListener('scroll', function () {
 		$('header').toggleClass('sticky', window.scrollY > 0);
@@ -258,30 +290,9 @@ export function pageNav() {
 			const targetId = $(this).attr('href');
 			const targetElement = $(`${targetId}:first`);
 			const targetOffset = targetElement.offset().top;
-			$('html, body').animate({
-				scrollTop: targetOffset
-			}, 800);
+			lenisS.scrollTo(targetOffset);
 		});
 	});
-
-	function activateMenuItem() {
-		const scrollPosition = $(window).scrollTop();
-
-		headerLinks.each(function () {
-			const section = $(`${$(this).attr('href')}:first`);
-			if (
-				section.offset().top <= scrollPosition + 105 &&
-				section.offset().top + section.outerHeight() > scrollPosition + 105
-			) {
-				headerLinks.removeClass('active');
-				headerLinks.parent().removeClass('active');
-				$(this).addClass('active');
-				$(this).parent().addClass('active');
-			}
-		});
-	}
-
-	$(window).on('scroll', activateMenuItem);
 }
 
 export function inputPassword() {
@@ -320,7 +331,7 @@ export function lenisScroll() {
 	else {
 		lenisS = new Lenis({
 			smoothTouch: true,
-			duration: 0.8,
+			duration: 1,
 			autoResize: true
 		})
 
@@ -333,22 +344,22 @@ export function lenisScroll() {
 	}
 
 	requestAnimationFrame(raf)
-	const header = document.querySelector('.header');
-	let prevScrollPos = window.pageYOffset;
-	window.addEventListener('scroll', () => {
-		const currentScrollPos = window.pageYOffset;
-		if (currentScrollPos <= 0) {
-			header.classList.add('default');
-		} else {
-			header.classList.remove('default');
-		}
-		if (prevScrollPos > currentScrollPos) {
-			header.classList.add('visible');
-		} else {
-			header.classList.remove('visible');
-		}
-		prevScrollPos = currentScrollPos;
-	});
+	// const header = document.querySelector('.header');
+	// let prevScrollPos = window.pageYOffset;
+	// window.addEventListener('scroll', () => {
+	// 	const currentScrollPos = window.pageYOffset;
+	// 	// if (currentScrollPos <= 0) {
+	// 	// 	header.classList.add('default');
+	// 	// } else {
+	// 	// 	header.classList.remove('default');
+	// 	// }
+	// 	if (prevScrollPos > currentScrollPos) {
+	// 		header.classList.add('visible');
+	// 	} else {
+	// 		header.classList.remove('visible');
+	// 	}
+	// 	prevScrollPos = currentScrollPos;
+	// });
 
 }
 
@@ -376,3 +387,4 @@ export function faq() {
 		});
 	}
 }
+

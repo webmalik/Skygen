@@ -215,6 +215,10 @@
 	}
 }
 
+.modal.window {
+	background-color: #fff;
+}
+
 @include media-width(500px) {
 	.modal {
 		&__wrapper {

@@ -117,3 +117,33 @@ export function imagesMobile() {
 		// },
 	})
 }
+
+export function education() {
+	const slider = document.querySelector('.education__slider')
+	const wrapper = document.querySelector('.education__wrapper')
+	const items = document.querySelectorAll('.education__item')
+
+	slider.classList.add('swiper')
+	const pagination = document.createElement('div')
+	pagination.classList.add('education__pagination')
+	pagination.classList.add('pagination')
+
+	wrapper.classList.add('swiper-wrapper')
+
+	slider.appendChild(pagination)
+
+	items.forEach((item) => {
+		item.classList.add('swiper-slide')
+	})
+
+	const educationSlider = new Swiper(slider, {
+		modules: [Pagination],
+		spaceBetween: 29,
+		centeredSlides: true,
+		slidesPerView: 1,
+		pagination: {
+			el: pagination,
+			clickable: true,
+		},
+	})
+}

@@ -42,4 +42,5 @@ if (window.innerWidth < 992) {
 	wmMobile.aboutMobile();
 	wmMobile.benefitsMobile();
 	wmMobile.imagesMobile();
+	wmMobile.education();
 }

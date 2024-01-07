@@ -1,23 +1,18 @@
 .header {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-	//padding: 1.25rem 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	background: rgba(56, 40, 40, 0.15);
-	backdrop-filter: blur(15px);
 	-webkit-backdrop-filter: blur(15px);
-	-moz-backdrop-filter: blur(15px);
-	-o-backdrop-filter: blur(15px);
-	-ms-backdrop-filter: blur(15px);
+	backdrop-filter: blur(15px);
 	z-index: 99;
 	transition: $hover-transition;
 	max-height: 0;
 	overflow: hidden;
 
 	&.visible {
-		position: fixed;
 		max-height: 9rem;
 		transition: $hover-transition;
 	}
@@ -233,19 +228,24 @@
 		transition: all 0.6s ease-in-out;
 		height: 4rem;
 		border-bottom: none;
+		background: rgba(56, 40, 40, 0.15);
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
 
 		&.visible {
 			position: fixed;
-			max-height: 100dvh;
+			max-height: 100vh;
 		}
 
 		&.default {
-			max-height: 100dvh;
+			position: fixed;
+			max-height: 100vh;
 		}
 
 		&.active {
+			position: fixed;
 			bottom: 0;
-			height: 100dvh;
+			height: 100vh;
 			transition: all 0.6s ease-in-out;
 
 			.header__nav {
@@ -254,7 +254,7 @@
 				top: 0;
 				left: 0;
 				right: 0;
-				height: 100dvh;
+				height: 100vh;
 				transition: all 0.6s ease-in-out;
 			}
 		}
@@ -318,7 +318,7 @@
 					}
 				}
 				& > ul {
-					max-height: 10rem;
+					max-height: 15rem;
 					padding-bottom: 0.62rem;
 					transition: all 0.5s ease-in-out;
 				}

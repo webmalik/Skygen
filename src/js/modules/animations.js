@@ -97,106 +97,248 @@ function createScrollTriggerAbout(triggerName = "about") {
 export function mainAnimations() {
 	createScrollTriggerAbout('about');
 
+	if (window.innerWidth > 992) {
+		ScrollTrigger.create({
+			trigger: '.why',
+			start: 'top bottom',
+			once: false,
+			onEnter: () => {
+				const homeIntroTitle = new SplitText('.why__title', typeOpts.chars)
+				const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
+				const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
 
-	ScrollTrigger.create({
-		trigger: '.why',
-		start: 'top bottom',
-		once: false,
-		onEnter: () => {
-			const homeIntroTitle = new SplitText('.why__title', typeOpts.chars)
-			const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
-			const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
+				gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
+				gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
-			gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
-			gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
-
-			let tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: '.why',
-					start: 'top top+=50%',
-				},
-				defaults: {
-					ease: gOpts.ease
-				},
-				onComplete: () => {
-					homeIntroLabel.revert()
-					homeIntroLabelD.revert()
-					homeIntroTitle.revert()
-					new SplitText('.why__title', typeOpts.lines)
-				}
-			})
-			tl
-				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-				.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
-				.to('.why__image', { clipPath: 'inset(0%)', duration: 2, maxHeight: 400, ease: 'expo.out' }, '<=.4')
-				.to('.why__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
-
-			if (window.innerWidth > 991) {
-				requestAnimationFrame(() => {
-					const tlScrub = gsap.timeline({
-						scrollTrigger: {
-							trigger: '.why',
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true,
-						}
-					})
-					tlScrub
-						.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				let tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.why',
+						start: 'top top+=50%',
+					},
+					defaults: {
+						ease: gOpts.ease
+					},
+					onComplete: () => {
+						new SplitText('.why__title', typeOpts.lines)
+					}
 				})
-			}
-		}
-	})
+				tl
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 }, '<=.1')
+					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 })
+					.to('.why__image', { clipPath: 'inset(0%)', duration: 1, maxHeight: 400, ease: 'expo.out' }, '<=.4')
+					.to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 
-
-	ScrollTrigger.create({
-		trigger: '.install',
-		start: 'top bottom',
-		once: false,
-		onEnter: () => {
-			const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
-			const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
-
-			gsap.set('.install__image', { clipPath: 'inset(10%)' })
-			gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
-
-			let tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: '.install',
-					start: 'top top+=50%',
-				},
-				defaults: {
-					ease: gOpts.ease
-				},
-				onComplete: () => {
-					homeIntroLabel.revert()
-					homeIntroTitle.revert()
-					new SplitText('.install__title div', typeOpts.lines)
-				}
-			})
-			tl
-				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-				.to('.install__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
-				.to('.install__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
-
-			if (window.innerWidth > 991) {
-				requestAnimationFrame(() => {
-					const tlScrub = gsap.timeline({
-						scrollTrigger: {
-							trigger: '.install',
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true,
-						}
+				if (window.innerWidth > 991) {
+					requestAnimationFrame(() => {
+						const tlScrub = gsap.timeline({
+							scrollTrigger: {
+								trigger: '.why',
+								start: 'top bottom',
+								end: 'bottom top',
+								scrub: true,
+							}
+						})
+						tlScrub
+							.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
 					})
-					tlScrub
-						.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-				})
+				}
 			}
-		}
-	})
+		})
+
+
+		ScrollTrigger.create({
+			trigger: '.install',
+			start: 'top bottom',
+			once: false,
+			onEnter: () => {
+				const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
+				const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
+
+				gsap.set('.install__image', { clipPath: 'inset(10%)' })
+				gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+				let tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.install',
+						start: 'top top+=50%',
+					},
+					defaults: {
+						ease: gOpts.ease
+					},
+					onComplete: () => {
+						homeIntroLabel.revert()
+						homeIntroTitle.revert()
+						new SplitText('.install__title div', typeOpts.lines)
+					}
+				})
+				tl
+					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.4')
+					.to('.install__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+					.to('.install__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+
+				if (window.innerWidth > 991) {
+					requestAnimationFrame(() => {
+						const tlScrub = gsap.timeline({
+							scrollTrigger: {
+								trigger: '.install',
+								start: 'top bottom',
+								end: 'bottom top',
+								scrub: true,
+							}
+						})
+						tlScrub
+							.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+					})
+				}
+			}
+		})
+
+		ScrollTrigger.create({
+			trigger: '.education',
+			start: 'top bottom',
+			once: false,
+			onEnter: () => {
+				const homeIntroTitle = new SplitText('.education__title', typeOpts.chars)
+				const homeIntroTitle2 = new SplitText('.education__header', typeOpts.chars)
+				//const homeIntroTitle3 = new SplitText('.education__link', typeOpts.chars)
+
+				gsap.set('.education__image', { clipPath: 'inset(10%)' })
+				gsap.set('.education__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+				let tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.education__title',
+						start: 'top top+=50%',
+					},
+					defaults: {
+						ease: gOpts.ease
+					},
+					onComplete: () => {
+						new SplitText('.education__title div', typeOpts.lines)
+						//new SplitText('.education__link div', typeOpts.lines)
+					}
+				})
+				tl
+					.to('.education__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+					.to('.education__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
+					.from(homeIntroTitle2.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
+				//.from(homeIntroTitle3.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.3')
+
+				if (window.innerWidth > 991) {
+					requestAnimationFrame(() => {
+						const tlScrub = gsap.timeline({
+							scrollTrigger: {
+								trigger: '.education',
+								start: 'top bottom',
+								end: 'bottom top',
+								scrub: true,
+							}
+						})
+						tlScrub
+							.fromTo('.education__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+					})
+				}
+			}
+		})
+	} else {
+		ScrollTrigger.create({
+			trigger: '.why',
+			start: 'top bottom',
+			once: false,
+			onEnter: () => {
+				const homeIntroTitle = new SplitText('.why__title', typeOpts.chars)
+				const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
+				const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
+
+				gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
+				gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+				let tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.why',
+						start: 'top top+=50%',
+					},
+					defaults: {
+						ease: gOpts.ease
+					},
+					onComplete: () => {
+						new SplitText('.why__title', typeOpts.lines)
+					}
+				})
+				tl
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
+					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+					.to('.why__image', { clipPath: 'inset(0%)', duration: 1, maxHeight: 400, ease: 'expo.out' }, '<=.4')
+					.to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+
+				if (window.innerWidth > 991) {
+					requestAnimationFrame(() => {
+						const tlScrub = gsap.timeline({
+							scrollTrigger: {
+								trigger: '.why',
+								start: 'top bottom',
+								end: 'bottom top',
+								scrub: true,
+							}
+						})
+						tlScrub
+							.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+					})
+				}
+			}
+		})
+		ScrollTrigger.create({
+			trigger: '.install',
+			start: 'top bottom',
+			once: false,
+			onEnter: () => {
+				const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
+				const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
+
+				gsap.set('.install__image', { clipPath: 'inset(10%)' })
+				gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+
+				let tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.install',
+						start: 'top top+=50%',
+					},
+					defaults: {
+						ease: gOpts.ease
+					},
+					onComplete: () => {
+						homeIntroLabel.revert()
+						homeIntroTitle.revert()
+						new SplitText('.install__title div', typeOpts.lines)
+					}
+				})
+				tl
+					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .8, stagger: .02 })
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .8, stagger: .02 }, '<=.8')
+					.to('.install__image', { clipPath: 'inset(0%)', duration: 4, ease: 'expo.out' }, '<=.8')
+					.to('.install__image img', { scale: 1, duration: 4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+
+				if (window.innerWidth > 991) {
+					requestAnimationFrame(() => {
+						const tlScrub = gsap.timeline({
+							scrollTrigger: {
+								trigger: '.install',
+								start: 'top bottom',
+								end: 'bottom top',
+								scrub: true,
+							}
+						})
+						tlScrub
+							.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+					})
+				}
+			}
+		})
+	}
 
 	let i = 0;
 	const imagesImages = document.querySelectorAll(".images__item");
@@ -221,7 +363,7 @@ export function mainAnimations() {
 
 		gsap.from(imagesActive, {
 			y: 100,
-			duration: 2,
+			duration: 1,
 
 			scrollTrigger: {
 				trigger: imagesWrapper,
@@ -237,12 +379,12 @@ export function mainAnimations() {
 			i += 0.5;
 			gsap.from(element, {
 				y: -10 * i,
-				duration: 3,
+				duration: 1,
 				scrollTrigger: {
 					trigger: element,
 					start: "4150% center",
-					end: "4330% bottom",
-					scrub: 2,
+					end: "4200% bottom",
+					scrub: 1,
 					//markers: true
 				}
 			});
@@ -250,13 +392,13 @@ export function mainAnimations() {
 
 		gsap.from(imagesActive, {
 			y: 50,
-			duration: 2,
+			duration: 1,
 
 			scrollTrigger: {
 				trigger: imagesWrapper,
-				scrub: 2,
+				scrub: 1,
 				start: "3600% center",
-				end: "3730% bottom",
+				end: "3650% bottom",
 				//markers: true
 			}
 		});
@@ -546,12 +688,21 @@ export function mainSlider(mainSlider) {
 			}
 			const currentItem = catalogItems[i];
 
-			let normalizedPercentScrolled = (((self.progress + 0.5) * (slides + 1)) * 100) % 100;
+			let progress = self.progress + 0.5
+
+			let normalizedPercentScrolled = ((progress * (slides + 1)) * 100) % 100;
+
+
+			if (normalizedPercentScrolled <= 50) {
+				normalizedPercentScrolled = 50
+			}
+
 			if (normalizedPercentScrolled >= 100) {
 				normalizedPercentScrolled = 100
 			}
+			//normalizedPercentScrolled = normalizedPercentScrolled
 
-			//console.log(normalizedPercentScrolled)
+			console.log(normalizedPercentScrolled)
 
 			if (currentItem) {
 				currentItem.classList.remove('noactive');

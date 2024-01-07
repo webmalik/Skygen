@@ -279,6 +279,8 @@ img {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		min-height: 0.625rem;
+		height: 0.625rem;
 		span {
 			width: 0.375rem;
 			height: 0.375rem;
@@ -294,4 +296,8 @@ img {
 			}
 		}
 	}
+}
+
+#helpcrunch-container .hcw-widget-button-label {
+	display: none !important;
 }
