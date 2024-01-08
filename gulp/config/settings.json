@@ -1,13 +1,17 @@
 {
-	"projectName": "Skygen",
-	"menuItems": [
-		{
-			"label": "Стартова сторінка",
-			"url": "/Skygen/"
-		},
-		{
-			"label": "Головна сторінка",
-			"url": "/Skygen/page.html"
-		}
-	]
+  "projectName": "Skygen",
+  "menuItems": [
+    {
+      "label": "Стартова сторінка",
+      "url": "/Skygen/"
+    },
+    {
+      "label": "Головна сторінка",
+      "url": "/Skygen/page.html"
+    },
+    {
+      "label": "commercial",
+      "url": "/Skygen/commercial.html"
+    }
+  ]
 }

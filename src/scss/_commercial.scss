@@ -1,0 +1,66 @@
+.commercial {
+	&__menu {
+		gap: 3rem;
+		li {
+			a {
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	&-hero__content {
+		align-items: center;
+		padding-top: 5rem;
+
+		.hero__text {
+			font-size: 1.25rem;
+		}
+	}
+	&-hero__image {
+		max-height: 56.25rem;
+		overflow: hidden;
+		&::after {
+			background: rgba($color: #171717, $alpha: 0.7);
+		}
+	}
+}
+
+@include media-width($md) {
+	.commercial {
+		&__menu {
+			gap: 1.25rem;
+			li {
+				a {
+					color: #000;
+				}
+			}
+		}
+	}
+
+	.header {
+		&.commercial {
+			background-color: #fff;
+			backdrop-filter: none;
+			color: #000;
+
+			svg {
+				stroke: #000;
+
+				path {
+					stroke: #000;
+					fill: #000;
+				}
+			}
+
+			.header__burger {
+				color: #000;
+
+				#nav-icon1 span,
+				#nav-icon3 span,
+				#nav-icon4 span {
+					background-color: #000;
+				}
+			}
+		}
+	}
+}
