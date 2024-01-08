@@ -319,48 +319,40 @@ export function inputPassword() {
 
 
 export function lenisScroll() {
-
+	const scrollableBlock = document.querySelector('.window__wrapper');
 	if (window.innerWidth > 992) {
 		lenisS = new Lenis({
 			smoothTouch: true,
 			duration: 1.2,
-			autoResize: true
-		})
-
-	}
-	else {
+			autoResize: true,
+		});
+	} else {
 		lenisS = new Lenis({
 			smoothTouch: true,
 			duration: 1,
 			autoResize: true
-		})
-
+		});
 	}
 
 	function raf(time) {
-		lenisS.raf(time)
-		lenisS.resize()
-		requestAnimationFrame(raf)
+		lenisS.raf(time);
+		lenisS.resize();
+		requestAnimationFrame(raf);
 	}
 
-	requestAnimationFrame(raf)
-	// const header = document.querySelector('.header');
-	// let prevScrollPos = window.pageYOffset;
-	// window.addEventListener('scroll', () => {
-	// 	const currentScrollPos = window.pageYOffset;
-	// 	// if (currentScrollPos <= 0) {
-	// 	// 	header.classList.add('default');
-	// 	// } else {
-	// 	// 	header.classList.remove('default');
-	// 	// }
-	// 	if (prevScrollPos > currentScrollPos) {
-	// 		header.classList.add('visible');
-	// 	} else {
-	// 		header.classList.remove('visible');
-	// 	}
-	// 	prevScrollPos = currentScrollPos;
-	// });
+	requestAnimationFrame(raf);
 
+	if (scrollableBlock) {
+		const scLen = new Lenis({
+			content: scrollableBlock,
+			smoothTouch: true,
+			duration: 1.2,
+			autoResize: true,
+		})
+		console.log('block')
+	}
+
+	// Інші частини вашого коду
 }
 
 export function faq() {
