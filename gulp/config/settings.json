@@ -12,6 +12,10 @@
     {
       "label": "commercial",
       "url": "/Skygen/commercial.html"
+    },
+    {
+      "label": "Сторінка-банер",
+      "url": "/Skygen/select.html"
     }
   ]
 }
