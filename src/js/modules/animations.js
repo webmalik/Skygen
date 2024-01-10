@@ -757,6 +757,76 @@ export function doorSlider(doorSlider) {
 		trigger: doorContainer,
 		start: 'top -100px',
 		end: () => {
+			return doorOffsetTop + 5000;
+		},
+		scrub: 1,
+		pin: true,
+		//once: true,
+		onUpdate: (self) => {
+
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
+			if (i >= slides + 1) {
+				i = slides + 1
+			}
+			const currentItem = doorItems[i];
+
+			let normalizedPercentScrolled = (((self.progress + 0.1) * (slides + 1)) * 100) % 100;
+			if (normalizedPercentScrolled >= 100) {
+				normalizedPercentScrolled = 100
+			}
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(doorWrapper, { xPercent: -i * 100, duration: 1 })
+				}
+			}
+
+			doorItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function doorSliderCom(doorSlider) {
+
+	const doorContainer = doorSlider.querySelector('.door__container');
+	const doorImage = doorSlider.querySelectorAll('.door__image img');
+	const doorImageC = doorSlider.querySelector('.door__image');
+	const doorItems = doorSlider.querySelectorAll('.door__item');
+	const doorWrapper = doorSlider.querySelector('.door__wrapper');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * doorImage.length;
+
+	let gapPersent = gap / doorImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = doorImage.length - 1;
+
+	doorImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const doorOffsetTop = getElementOffsetTop(doorContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl2 = gsap.timeline();
+
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + (gapPersent / doorImage.length) });
+
+	ScrollTrigger.create({
+		animation: tl2,
+		trigger: doorContainer,
+		start: 'top -100px',
+		end: () => {
 			return doorOffsetTop + 5500;
 		},
 		scrub: 1,
@@ -990,6 +1060,77 @@ export function doorSliderM(doorSlider) {
 		start: 'top top',
 		end: () => {
 			return doorOffsetTop + 4000;
+		},
+		scrub: 5,
+		pin: true,
+		//once: true,
+		onUpdate: (self) => {
+
+
+			let i = Math.floor((self.progress + 0.1) * (slides + 1));
+			if (i >= slides + 1) {
+				i = slides + 1
+			}
+			const currentItem = doorItems[i];
+
+			let normalizedPercentScrolled = (((self.progress + 0.1) * (slides + 1)) * 100) % 100;
+			if (normalizedPercentScrolled >= 100) {
+				normalizedPercentScrolled = 100
+			}
+			if (currentItem) {
+				currentItem.classList.remove('noactive');
+				let currentLine = currentItem.querySelector('.catalog__active-line');
+				currentLine.style.width = normalizedPercentScrolled + '%';
+				if (window.innerWidth < 992) {
+					gsap.to(doorWrapper, { xPercent: -i * 100, duration: 1 })
+				}
+			}
+
+			doorItems.forEach((item, index) => {
+				if (index !== i) {
+					item.classList.add('noactive');
+				}
+			});
+		},
+	});
+}
+
+export function doorSliderMCom(doorSlider) {
+
+	const doorContainer = doorSlider.querySelector('.door__container');
+	const doorImage = doorSlider.querySelectorAll('.door__image img');
+	const doorImageC = doorSlider.querySelector('.door__image');
+	const doorItems = doorSlider.querySelectorAll('.door__item');
+	const doorWrapper = doorSlider.querySelector('.door__wrapper');
+
+	let i = 0;
+	let gap = calculateGap();
+	let gapAll = gap * doorImage.length;
+
+	let gapPersent = gap / doorImageC.offsetWidth * 100;
+
+	let allWidth = 0
+
+	let slides = doorImage.length - 1;
+
+	doorImage.forEach((imageWidth) => {
+		allWidth = allWidth + imageWidth.offsetWidth
+	})
+
+	const doorOffsetTop = getElementOffsetTop(doorContainer);
+
+	allWidth = allWidth + gapAll
+
+	const tl2 = gsap.timeline();
+
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + (gapPersent / doorImage.length) });
+
+	ScrollTrigger.create({
+		animation: tl2,
+		trigger: doorContainer,
+		start: 'top top',
+		end: () => {
+			return doorOffsetTop + 20000;
 		},
 		scrub: 5,
 		pin: true,

@@ -46,6 +46,11 @@
 		margin: 1.88rem 0;
 		padding: 1.88rem 0;
 	}
+
+	&__slider {
+		padding: 6.25rem 0;
+	}
+
 	&__block {
 		background-color: #fff;
 		padding: 6.25rem 0;
@@ -131,6 +136,23 @@
 		line-height: 1.5rem; /* 150% */
 		text-transform: uppercase;
 	}
+}
+
+.commercial__edication {
+	background: #f8f8f8;
+	padding: 6.25rem 0;
+
+	.education {
+		&__item {
+			&:last-child {
+				grid-area: auto;
+			}
+		}
+	}
+}
+
+.commercial__faq {
+	padding: 6.25rem 0;
 }
 
 @include media-width($md) {

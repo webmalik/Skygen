@@ -1,0 +1,75 @@
+.portfolio {
+	padding: 6.25rem 0;
+	&__title {
+		@include adaptiv-value("margin-bottom", toPX(1.88), toPX(1), 1);
+	}
+
+	&__wrapper {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.88rem;
+		& > div {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 1.88rem;
+		}
+	}
+
+	&__text {
+		color: var(--Dark-Gray, #404141);
+		font-family: $font-family;
+		font-size: 1rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.5rem; /* 150% */
+		letter-spacing: -0.03219rem;
+	}
+
+	&__image-big {
+		min-height: 34.375rem;
+		border-radius: 1.25rem;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		picture,
+		img {
+			max-block-size: none;
+			max-inline-size: none;
+			width: auto;
+		}
+	}
+
+	&__image-small {
+		min-height: 18.75rem;
+		border-radius: 1.25rem;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		picture,
+		img {
+			max-block-size: none;
+			max-inline-size: none;
+			width: auto;
+		}
+	}
+}
+
+@include media-width($md) {
+	.portfolio {
+		&__wrapper {
+			flex-direction: column;
+		}
+
+		&__image-big {
+			min-height: 25rem;
+		}
+
+		&__image-small {
+			min-height: 18.75rem;
+		}
+	}
+}

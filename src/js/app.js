@@ -60,17 +60,14 @@ if (commercial) {
 	wmAnimations.benefitsZoom();
 
 	if (window.innerWidth < 992) {
-		wmAnimations.doorSliderM(doorSlider);
+		wmAnimations.doorSliderMCom(doorSlider);
 	} else {
-		wmAnimations.doorSlider(doorSlider);
+		wmAnimations.doorSliderCom(doorSlider);
 	}
 
 	// Mobile functions
 	if (window.innerWidth < 992) {
-		// wmMobile.aboutMobile();
 		wmMobile.benefitsMobile();
-		// wmMobile.imagesMobile();
-		// wmMobile.education();
 	}
 }
 
