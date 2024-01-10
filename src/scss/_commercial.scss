@@ -116,6 +116,23 @@
 	}
 }
 
+.commercial__benefits {
+	.benefits__text {
+		color: var(--Light-Gray, #aeaeae);
+		line-height: 1.5rem;
+	}
+
+	.benefits__title {
+		color: var(--White, #fff);
+		font-family: $font-family;
+		font-size: 1rem;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 1.5rem; /* 150% */
+		text-transform: uppercase;
+	}
+}
+
 @include media-width($md) {
 	.commercial {
 		.clients__wrapper {

@@ -750,7 +750,7 @@ export function doorSlider(doorSlider) {
 
 	const tl2 = gsap.timeline();
 
-	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + gapPersent });
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + (gapPersent / doorImage.length) });
 
 	ScrollTrigger.create({
 		animation: tl2,
@@ -982,14 +982,14 @@ export function doorSliderM(doorSlider) {
 
 	const tl2 = gsap.timeline();
 
-	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + gapPersent });
+	tl2.fromTo(doorImageC, { xPercent: 0 }, { xPercent: (-100 - gapPersent) * (doorImage.length - 1) + (gapPersent / doorImage.length) });
 
 	ScrollTrigger.create({
 		animation: tl2,
 		trigger: doorContainer,
 		start: 'top top',
 		end: () => {
-			return doorOffsetTop + 20000;
+			return doorOffsetTop + 4000;
 		},
 		scrub: 5,
 		pin: true,
