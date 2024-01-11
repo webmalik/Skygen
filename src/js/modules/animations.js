@@ -700,7 +700,7 @@ export function mainSwiper() {
 			markers: true,
 			onEnter: () => {
 				// Вимикаємо скрол
-				mainSliderElement.slideTo(0)
+				//mainSliderElement.slideTo(0)
 				lenisS.stop();
 
 				// Додаємо слухачі подій тач-жестів
