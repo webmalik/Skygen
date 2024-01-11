@@ -27,6 +27,7 @@ wmFunctions.accordion();
 wmFunctions.faq();
 wmFunctions.modal();
 wmFunctions.pageNav();
+wmFunctions.fancy();
 
 if (page) {
 

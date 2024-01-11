@@ -827,7 +827,7 @@ export function doorSliderCom(doorSlider) {
 		trigger: doorContainer,
 		start: 'top -100px',
 		end: () => {
-			return doorOffsetTop + 5500;
+			return doorOffsetTop + 2000;
 		},
 		scrub: 1,
 		pin: true,
@@ -1059,7 +1059,7 @@ export function doorSliderM(doorSlider) {
 		trigger: doorContainer,
 		start: 'top top',
 		end: () => {
-			return doorOffsetTop + 4000;
+			return doorOffsetTop + 20000;
 		},
 		scrub: 5,
 		pin: true,
@@ -1130,7 +1130,7 @@ export function doorSliderMCom(doorSlider) {
 		trigger: doorContainer,
 		start: 'top top',
 		end: () => {
-			return doorOffsetTop + 20000;
+			return doorOffsetTop + 4000;
 		},
 		scrub: 5,
 		pin: true,

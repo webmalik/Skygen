@@ -1,4 +1,6 @@
 import $ from "jquery";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 import Lenis from '@studio-freight/lenis';
 let lenisS
@@ -380,3 +382,8 @@ export function faq() {
 	}
 }
 
+export function fancy() {
+	Fancybox.bind("[data-fancybox]", {
+
+	});
+}
