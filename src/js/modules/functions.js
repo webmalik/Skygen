@@ -3,7 +3,7 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 import Lenis from '@studio-freight/lenis';
-let lenisS
+export let lenisS
 
 export function burgerMenu() {
 	const burger = document.querySelector('.header__burger div');

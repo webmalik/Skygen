@@ -37,11 +37,20 @@ if (page) {
 	wmAnimations.mainAnimations();
 
 	if (window.innerWidth < 992) {
-		wmAnimations.mainSliderM(windowSlider);
+		//wmAnimations.mainSliderM(windowSlider);
+
+		wmAnimations.mainSwiper();
 		wmAnimations.doorSliderM(doorSlider);
 		wmAnimations.otherSliderM(otherSlider);
 	} else {
-		wmAnimations.mainSlider(windowSlider);
+
+
+
+		//wmAnimations.mainSlider(windowSlider);
+		wmAnimations.mainSwiper();
+
+
+
 		wmAnimations.doorSlider(doorSlider);
 		wmAnimations.otherSlider(otherSlider);
 	}

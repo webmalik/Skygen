@@ -6,6 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 // import { Observer } from "gsap/Observer.js";
 // import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
 
+import Swiper from "swiper";
+import { Navigation, Pagination, Autoplay, Mousewheel } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
 import { SplitText } from "./SplitText.js";
 
 let typeOpts = {
@@ -17,7 +25,7 @@ let gOpts = {
 	ease: 'power2.easeOut'
 };
 
-let lenis;
+import { lenisS } from './functions.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -616,6 +624,174 @@ function getElementOffsetTop(element) {
 	}
 
 	return offsetTop;
+}
+
+export function mainSwiper() {
+	const main = document.querySelector('.window__slider');
+	const mainSlider = document.querySelector('.win__slider');
+	const catalogItems = main.querySelectorAll('.catalog__item');
+	const catalogWrapper = main.querySelector('.catalog__wrapper');
+
+	const mainSliderElement = new Swiper(mainSlider, {
+		modules: [Mousewheel],
+		speed: 1000,
+		spaceBetween: 10,
+		slidesPerView: 1,
+		centeredSlides: true,
+		mousewheel: {
+			eventsTarget: '.window__slider',
+			sensitivity: 5,
+		},
+		allowTouchMove: false,
+		breakpoints: {
+			992: {
+				allowTouchMove: true,
+			}
+		}
+		// on: {
+		// 	touchStart: function (event) {
+		// 		console.log('Початок торкання:', event);
+		// 	},
+		// 	touchMove: function (event) {
+		// 		console.log('Рух торкання:', event);
+
+		// 		const deltaY = event.touches[0].clientY - event.touches[1].clientY;
+
+		// 		if (deltaY > 0) {
+		// 			console.log('Свайп вгору');
+		// 			mainSliderElement.slidePrev();
+		// 		} else if (deltaY < 0) {
+		// 			console.log('Свайп вниз');
+		// 			mainSliderElement.slideNext();
+		// 		}
+		// 	},
+		// 	touchEnd: function (event) {
+		// 		console.log('Кінець торкання:', event);
+		// 	},
+		// 	slideChange: function () {
+		// 		console.log('Слайд змінено, активний слайд:', this.activeIndex);
+		// 	},
+		// },
+	});
+	mainSliderElement.mousewheel.disable();
+	if (window.innerWidth > 992) {
+		ScrollTrigger.create({
+			trigger: mainSlider,
+			start: 'top top',
+			end: '5% top',
+			markers: true,
+			onEnter: () => {
+				// Вмикаємо Swiper.js
+				mainSliderElement.mousewheel.enable();
+				// Вимикаємо скрол
+				mainSliderElement.slideTo(0)
+				lenisS.stop();
+			},
+			onLeave: () => {
+				mainSliderElement.mousewheel.disable();
+				lenisS.start();
+			},
+		});
+	} else {
+		const scrollTriggerInstance = ScrollTrigger.create({
+			trigger: main,
+			start: 'top top',
+			end: '5% top',
+			markers: true,
+			onEnter: () => {
+				// Вимикаємо скрол
+				mainSliderElement.slideTo(0)
+				lenisS.stop();
+
+				// Додаємо слухачі подій тач-жестів
+				mainSlider.addEventListener('touchstart', handleTouchStart, false);
+				mainSlider.addEventListener('touchmove', handleTouchMove, false);
+				catalogWrapper.addEventListener('touchstart', handleTouchStart, false);
+				catalogWrapper.addEventListener('touchmove', handleTouchMove, false);
+
+				let xDown = null;
+				let yDown = null;
+
+				function handleTouchStart(evt) {
+					const firstTouch = getTouches(evt)[0];
+					xDown = firstTouch.clientX;
+					yDown = firstTouch.clientY;
+
+				}
+
+				function handleTouchMove(evt) {
+
+					if (!xDown || !yDown) {
+						return;
+					}
+
+					const xUp = evt.touches[0].clientX;
+					const yUp = evt.touches[0].clientY;
+
+					const xDiff = xDown - xUp;
+					const yDiff = yDown - yUp;
+
+					if (Math.abs(xDiff) > Math.abs(yDiff)) {
+						// Якщо горизонтальний свайп
+						if (xDiff > 0) {
+							// right swipe
+							mainSliderElement.slideNext();
+						} else {
+							// left swipe
+							mainSliderElement.slidePrev();
+						}
+					} else {
+						// Якщо вертикальний свайп
+						if (yDiff > 0) {
+							// down swipe
+							mainSliderElement.slideNext();
+						} else {
+							// up swipe
+							mainSliderElement.slidePrev();
+						}
+					}
+					xDown = null;
+					yDown = null;
+				}
+
+				function getTouches(evt) {
+					return evt.touches || evt.originalEvent.touches;
+				}
+			},
+			onLeave: () => {
+				//mainSliderElement.mousewheel.disable();
+				scrollTriggerInstance.kill();
+				mainSliderElement.slideTo(0)
+				lenisS.start();
+			},
+		});
+	}
+
+
+
+	mainSliderElement.on('slideChange', function () {
+		const activeIndex = mainSliderElement.activeIndex;
+		catalogItems.forEach((item) => {
+			item.classList.add('noactive');
+		})
+		catalogItems[activeIndex].classList.remove('noactive');
+		if (window.innerWidth < 992) {
+			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
+		}
+		if (activeIndex === mainSliderElement.slides.length - 1) {
+			lenisS.start();
+		}
+	});
+
+	function restartScrollTrigger() {
+		if (scrollTriggerInstance) {
+			scrollTriggerInstance.unkill();
+		}
+	}
+	restartScrollTrigger();
+
+	mainSliderElement.swiper = mainSliderElement;
+	mainSliderElement.mousewheel = mainSliderElement.mousewheel || mainSliderElement;
 }
 
 export function mainSlider(mainSlider) {
