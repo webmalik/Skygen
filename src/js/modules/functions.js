@@ -1,4 +1,7 @@
 import $ from "jquery";
+import Headroom from 'headroom.js';
+import gsap from 'gsap';
+
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -11,6 +14,12 @@ export function burgerMenu() {
 	const links2 = document.querySelectorAll('.dropdown ul li a');
 	const box = document.querySelector('.header');
 	const body = document.body;
+
+	document.addEventListener("DOMContentLoaded", function () {
+		let headroom = new Headroom(box);
+		headroom.init();
+	});
+
 	if (window.innerWidth < 992) {
 
 		links.forEach(link => {
@@ -292,7 +301,10 @@ export function pageNav() {
 			const targetId = $(this).attr('href');
 			const targetElement = $(`${targetId}:first`);
 			const targetOffset = targetElement.offset().top;
-			lenisS.scrollTo(targetOffset);
+			window.scrollTo({
+				top: targetOffset - 100,
+				behavior: 'smooth' // Додає плавний ефект
+			});
 		});
 	});
 }

@@ -1,10 +1,12 @@
 //import $ from "jquery";
 import gsap from 'gsap';
+import * as THREE from 'three';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
-// import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
+import { TextPlugin } from "gsap/TextPlugin.js";
 // import { Observer } from "gsap/Observer.js";
 // import { MotionPathPlugin } from "gsap/dist/MotionPathPlugin.js";
+
 
 import Swiper from "swiper";
 import { Navigation, Pagination, Autoplay, Mousewheel } from 'swiper/modules';
@@ -28,6 +30,7 @@ let gOpts = {
 import { lenisS } from './functions.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(TextPlugin);
 
 
 export function benefitsZoom() {
@@ -103,7 +106,48 @@ function createScrollTriggerAbout(triggerName = "about") {
 
 
 export function mainAnimations() {
-	createScrollTriggerAbout('about');
+	createScrollTriggerAbout('about1');
+	createScrollTriggerAbout('about2');
+
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+
+	window.addEventListener('resize', function () {
+		var newWidth = window.innerWidth;
+		var newHeight = window.innerHeight;
+
+		camera.aspect = newWidth / newHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize(newWidth, newHeight);
+	});
+
+	function createCountingAnimation(selector, plus = false) {
+
+		const targetElem = document.querySelector(selector);
+		const targetValue = parseInt(targetElem.innerHTML);
+		gsap.to({}, {
+			duration: 2,
+			scrollTrigger: {
+				trigger: selector,
+				start: 'bottom bottom',
+				onUpdate: (animation) => {
+					const value = Math.round(animation.progress * targetValue);
+					if (plus) {
+						document.querySelector(selector).innerHTML = value + "+";
+					} else {
+						document.querySelector(selector).innerHTML = value;
+					}
+				},
+			},
+		});
+	}
+
+	createCountingAnimation('.num1', true);
+	createCountingAnimation('.num2');
+	createCountingAnimation('.num3');
 
 	if (window.innerWidth > 992) {
 		ScrollTrigger.create({
@@ -153,104 +197,104 @@ export function mainAnimations() {
 				}
 			}
 		})
+		//12.01
 
+		// ScrollTrigger.create({
+		// 	trigger: '.install',
+		// 	start: 'top bottom',
+		// 	once: false,
+		// 	onEnter: () => {
+		// 		const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
+		// 		const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
 
-		ScrollTrigger.create({
-			trigger: '.install',
-			start: 'top bottom',
-			once: false,
-			onEnter: () => {
-				const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
-				const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
+		// 		gsap.set('.install__image', { clipPath: 'inset(10%)' })
+		// 		gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
-				gsap.set('.install__image', { clipPath: 'inset(10%)' })
-				gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+		// 		let tl = gsap.timeline({
+		// 			scrollTrigger: {
+		// 				trigger: '.install',
+		// 				start: 'top top+=50%',
+		// 			},
+		// 			defaults: {
+		// 				ease: gOpts.ease
+		// 			},
+		// 			onComplete: () => {
+		// 				homeIntroLabel.revert()
+		// 				homeIntroTitle.revert()
+		// 				new SplitText('.install__title div', typeOpts.lines)
+		// 			}
+		// 		})
+		// 		tl
+		// 			.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+		// 			.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.4')
+		// 			.to('.install__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+		// 			.to('.install__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 
-				let tl = gsap.timeline({
-					scrollTrigger: {
-						trigger: '.install',
-						start: 'top top+=50%',
-					},
-					defaults: {
-						ease: gOpts.ease
-					},
-					onComplete: () => {
-						homeIntroLabel.revert()
-						homeIntroTitle.revert()
-						new SplitText('.install__title div', typeOpts.lines)
-					}
-				})
-				tl
-					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.4')
-					.to('.install__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
-					.to('.install__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+		// 		if (window.innerWidth > 991) {
+		// 			requestAnimationFrame(() => {
+		// 				const tlScrub = gsap.timeline({
+		// 					scrollTrigger: {
+		// 						trigger: '.install',
+		// 						start: 'top bottom',
+		// 						end: 'bottom top',
+		// 						scrub: true,
+		// 					}
+		// 				})
+		// 				tlScrub
+		// 					.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+		// 			})
+		// 		}
+		// 	}
+		// })
 
-				if (window.innerWidth > 991) {
-					requestAnimationFrame(() => {
-						const tlScrub = gsap.timeline({
-							scrollTrigger: {
-								trigger: '.install',
-								start: 'top bottom',
-								end: 'bottom top',
-								scrub: true,
-							}
-						})
-						tlScrub
-							.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-					})
-				}
-			}
-		})
+		// ScrollTrigger.create({
+		// 	trigger: '.education',
+		// 	start: 'top bottom',
+		// 	once: false,
+		// 	onEnter: () => {
+		// 		const homeIntroTitle = new SplitText('.education__title', typeOpts.chars)
+		// 		const homeIntroTitle2 = new SplitText('.education__header', typeOpts.chars)
+		// 		//const homeIntroTitle3 = new SplitText('.education__link', typeOpts.chars)
 
-		ScrollTrigger.create({
-			trigger: '.education',
-			start: 'top bottom',
-			once: false,
-			onEnter: () => {
-				const homeIntroTitle = new SplitText('.education__title', typeOpts.chars)
-				const homeIntroTitle2 = new SplitText('.education__header', typeOpts.chars)
-				//const homeIntroTitle3 = new SplitText('.education__link', typeOpts.chars)
+		// 		gsap.set('.education__image', { clipPath: 'inset(10%)' })
+		// 		gsap.set('.education__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
-				gsap.set('.education__image', { clipPath: 'inset(10%)' })
-				gsap.set('.education__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+		// 		let tl = gsap.timeline({
+		// 			scrollTrigger: {
+		// 				trigger: '.education__title',
+		// 				start: 'top top+=50%',
+		// 			},
+		// 			defaults: {
+		// 				ease: gOpts.ease
+		// 			},
+		// 			onComplete: () => {
+		// 				new SplitText('.education__title div', typeOpts.lines)
+		// 				//new SplitText('.education__link div', typeOpts.lines)
+		// 			}
+		// 		})
+		// 		tl
+		// 			.to('.education__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
+		// 			.to('.education__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+		// 			.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
+		// 			.from(homeIntroTitle2.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
+		// 		//.from(homeIntroTitle3.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.3')
 
-				let tl = gsap.timeline({
-					scrollTrigger: {
-						trigger: '.education__title',
-						start: 'top top+=50%',
-					},
-					defaults: {
-						ease: gOpts.ease
-					},
-					onComplete: () => {
-						new SplitText('.education__title div', typeOpts.lines)
-						//new SplitText('.education__link div', typeOpts.lines)
-					}
-				})
-				tl
-					.to('.education__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
-					.to('.education__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
-					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
-					.from(homeIntroTitle2.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-				//.from(homeIntroTitle3.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.3')
-
-				if (window.innerWidth > 991) {
-					requestAnimationFrame(() => {
-						const tlScrub = gsap.timeline({
-							scrollTrigger: {
-								trigger: '.education',
-								start: 'top bottom',
-								end: 'bottom top',
-								scrub: true,
-							}
-						})
-						tlScrub
-							.fromTo('.education__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-					})
-				}
-			}
-		})
+		// 		if (window.innerWidth > 991) {
+		// 			requestAnimationFrame(() => {
+		// 				const tlScrub = gsap.timeline({
+		// 					scrollTrigger: {
+		// 						trigger: '.education',
+		// 						start: 'top bottom',
+		// 						end: 'bottom top',
+		// 						scrub: true,
+		// 					}
+		// 				})
+		// 				tlScrub
+		// 					.fromTo('.education__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+		// 			})
+		// 		}
+		// 	}
+		// })
 	} else {
 		ScrollTrigger.create({
 			trigger: '.why',
@@ -299,53 +343,54 @@ export function mainAnimations() {
 				}
 			}
 		})
-		ScrollTrigger.create({
-			trigger: '.install',
-			start: 'top bottom',
-			once: false,
-			onEnter: () => {
-				const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
-				const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
 
-				gsap.set('.install__image', { clipPath: 'inset(10%)' })
-				gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+		// ScrollTrigger.create({
+		// 	trigger: '.install',
+		// 	start: 'top bottom',
+		// 	once: false,
+		// 	onEnter: () => {
+		// 		const homeIntroTitle = new SplitText('.install__title', typeOpts.chars)
+		// 		const homeIntroLabel = new SplitText('.install__text .text', typeOpts.words)
 
-				let tl = gsap.timeline({
-					scrollTrigger: {
-						trigger: '.install',
-						start: 'top top+=50%',
-					},
-					defaults: {
-						ease: gOpts.ease
-					},
-					onComplete: () => {
-						homeIntroLabel.revert()
-						homeIntroTitle.revert()
-						new SplitText('.install__title div', typeOpts.lines)
-					}
-				})
-				tl
-					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .8, stagger: .02 })
-					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .8, stagger: .02 }, '<=.8')
-					.to('.install__image', { clipPath: 'inset(0%)', duration: 4, ease: 'expo.out' }, '<=.8')
-					.to('.install__image img', { scale: 1, duration: 4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+		// 		gsap.set('.install__image', { clipPath: 'inset(10%)' })
+		// 		gsap.set('.install__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
-				if (window.innerWidth > 991) {
-					requestAnimationFrame(() => {
-						const tlScrub = gsap.timeline({
-							scrollTrigger: {
-								trigger: '.install',
-								start: 'top bottom',
-								end: 'bottom top',
-								scrub: true,
-							}
-						})
-						tlScrub
-							.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-					})
-				}
-			}
-		})
+		// 		let tl = gsap.timeline({
+		// 			scrollTrigger: {
+		// 				trigger: '.install',
+		// 				start: 'top top+=50%',
+		// 			},
+		// 			defaults: {
+		// 				ease: gOpts.ease
+		// 			},
+		// 			onComplete: () => {
+		// 				homeIntroLabel.revert()
+		// 				homeIntroTitle.revert()
+		// 				new SplitText('.install__title div', typeOpts.lines)
+		// 			}
+		// 		})
+		// 		tl
+		// 			.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .8, stagger: .02 })
+		// 			.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .8, stagger: .02 }, '<=.8')
+		// 			.to('.install__image', { clipPath: 'inset(0%)', duration: 4, ease: 'expo.out' }, '<=.8')
+		// 			.to('.install__image img', { scale: 1, duration: 4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+
+		// 		if (window.innerWidth > 991) {
+		// 			requestAnimationFrame(() => {
+		// 				const tlScrub = gsap.timeline({
+		// 					scrollTrigger: {
+		// 						trigger: '.install',
+		// 						start: 'top bottom',
+		// 						end: 'bottom top',
+		// 						scrub: true,
+		// 					}
+		// 				})
+		// 				tlScrub
+		// 					.fromTo('.install__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+		// 			})
+		// 		}
+		// 	}
+		// })
 	}
 
 	let i = 0;
@@ -354,87 +399,61 @@ export function mainAnimations() {
 	const imagesActive = imagesImages[2];
 	console.log(imagesActive)
 	if (window.innerWidth > 992) {
-		imagesImages.forEach((element) => {
-			i += 0.5;
+		// Анімація для кожного зображення
+		imagesImages.forEach((element, index) => {
 			gsap.from(element, {
-				y: -10 * i,
-				duration: 1,
 				scrollTrigger: {
 					trigger: element,
-					start: "500% center",
-					end: "560% bottom",
+					start: "top center", // Початок анімації при початку елементу
+					end: "50% center", // Кінець анімації при кінці елементу
 					scrub: true,
-					//markers: true
-				}
+					//	markers: true, // Маркери для відлагодження (можна видалити у реальному використанні)
+				},
+				y: -10 * (index + 0.5), // Зсув по осі Y
+
 			});
 		});
 
+		// Анімація для активного елемента
 		gsap.from(imagesActive, {
-			y: 100,
-			duration: 1,
-
 			scrollTrigger: {
 				trigger: imagesWrapper,
+				start: "-50% center", // Початок анімації при початку контейнера
+				end: "bottom center", // Кінець анімації при кінці контейнера
 				scrub: true,
-				start: "500% center",
-				end: "580% bottom",
-				//markers: true
-			}
-		});
+			},
+			y: 10, // Зсув по осі Y
 
+		});
 	} else {
-		imagesImages.forEach((element) => {
-			i += 0.5;
+		// Анімація для кожного зображення
+		imagesImages.forEach((element, index) => {
 			gsap.from(element, {
-				y: -10 * i,
-				duration: 1,
 				scrollTrigger: {
 					trigger: element,
-					start: "4150% center",
-					end: "4200% bottom",
-					scrub: 1,
-					//markers: true
-				}
+					start: "top center", // Початок анімації при початку елементу
+					end: "50% center", // Кінець анімації при кінці елементу
+					scrub: true,
+					//	markers: true, // Маркери для відлагодження (можна видалити у реальному використанні)
+				},
+				y: -10 * (index + 0.5), // Зсув по осі Y
+
 			});
 		});
 
+		// Анімація для активного елемента
 		gsap.from(imagesActive, {
-			y: 50,
-			duration: 1,
-
 			scrollTrigger: {
 				trigger: imagesWrapper,
-				scrub: 1,
-				start: "3600% center",
-				end: "3650% bottom",
-				//markers: true
-			}
+				start: "-50% center", // Початок анімації при початку контейнера
+				end: "bottom center", // Кінець анімації при кінці контейнера
+				scrub: true,
+			},
+			y: 10, // Зсув по осі Y
+
 		});
 	}
 
-
-	// const homeIntroLabel = new SplitText('.about__title', typeOpts.words)
-	// const homeIntroTitle = new SplitText('.about__text', typeOpts.chars)
-
-	// gsap.from(".about", {
-	// 	scrollTrigger: {
-	// 		trigger: ".about",
-	// 		start: "top 80%",
-	// 		end: "top 80%",
-	// 		//markers: true
-	// 	},
-	// 	onComplete: () => {
-	// 		gsap.set('.about__image', { clipPath: 'inset(10%)' });
-	// 		gsap.set('.about__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 });
-
-	// 		gsap.to('.about__image', { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4');
-	// 		gsap.to('.about__image img', { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0');
-
-	// 		// Анімація для розбитого тексту
-	// 		gsap.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: 0.5, stagger: .02 }, '<=.2');
-	// 		gsap.from(homeIntroTitle.chars, { yPercent: 30, autoAlpha: 0, duration: .2, stagger: .01 }, '<=.2');
-	// 	}
-	// });
 }
 
 export function mainAnimate() {
@@ -450,20 +469,6 @@ export function mainAnimate() {
 			//markers: true
 		}
 	});
-
-	// gsap.from(".header", {
-	// 	y: -200,
-	// 	opacity: 0,
-	// 	duration: 1.5,
-	// 	delay: 0.9,
-	// 	scrollTrigger: {
-	// 		trigger: ".header",
-	// 		start: "top 80%",
-	// 		end: "top 80%",
-	// 		toggleActions: "play none none none",
-	// 		//markers: true
-	// 	}
-	// });
 
 	gsap.from(".hero__text", {
 		x: -200,
@@ -601,30 +606,15 @@ export function mainAnimate() {
 			duration: 0.8,
 			scrollTrigger: {
 				trigger: element,
-				start: "top 80%",
-				end: "top 80%",
-				//markers: true
+				start: "top top",
+				end: "center center",
+				markers: true
 			}
 		});
 	});
 }
 
-function calculateGap() {
-	const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-	const calculatedValue = 20 + 10.08 * ((vw - 393) / 920);
-	return calculatedValue;
-}
 
-function getElementOffsetTop(element) {
-	let offsetTop = 0;
-
-	while (element) {
-		offsetTop += element.offsetTop;
-		element = element.offsetParent;
-	}
-
-	return offsetTop;
-}
 
 export function mainSwiper() {
 	const main = document.querySelector('.window__slider');
@@ -642,126 +632,20 @@ export function mainSwiper() {
 			eventsTarget: '.window__slider',
 			sensitivity: 5,
 		},
-		allowTouchMove: false,
-		breakpoints: {
-			992: {
-				allowTouchMove: true,
-			}
-		}
-		// on: {
-		// 	touchStart: function (event) {
-		// 		console.log('Початок торкання:', event);
-		// 	},
-		// 	touchMove: function (event) {
-		// 		console.log('Рух торкання:', event);
-
-		// 		const deltaY = event.touches[0].clientY - event.touches[1].clientY;
-
-		// 		if (deltaY > 0) {
-		// 			console.log('Свайп вгору');
-		// 			mainSliderElement.slidePrev();
-		// 		} else if (deltaY < 0) {
-		// 			console.log('Свайп вниз');
-		// 			mainSliderElement.slideNext();
-		// 		}
-		// 	},
-		// 	touchEnd: function (event) {
-		// 		console.log('Кінець торкання:', event);
-		// 	},
-		// 	slideChange: function () {
-		// 		console.log('Слайд змінено, активний слайд:', this.activeIndex);
-		// 	},
-		// },
 	});
 	mainSliderElement.mousewheel.disable();
 	if (window.innerWidth > 992) {
-		ScrollTrigger.create({
+		const scrollTriggerInstance = ScrollTrigger.create({
 			trigger: mainSlider,
 			start: 'top top',
 			end: '5% top',
-			markers: true,
 			onEnter: () => {
-				// Вмикаємо Swiper.js
 				mainSliderElement.mousewheel.enable();
-				// Вимикаємо скрол
 				mainSliderElement.slideTo(0)
 				lenisS.stop();
 			},
 			onLeave: () => {
 				mainSliderElement.mousewheel.disable();
-				lenisS.start();
-			},
-		});
-	} else {
-		const scrollTriggerInstance = ScrollTrigger.create({
-			trigger: main,
-			start: 'top top',
-			end: '5% top',
-			markers: true,
-			onEnter: () => {
-				// Вимикаємо скрол
-				//mainSliderElement.slideTo(0)
-				lenisS.stop();
-
-				// Додаємо слухачі подій тач-жестів
-				mainSlider.addEventListener('touchstart', handleTouchStart, false);
-				mainSlider.addEventListener('touchmove', handleTouchMove, false);
-				catalogWrapper.addEventListener('touchstart', handleTouchStart, false);
-				catalogWrapper.addEventListener('touchmove', handleTouchMove, false);
-
-				let xDown = null;
-				let yDown = null;
-
-				function handleTouchStart(evt) {
-					const firstTouch = getTouches(evt)[0];
-					xDown = firstTouch.clientX;
-					yDown = firstTouch.clientY;
-
-				}
-
-				function handleTouchMove(evt) {
-
-					if (!xDown || !yDown) {
-						return;
-					}
-
-					const xUp = evt.touches[0].clientX;
-					const yUp = evt.touches[0].clientY;
-
-					const xDiff = xDown - xUp;
-					const yDiff = yDown - yUp;
-
-					if (Math.abs(xDiff) > Math.abs(yDiff)) {
-						// Якщо горизонтальний свайп
-						if (xDiff > 0) {
-							// right swipe
-							mainSliderElement.slideNext();
-						} else {
-							// left swipe
-							mainSliderElement.slidePrev();
-						}
-					} else {
-						// Якщо вертикальний свайп
-						if (yDiff > 0) {
-							// down swipe
-							mainSliderElement.slideNext();
-						} else {
-							// up swipe
-							mainSliderElement.slidePrev();
-						}
-					}
-					xDown = null;
-					yDown = null;
-				}
-
-				function getTouches(evt) {
-					return evt.touches || evt.originalEvent.touches;
-				}
-			},
-			onLeave: () => {
-				//mainSliderElement.mousewheel.disable();
-				scrollTriggerInstance.kill();
-				mainSliderElement.slideTo(0)
 				lenisS.start();
 			},
 		});
@@ -783,17 +667,174 @@ export function mainSwiper() {
 		}
 	});
 
-	function restartScrollTrigger() {
-		if (scrollTriggerInstance) {
-			scrollTriggerInstance.unkill();
-		}
+	mainSliderElement.swiper = mainSliderElement;
+	mainSliderElement.mousewheel = mainSliderElement.mousewheel || mainSliderElement;
+}
+
+export function doorSwiper() {
+	const main = document.querySelector('.door__slider');
+	const mainSlider = document.querySelector('.doo__slider');
+	const catalogItems = main.querySelectorAll('.catalog__item');
+	const catalogWrapper = main.querySelector('.catalog__wrapper');
+
+	const mainSliderElement = new Swiper(mainSlider, {
+		modules: [Mousewheel],
+		speed: 1000,
+		spaceBetween: 10,
+		slidesPerView: 1,
+		centeredSlides: true,
+		mousewheel: {
+			eventsTarget: '.door__slider',
+			sensitivity: 5,
+		},
+	});
+	mainSliderElement.mousewheel.disable();
+	if (window.innerWidth > 992) {
+		const scrollTriggerInstance = ScrollTrigger.create({
+			trigger: mainSlider,
+			start: 'top top',
+			end: '5% top',
+			markers: true,
+			onEnter: () => {
+				mainSliderElement.mousewheel.enable();
+				mainSliderElement.slideTo(0)
+				lenisS.stop();
+			},
+			onLeave: () => {
+				mainSliderElement.mousewheel.disable();
+				lenisS.start();
+			},
+		});
 	}
-	restartScrollTrigger();
+
+	mainSliderElement.on('slideChange', function () {
+		const activeIndex = mainSliderElement.activeIndex;
+		catalogItems.forEach((item) => {
+			item.classList.add('noactive');
+		})
+		catalogItems[activeIndex].classList.remove('noactive');
+		if (window.innerWidth < 992) {
+			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
+		}
+		if (activeIndex === mainSliderElement.slides.length - 1) {
+			lenisS.start();
+		}
+	});
 
 	mainSliderElement.swiper = mainSliderElement;
 	mainSliderElement.mousewheel = mainSliderElement.mousewheel || mainSliderElement;
 }
 
+export function otherSwiper() {
+	const main = document.querySelector('.other__slider');
+	const mainSlider = document.querySelector('.ot__slider');
+	const catalogItems = main.querySelectorAll('.catalog__item');
+	const catalogWrapper = main.querySelector('.catalog__wrapper');
+
+	const mainSliderElement = new Swiper(mainSlider, {
+		modules: [Mousewheel],
+		speed: 1000,
+		spaceBetween: 10,
+		slidesPerView: 1,
+		centeredSlides: true,
+		mousewheel: {
+			eventsTarget: '.other__slider',
+			sensitivity: 5,
+		},
+	});
+	mainSliderElement.mousewheel.disable();
+	if (window.innerWidth > 992) {
+		const scrollTriggerInstance = ScrollTrigger.create({
+			trigger: mainSlider,
+			start: 'top top',
+			end: '5% top',
+			onEnter: () => {
+				mainSliderElement.mousewheel.enable();
+				mainSliderElement.slideTo(0)
+				lenisS.stop();
+			},
+			onLeave: () => {
+				mainSliderElement.mousewheel.disable();
+				lenisS.start();
+			},
+		});
+	}
+
+	mainSliderElement.on('slideChange', function () {
+		const activeIndex = mainSliderElement.activeIndex;
+		catalogItems.forEach((item) => {
+			item.classList.add('noactive');
+		})
+		catalogItems[activeIndex].classList.remove('noactive');
+		if (window.innerWidth < 992) {
+			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
+		}
+		if (activeIndex === mainSliderElement.slides.length - 1) {
+			lenisS.start();
+		}
+	});
+
+	mainSliderElement.swiper = mainSliderElement;
+	mainSliderElement.mousewheel = mainSliderElement.mousewheel || mainSliderElement;
+}
+
+export function doorSwiperCom() {
+	const main = document.querySelector('.door__slider');
+	const mainSlider = document.querySelector('.doo__slider');
+	const catalogItems = main.querySelectorAll('.catalog__item');
+	const catalogWrapper = main.querySelector('.catalog__wrapper');
+
+	const mainSliderElement = new Swiper(mainSlider, {
+		modules: [Mousewheel],
+		speed: 1000,
+		spaceBetween: 10,
+		slidesPerView: 1,
+		centeredSlides: true,
+		mousewheel: {
+			eventsTarget: '.door__slider',
+			sensitivity: 5,
+		},
+	});
+	mainSliderElement.mousewheel.disable();
+	if (window.innerWidth > 992) {
+		const scrollTriggerInstance = ScrollTrigger.create({
+			trigger: mainSlider,
+			start: 'top top',
+			end: '5% top',
+			onEnter: () => {
+				mainSliderElement.mousewheel.enable();
+				mainSliderElement.slideTo(0)
+				lenisS.stop();
+			},
+			onLeave: () => {
+				mainSliderElement.mousewheel.disable();
+				lenisS.start();
+			},
+		});
+	}
+
+	mainSliderElement.on('slideChange', function () {
+		const activeIndex = mainSliderElement.activeIndex;
+		catalogItems.forEach((item) => {
+			item.classList.add('noactive');
+		})
+		catalogItems[activeIndex].classList.remove('noactive');
+		if (window.innerWidth < 992) {
+			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
+		}
+		if (activeIndex === mainSliderElement.slides.length - 1) {
+			lenisS.start();
+		}
+	});
+
+	mainSliderElement.swiper = mainSliderElement;
+	mainSliderElement.mousewheel = mainSliderElement.mousewheel || mainSliderElement;
+}
+
+
+
+
+/*
 export function mainSlider(mainSlider) {
 
 	const catalogContainer = mainSlider.querySelector('.catalog__container');
@@ -1408,3 +1449,21 @@ export function otherSliderM(otherSlider) {
 		},
 	});
 }
+
+function calculateGap() {
+	const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+	const calculatedValue = 20 + 10.08 * ((vw - 393) / 920);
+	return calculatedValue;
+}
+
+function getElementOffsetTop(element) {
+	let offsetTop = 0;
+
+	while (element) {
+		offsetTop += element.offsetTop;
+		element = element.offsetParent;
+	}
+
+	return offsetTop;
+}
+*/

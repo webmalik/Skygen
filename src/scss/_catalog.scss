@@ -16,6 +16,7 @@
 	}
 
 	&__header {
+		margin-bottom: 1.88rem;
 		p {
 			text-indent: 2rem;
 		}
@@ -47,6 +48,7 @@
 		display: flex;
 		justify-content: space-between;
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
+		margin-top: 1.88rem;
 
 		& > div {
 			width: 100%;

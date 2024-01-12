@@ -36,24 +36,12 @@ if (page) {
 	wmAnimations.benefitsZoom();
 	wmAnimations.mainAnimations();
 
-	if (window.innerWidth < 992) {
-		//wmAnimations.mainSliderM(windowSlider);
+	wmAnimations.mainSwiper();
+	wmAnimations.doorSwiper();
 
-		wmAnimations.mainSwiper();
-		wmAnimations.doorSliderM(doorSlider);
-		wmAnimations.otherSliderM(otherSlider);
-	} else {
+	wmAnimations.otherSwiper();
 
 
-
-		//wmAnimations.mainSlider(windowSlider);
-		wmAnimations.mainSwiper();
-
-
-
-		wmAnimations.doorSlider(doorSlider);
-		wmAnimations.otherSlider(otherSlider);
-	}
 
 	// Mobile functions
 	if (window.innerWidth < 992) {
@@ -69,11 +57,7 @@ if (commercial) {
 	//Animations functions
 	wmAnimations.benefitsZoom();
 
-	if (window.innerWidth < 992) {
-		wmAnimations.doorSliderMCom(doorSlider);
-	} else {
-		wmAnimations.doorSliderCom(doorSlider);
-	}
+	wmAnimations.doorSwiperCom();
 
 	// Mobile functions
 	if (window.innerWidth < 992) {
