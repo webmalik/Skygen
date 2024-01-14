@@ -88,13 +88,13 @@
 		font-weight: 400;
 		line-height: 1.5rem; /* 150% */
 		letter-spacing: -0.03219rem;
-		gap: 1.25rem;
+		gap: 1.88rem;
 
 		& > div {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
-			gap: 1.25rem;
+			gap: 1.88rem;
 		}
 
 		p {
@@ -103,6 +103,18 @@
 	}
 
 	&__item {
+		color: #000;
+		font-family: $font-family;
+		@include adaptiv-value("font-size", toPX(1), toPX(0.875), 1);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.5rem; /* 150% */
+		letter-spacing: -0.03219rem;
+		& > div {
+			display: flex;
+			flex-direction: column;
+			gap: 1.88rem;
+		}
 		& > p {
 			margin-bottom: 1.25rem;
 		}
@@ -164,7 +176,21 @@
 		}
 
 		&__image {
-			display: none;
+			border-radius: 1.25rem;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			max-height: 18.75rem;
+			min-height: 0;
+			padding: 0;
+
+			picture,
+			img {
+				width: auto;
+				max-width: 100%;
+				min-height: 18.75rem;
+			}
 		}
 
 		&__inner {
@@ -172,7 +198,7 @@
 			align-items: flex-start;
 			flex-direction: column;
 			justify-content: space-between;
-			gap: 0;
+			gap: 1.88rem;
 			& > div {
 				width: 100%;
 			}

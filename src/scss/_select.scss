@@ -17,6 +17,7 @@
 .select {
 	position: relative;
 	background-color: #171717;
+	overflow: hidden;
 	&__link {
 		color: var(--White, #fff);
 		font-family: $font-family;

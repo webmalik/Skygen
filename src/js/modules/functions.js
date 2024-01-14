@@ -277,7 +277,6 @@ export function modal() {
 				body.classList.remove('lock');
 				lenisS.start();
 			});
-
 		});
 	});
 
@@ -303,8 +302,19 @@ export function pageNav() {
 			const targetOffset = targetElement.offset().top;
 			window.scrollTo({
 				top: targetOffset - 100,
-				behavior: 'smooth' // Додає плавний ефект
+				behavior: 'smooth'
 			});
+			if (targetId == '#faq') {
+				const header = document.querySelector('.faq__header');
+				const wrapper = document.querySelector('.faq__wrapper');
+				const question = document.querySelectorAll('.faq__question');
+				const answer = document.querySelectorAll('.faq__answer');
+				header.classList.toggle('active');
+				wrapper.classList.toggle('active');
+				question[0].classList.toggle('active');
+				answer[0].classList.toggle('active');
+
+			}
 		});
 	});
 }

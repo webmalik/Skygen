@@ -133,6 +133,7 @@ export function mainAnimations() {
 			scrollTrigger: {
 				trigger: selector,
 				start: 'bottom bottom',
+				end: 'center center',
 				onUpdate: (animation) => {
 					const value = Math.round(animation.progress * targetValue);
 					if (plus) {
@@ -152,14 +153,14 @@ export function mainAnimations() {
 	if (window.innerWidth > 992) {
 		ScrollTrigger.create({
 			trigger: '.why',
-			start: 'top bottom',
+			start: 'top center',
 			once: false,
 			onEnter: () => {
 				const homeIntroTitle = new SplitText('.why__title', typeOpts.chars)
 				const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
 				const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
 
-				gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
+				gsap.set('.why__image', { clipPath: 'inset(10%)' })
 				gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
 				let tl = gsap.timeline({
@@ -177,7 +178,7 @@ export function mainAnimations() {
 				tl
 					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 }, '<=.1')
 					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 })
-					.to('.why__image', { clipPath: 'inset(0%)', duration: 1, maxHeight: 400, ease: 'expo.out' }, '<=.4')
+					.to('.why__image', { clipPath: 'inset(0%)', duration: 1, ease: 'expo.out' }, '<=.4')
 					.to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 
@@ -694,7 +695,7 @@ export function doorSwiper() {
 			trigger: mainSlider,
 			start: 'top top',
 			end: '5% top',
-			markers: true,
+
 			onEnter: () => {
 				mainSliderElement.mousewheel.enable();
 				mainSliderElement.slideTo(0)
