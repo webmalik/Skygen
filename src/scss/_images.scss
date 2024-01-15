@@ -2,6 +2,7 @@
 	&__wrapper {
 		display: flex;
 		@include adaptiv-value("gap", toPX(1.75), toPX(1.25), 1);
+		justify-content: center;
 	}
 
 	&__item {

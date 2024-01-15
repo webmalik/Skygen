@@ -83,8 +83,8 @@ function createScrollTriggerAbout(triggerName = "about") {
 			tl
 				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-				.to(imageSelector, { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
-				.to(imageSelectorIMG, { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0.2')
+				.to(imageSelector, { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.2')
+				.to(imageSelectorIMG, { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=.2')
 		}
 	})
 }
@@ -169,11 +169,11 @@ export function mainAnimations() {
 					}
 				})
 				tl
-					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 }, '<=.1')
-					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 })
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 }, '<=.05')
+					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .01 })
 					// .to('.why__image', { clipPath: 'inset(0%)', duration: 1, ease: 'expo.out' }, '<=.4')
 					// .to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
-					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .01 })
 
 				// if (window.innerWidth > 991) {
 				// 	requestAnimationFrame(() => {
@@ -315,11 +315,11 @@ export function mainAnimations() {
 					}
 				})
 				tl
-					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
-					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 }, '<=.1')
+					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 })
 					// .to('.why__image', { clipPath: 'inset(0%)', duration: 1, maxHeight: 400, ease: 'expo.out' }, '<=.4')
 					// .to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
-					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
+					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 })
 
 				// if (window.innerWidth > 991) {
 				// 	requestAnimationFrame(() => {
