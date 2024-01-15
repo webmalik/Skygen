@@ -409,3 +409,21 @@ export function fancy() {
 
 	});
 }
+
+export function backToTop() {
+	const button = document.querySelector('.back-to-top');
+	document.addEventListener('scroll', () => {
+		if (lenisS.actualScroll > 500) {
+			button.classList.add('visible');
+		} else {
+			button.classList.remove('visible');
+		}
+	})
+
+	button.addEventListener('click', () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	})
+}

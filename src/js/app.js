@@ -28,6 +28,7 @@ wmFunctions.faq();
 wmFunctions.modal();
 wmFunctions.pageNav();
 wmFunctions.fancy();
+wmFunctions.backToTop();
 
 if (page) {
 

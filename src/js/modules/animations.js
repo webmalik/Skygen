@@ -128,19 +128,27 @@ export function mainAnimations() {
 
 		const targetElem = document.querySelector(selector);
 		const targetValue = parseInt(targetElem.innerHTML);
+		const startTime = performance.now();
 		gsap.to({}, {
 			duration: 2,
 			scrollTrigger: {
 				trigger: selector,
 				start: 'bottom bottom',
 				end: '70% 70%',
-				onUpdate: (animation) => {
-					const value = Math.round(animation.progress * targetValue);
-					if (plus) {
-						document.querySelector(selector).innerHTML = value + "+";
-					} else {
-						document.querySelector(selector).innerHTML = value;
-					}
+				once: true,
+				onEnter: () => {
+					let value = 0;
+					const interval = setInterval(() => {
+						value += targetValue / 100; // Змінюйте крок, який вам потрібен
+						if (plus) {
+							document.querySelector(selector).innerHTML = Math.round(value) + "+";
+						} else {
+							document.querySelector(selector).innerHTML = Math.round(value);
+						}
+						if (value >= targetValue) {
+							clearInterval(interval);
+						}
+					}, 10);
 				},
 			},
 		});
@@ -664,7 +672,9 @@ export function mainSwiper() {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
 		if (activeIndex === mainSliderElement.slides.length - 1) {
-			lenisS.start();
+			setTimeout(() => {
+				lenisS.start();
+			}, 1000)
 		}
 	});
 
@@ -718,7 +728,9 @@ export function doorSwiper() {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
 		if (activeIndex === mainSliderElement.slides.length - 1) {
-			lenisS.start();
+			setTimeout(() => {
+				lenisS.start();
+			}, 1000)
 		}
 	});
 
@@ -771,7 +783,9 @@ export function otherSwiper() {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
 		if (activeIndex === mainSliderElement.slides.length - 1) {
-			lenisS.start();
+			setTimeout(() => {
+				lenisS.start();
+			}, 1000)
 		}
 	});
 
@@ -824,7 +838,9 @@ export function doorSwiperCom() {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
 		if (activeIndex === mainSliderElement.slides.length - 1) {
-			lenisS.start();
+			setTimeout(() => {
+				lenisS.start();
+			}, 1000)
 		}
 	});
 
