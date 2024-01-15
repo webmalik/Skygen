@@ -133,7 +133,7 @@ export function mainAnimations() {
 			scrollTrigger: {
 				trigger: selector,
 				start: 'bottom bottom',
-				end: 'center center',
+				end: '70% 70%',
 				onUpdate: (animation) => {
 					const value = Math.round(animation.progress * targetValue);
 					if (plus) {
@@ -160,8 +160,8 @@ export function mainAnimations() {
 				const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
 				const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
 
-				gsap.set('.why__image', { clipPath: 'inset(10%)' })
-				gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+				// gsap.set('.why__image', { clipPath: 'inset(10%)' })
+				// gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
 				let tl = gsap.timeline({
 					scrollTrigger: {
@@ -178,24 +178,24 @@ export function mainAnimations() {
 				tl
 					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 }, '<=.1')
 					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .2, stagger: .02 })
-					.to('.why__image', { clipPath: 'inset(0%)', duration: 1, ease: 'expo.out' }, '<=.4')
-					.to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+					// .to('.why__image', { clipPath: 'inset(0%)', duration: 1, ease: 'expo.out' }, '<=.4')
+					// .to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 
-				if (window.innerWidth > 991) {
-					requestAnimationFrame(() => {
-						const tlScrub = gsap.timeline({
-							scrollTrigger: {
-								trigger: '.why',
-								start: 'top bottom',
-								end: 'bottom top',
-								scrub: true,
-							}
-						})
-						tlScrub
-							.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-					})
-				}
+				// if (window.innerWidth > 991) {
+				// 	requestAnimationFrame(() => {
+				// 		const tlScrub = gsap.timeline({
+				// 			scrollTrigger: {
+				// 				trigger: '.why',
+				// 				start: 'top bottom',
+				// 				end: 'bottom top',
+				// 				scrub: true,
+				// 			}
+				// 		})
+				// 		tlScrub
+				// 			.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				// 	})
+				// }
 			}
 		})
 		//12.01
@@ -306,8 +306,8 @@ export function mainAnimations() {
 				const homeIntroLabel = new SplitText('.why__text', typeOpts.words)
 				const homeIntroLabelD = new SplitText('.why__text-div', typeOpts.words)
 
-				gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
-				gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
+				// gsap.set('.why__image', { clipPath: 'inset(10%)', maxHeight: 0 })
+				// gsap.set('.why__image img', { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0 })
 
 				let tl = gsap.timeline({
 					scrollTrigger: {
@@ -324,24 +324,24 @@ export function mainAnimations() {
 				tl
 					.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.1')
 					.from(homeIntroLabelD.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-					.to('.why__image', { clipPath: 'inset(0%)', duration: 1, maxHeight: 400, ease: 'expo.out' }, '<=.4')
-					.to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
+					// .to('.why__image', { clipPath: 'inset(0%)', duration: 1, maxHeight: 400, ease: 'expo.out' }, '<=.4')
+					// .to('.why__image img', { scale: 1, duration: 1.4, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
 					.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 
-				if (window.innerWidth > 991) {
-					requestAnimationFrame(() => {
-						const tlScrub = gsap.timeline({
-							scrollTrigger: {
-								trigger: '.why',
-								start: 'top bottom',
-								end: 'bottom top',
-								scrub: true,
-							}
-						})
-						tlScrub
-							.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-					})
-				}
+				// if (window.innerWidth > 991) {
+				// 	requestAnimationFrame(() => {
+				// 		const tlScrub = gsap.timeline({
+				// 			scrollTrigger: {
+				// 				trigger: '.why',
+				// 				start: 'top bottom',
+				// 				end: 'bottom top',
+				// 				scrub: true,
+				// 			}
+				// 		})
+				// 		tlScrub
+				// 			.fromTo('.why__image img', { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
+				// 	})
+				// }
 			}
 		})
 

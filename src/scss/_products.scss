@@ -1,0 +1,124 @@
+.products {
+  &__container {
+  }
+
+  &__image {
+    margin-bottom: 1.88rem;
+  }
+
+  &__nav {
+  }
+
+  &__item {
+    color: var(--Black, #171717);
+    font-family: $font-family;
+    @include adaptiv-value("font-size", toPX(2), toPX(1.375), 1);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 3rem */
+    letter-spacing: -0.04rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.62rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--Main-Blue, #20286e);
+      transition: all 0.3s ease-in-out;
+
+      svg {
+        transition: all 0.3s ease-in-out;
+        path {
+          transition: all 0.3s ease-in-out;
+          stroke: #20286e;
+        }
+      }
+    }
+
+    svg {
+      transition: all 0.3s ease-in-out;
+      path {
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    &.active {
+      svg {
+        transition: all 0.3s ease-in-out;
+        path {
+          transition: all 0.3s ease-in-out;
+          stroke: #20286e;
+        }
+        path.line {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.88rem;
+    padding: 1.88rem 0;
+  }
+
+  &__link {
+    padding-left: 2.62rem;
+    color: var(--Light-Gray, #aeaeae);
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: $font-family;
+    @include adaptiv-value("font-size", toPX(1.5), toPX(1.375), 1);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover,
+    &.active {
+      color: var(--Main-Blue, #20286e);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+.products {
+  &__title {
+    color: var(--Black, #171717);
+    font-family: $font-family;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem; /* 150% */
+    text-transform: uppercase;
+  }
+
+  &__content {
+  }
+
+  &__inner {
+  }
+
+  &__inner-block {
+  }
+
+  &__text {
+    color: var(--Dark-Gray, #404141);
+    font-family: $font-family;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5rem; /* 150% */
+    letter-spacing: -0.03219rem;
+  }
+
+  &__subtitle {
+  }
+
+  &__content-image {
+  }
+}

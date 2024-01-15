@@ -16,6 +16,10 @@
     {
       "label": "Сторінка-банер",
       "url": "/Skygen/select.html"
+    },
+    {
+      "label": "Каталог",
+      "url": "/Skygen/window-catalog.html"
     }
   ]
 }
