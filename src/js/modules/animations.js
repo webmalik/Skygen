@@ -58,7 +58,7 @@ function createScrollTriggerAbout(triggerName = "about") {
 	ScrollTrigger.create({
 		trigger: triggerSelector,
 		start: 'top bottom',
-		once: false,
+		once: true,
 		onEnter: () => {
 			const homeIntroTitle = new SplitText(titleSelector, typeOpts.chars)
 			const homeIntroLabel = new SplitText(textSelector, typeOpts.words)
@@ -84,22 +84,7 @@ function createScrollTriggerAbout(triggerName = "about") {
 				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
 				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
 				.to(imageSelector, { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.4')
-				.to(imageSelectorIMG, { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0')
-
-			if (window.innerWidth > 991) {
-				requestAnimationFrame(() => {
-					const tlScrub = gsap.timeline({
-						scrollTrigger: {
-							trigger: textSelector,
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true,
-						}
-					})
-					tlScrub
-						.fromTo(imageSelectorIMG, { bottom: '-20%' }, { bottom: '0%', ease: 'none' })
-				})
-			}
+				.to(imageSelectorIMG, { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=0.2')
 		}
 	})
 }

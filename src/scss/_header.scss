@@ -157,6 +157,14 @@
 						opacity: 1;
 						font-weight: 600;
 						transition: $hover-transition;
+						backdrop-filter: blur(0);
+						background: transparent;
+					}
+				}
+				&.dropdown:hover {
+					a {
+						backdrop-filter: none !important;
+						opacity: 0.9 !important;
 					}
 				}
 			}

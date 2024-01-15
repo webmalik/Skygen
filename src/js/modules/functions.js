@@ -425,5 +425,6 @@ export function backToTop() {
 			top: 0,
 			behavior: 'smooth'
 		});
+		lenisS.start();
 	})
 }
