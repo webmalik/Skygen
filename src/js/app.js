@@ -8,6 +8,7 @@ import * as wmMobile from "./modules/mobile.js"
 const page = document.querySelector('.page')
 const select = document.querySelector('.select')
 const commercial = document.querySelector('.commercial')
+const windowProducts = document.querySelector('.window-catalog')
 
 //Animations variables
 
@@ -63,6 +64,7 @@ if (commercial) {
 	// Mobile functions
 	if (window.innerWidth < 992) {
 		wmMobile.benefitsMobile();
+		wmMobile.education();
 	}
 }
 

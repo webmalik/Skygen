@@ -114,29 +114,56 @@ export function mainAnimations() {
 		const targetElem = document.querySelector(selector);
 		const targetValue = parseInt(targetElem.innerHTML);
 		const startTime = performance.now();
-		gsap.to({}, {
-			duration: 2,
-			scrollTrigger: {
-				trigger: selector,
-				start: 'bottom bottom',
-				end: '70% 70%',
-				once: true,
-				onEnter: () => {
-					let value = 0;
-					const interval = setInterval(() => {
-						value += targetValue / 100; // Змінюйте крок, який вам потрібен
-						if (plus) {
-							document.querySelector(selector).innerHTML = Math.round(value) + "+";
-						} else {
-							document.querySelector(selector).innerHTML = Math.round(value);
-						}
-						if (value >= targetValue) {
-							clearInterval(interval);
-						}
-					}, 10);
+		if (window.innerWidth > 992) {
+			gsap.to({}, {
+				duration: 2,
+				scrollTrigger: {
+					trigger: selector,
+					start: 'bottom bottom',
+					end: '70% 70%',
+					once: true,
+					onEnter: () => {
+						let value = 0;
+						const interval = setInterval(() => {
+							value += targetValue / 100; // Змінюйте крок, який вам потрібен
+							if (plus) {
+								document.querySelector(selector).innerHTML = Math.round(value) + "+";
+							} else {
+								document.querySelector(selector).innerHTML = Math.round(value);
+							}
+							if (value >= targetValue) {
+								clearInterval(interval);
+							}
+						}, 10);
+					},
 				},
-			},
-		});
+			});
+		} else {
+			gsap.to({}, {
+				duration: 2,
+				scrollTrigger: {
+					trigger: '.why__stats',
+					start: 'top bottom',
+					end: '20% 20%',
+					once: true,
+					//markers: true,
+					onEnter: () => {
+						let value = 0;
+						const interval = setInterval(() => {
+							value += targetValue / 100; // Змінюйте крок, який вам потрібен
+							if (plus) {
+								document.querySelector(selector).innerHTML = Math.round(value) + "+";
+							} else {
+								document.querySelector(selector).innerHTML = Math.round(value);
+							}
+							if (value >= targetValue) {
+								clearInterval(interval);
+							}
+						}, 10);
+					},
+				},
+			});
+		}
 	}
 
 	createCountingAnimation('.num1', true);
