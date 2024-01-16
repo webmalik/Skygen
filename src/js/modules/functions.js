@@ -355,7 +355,7 @@ export function lenisScroll() {
 		lenisS = new Lenis({
 			smoothTouch: true,
 			duration: 1,
-			autoResize: true
+			autoResize: true,
 		});
 	}
 
