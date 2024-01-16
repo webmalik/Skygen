@@ -81,10 +81,10 @@ function createScrollTriggerAbout(triggerName = "about") {
 				}
 			})
 			tl
-				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 })
-				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .4, stagger: .02 }, '<=.2')
-				.to(imageSelector, { clipPath: 'inset(0%)', duration: 2, ease: 'expo.out' }, '<=.2')
-				.to(imageSelectorIMG, { scale: 1, duration: 2, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=.2')
+				.from(homeIntroLabel.words, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .02 })
+				.from(homeIntroTitle.chars, { yPercent: 60, autoAlpha: 0, duration: .1, stagger: .02 }, '<=.2')
+				.to(imageSelector, { clipPath: 'inset(0%)', duration: 1, ease: 'expo.out' }, '<=.2')
+				.to(imageSelectorIMG, { scale: 1, duration: 1, autoAlpha: 1, ease: 'expo.out', clearProps: 'transform' }, '<=.2')
 		}
 	})
 }

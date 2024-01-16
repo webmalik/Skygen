@@ -233,7 +233,8 @@ export function modal() {
 	const body = document.body;
 
 	open.forEach(function (el) {
-		el.addEventListener('click', () => {
+		el.addEventListener('click', (e) => {
+			e.preventDefault();
 			dataModal = el.getAttribute('data-modal');
 
 			modal.forEach(function (mod) {
@@ -412,13 +413,28 @@ export function fancy() {
 
 export function backToTop() {
 	const button = document.querySelector('.back-to-top');
-	document.addEventListener('scroll', () => {
-		if (lenisS.actualScroll > 500) {
-			button.classList.add('visible');
-		} else {
-			button.classList.remove('visible');
-		}
-	})
+	const custom = document.querySelector('.page');
+	const commercial = document.querySelector('.commercial');
+	if (custom) {
+		document.addEventListener('scroll', () => {
+			let count = lenisS.limit - lenisS.actualScroll;
+			if (count < 1100) {
+				button.classList.add('visible');
+			} else {
+				button.classList.remove('visible');
+			}
+		})
+	}
+	if (commercial) {
+		document.addEventListener('scroll', () => {
+			let count = lenisS.limit - lenisS.actualScroll;
+			if (count < 1400) {
+				button.classList.add('visible');
+			} else {
+				button.classList.remove('visible');
+			}
+		})
+	}
 
 	button.addEventListener('click', () => {
 		window.scrollTo({

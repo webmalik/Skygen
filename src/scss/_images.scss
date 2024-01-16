@@ -2,7 +2,6 @@
 	&__wrapper {
 		display: flex;
 		@include adaptiv-value("gap", toPX(1.75), toPX(1.25), 1);
-		justify-content: center;
 	}
 
 	&__item {
@@ -28,6 +27,14 @@
 				filter: none;
 				transition: all 0.8s ease-in-out;
 			}
+		}
+	}
+}
+
+@include media-width($md, min) {
+	.images {
+		&__wrapper {
+			justify-content: center;
 		}
 	}
 }
