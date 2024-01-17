@@ -114,62 +114,60 @@
 	</div> -->
 </header>
 				<section class="window-catalog">
-  <section class="page">
-    <section class="hero">
-      <div class="hero__image">
-        <img src="img/window-catalog.png" alt="Hero" />
-        <img src="img/window-catalog-mob.png" alt="" class="hero__mobile" />
-      </div>
-      <div class="hero__content">
-        <div class="container">
-          <h1 class="hero__title title title--large">
-            Commence your window design venture with Skygen
-          </h1>
-          <div class="hero__text">
-            Crafting Excellence from Concept to Fulfillment
-          </div>
-          <a
-            href="#"
-            class="hero__button button open__modal"
-            data-modal="catalog"
-          >
-            get catalog
-          </a>
-        </div>
-      </div>
-    </section>
-    <section class="about mt" id="about">
+  <section class="hero">
+    <div class="hero__image">
+      <img src="img/window-catalog.png" alt="Hero" />
+      <img src="img/window-catalog-mob.png" alt="" class="hero__mobile" />
+    </div>
+    <div class="hero__content">
       <div class="container">
-        <div class="about__wrapper">
-          <div class="about__title about1__title title title--medium">
-            ABOUT US
+        <h1 class="hero__title title title--large">
+          Commence your window design venture with Skygen
+        </h1>
+        <div class="hero__text">
+          Crafting Excellence from Concept to Fulfillment
+        </div>
+        <a
+          href="#"
+          class="hero__button button open__modal"
+          data-modal="catalog"
+        >
+          get catalog
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="about mt" id="about">
+    <div class="container">
+      <div class="about__wrapper">
+        <div class="about__title about1__title title title--medium">
+          ABOUT US
+        </div>
+        <div class="about__inner">
+          <div class="about__text about1__text">
+            <p class="text text--indent">
+              Driven by innovation and craftsmanship, SKYGEN gained its trust as
+              the most reliable windows and doors supplier across Canada and
+              United States. Working side by side with designers, general
+              contractors, builders, architects and construction companies, we
+              deliver impeccable service and solutions for everybody.
+            </p>
           </div>
-          <div class="about__inner">
-            <div class="about__text about1__text">
-              <p class="text text--indent">
-                Driven by innovation and craftsmanship, SKYGEN gained its trust
-                as the most reliable windows and doors supplier across Canada
-                and United States. Working side by side with designers, general
-                contractors, builders, architects and construction companies, we
-                deliver impeccable service and solutions for everybody.
-              </p>
-            </div>
-            <div class="about__text about1__text">
-              <p class="text text--indent">
-                Our client is always our top priority. Each project has its own
-                unique story and needs a personalized approach. We strive to be
-                that companion who is always there for you. Let us take care of
-                every detail, from manufacturing your customized design to
-                installing it.
-              </p>
-            </div>
-          </div>
-          <div class="about__image about1__image">
-            <img src="img/catalog-banner.png" alt="" />
+          <div class="about__text about1__text">
+            <p class="text text--indent">
+              Our client is always our top priority. Each project has its own
+              unique story and needs a personalized approach. We strive to be
+              that companion who is always there for you. Let us take care of
+              every detail, from manufacturing your customized design to
+              installing it.
+            </p>
           </div>
         </div>
+        <div class="about__image about1__image">
+          <img src="img/catalog-banner.png" alt="" />
+        </div>
       </div>
-    </section>
+    </div>
   </section>
   <section class="products mt">
     <div class="container">
@@ -185,9 +183,7 @@
         </div>
       </div>
       <div class="products__container">
-        <div class="products__image">
-          <img src="img/MB-79N.png" alt="" />
-        </div>
+        <div class="products__image"></div>
         <div class="products__nav">
           <div class="products__item">
             <svg
@@ -224,11 +220,15 @@
             Aluminum
           </div>
           <div class="products__list">
-            <div class="products__link">MB-79N</div>
-            <div class="products__link">MB-79N CASEMENT</div>
-            <div class="products__link">SLIM LINE 38</div>
-            <div class="products__link">Masterline 8</div>
-            <div class="products__link">CARTIZO CASEMENT</div>
+            <div class="products__link" data-content="alum-1">MB-79N</div>
+            <div class="products__link" data-content="alum-2">
+              MB-79N CASEMENT
+            </div>
+            <div class="products__link" data-content="alum-3">SLIM LINE 38</div>
+            <div class="products__link" data-content="alum-4">Masterline 8</div>
+            <div class="products__link" data-content="alum-5">
+              CARTIZO CASEMENT
+            </div>
           </div>
           <div class="products__item">
             <svg
@@ -265,14 +265,21 @@
             CURTAIN WALLS
           </div>
           <div class="products__list">
-            <div class="products__link">MB-SR50N HI</div>
-            <div class="products__link">MB-SR60N / MB-SR60N HI</div>
-            <div class="products__link">MB-SR50N EFEKT</div>
-            <div class="products__link">MB-SR50N</div>
+            <div class="products__link" data-content="wall-1">MB-SR50N HI</div>
+            <div class="products__link" data-content="wall-2">
+              MB-SR60N / MB-SR60N HI
+            </div>
+            <div class="products__link" data-content="wall-3">
+              MB-SR50N EFEKT
+            </div>
+            <div class="products__link" data-content="wall-4">MB-SR50N</div>
           </div>
         </div>
         <div class="products__wrapper">
-          <div class="products__content">
+          <div class="products__content" data-content="alum-1">
+            <div class="products__image-item">
+              <img src="img/MB-79N.png" alt="" />
+            </div>
             <div class="products__title">MB-79N</div>
             <div class="products__inner">
               <div class="products__inner-block">
@@ -327,6 +334,61 @@
                     Max. door leaf dimensions (HxL) H to 2700mm, L to 1700mm
                   </li>
                   <li>Max. sash weight 180kg</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="products__content" data-content="alum-2">
+            <div class="products__image-item">
+              <img src="img/MB-79N-CASEMENT.png" alt="" />
+            </div>
+            <div class="products__title">MB-79N CASEMENT</div>
+            <div class="products__inner">
+              <div class="products__inner-block">
+                <div class="products__text">
+                  <div class="products__subtitle">
+                    A modern and economical window system with improved thermal
+                    insulation parameters
+                  </div>
+                  <p>
+                    MB-79N Casement is part of the MB-79N system used for
+                    constructions such as: fixed, casement, tilt, tilt and turn
+                    and tilt and slide windows, single and double-leaf external
+                    doors, as well as shopfront solutions with doors. Its main
+                    features are good thermal and acoustic insulation as well as
+                    water and air tightness. The windows are adapted to the
+                    stricter thermal insulation requirements of the European
+                    Directive 2010/31/EU in force from 2021, allowing their use
+                    in passive buildings.
+                    <br /><br />
+                    Depending on particular needs, there are two variants of
+                    aluminium sections to choose from with different technical
+                    parameters: the ST variant (with a two-component central
+                    seal) and the SI variant (with an additional insulation
+                    insert inside the chamber between the thermal breaks).
+                    Thanks to the wide range of sections and their rigidity,
+                    this system allows for making large and heavy structures. It
+                    is also characterised by excellent kinematics, which allows
+                    for the construction of very narrow windows. MB-79N Casement
+                    window profile alternatives: Top Hung and Side Hung
+                  </p>
+                </div>
+              </div>
+              <div class="products__inner-block">
+                <div class="products__content-image">
+                  <img src="img/alum-2.png" alt="" />
+                </div>
+                <ol>
+                  <li>Frame depth 70 mm</li>
+                  <li>Sash depth 79 mm</li>
+                  <li>
+                    Glazing thickness frame: 1,5 - 54 mm / sash: 10,5 - 63 mm
+                  </li>
+                  <li>
+                    Max. door leaf dimensions (H×L) H up to 2700 / 2500 mm, L up
+                    to 1400 / 2400 mm
+                  </li>
+                  <li>Max. sash weight (doors / windows) 180kg</li>
                 </ol>
               </div>
             </div>
