@@ -24,13 +24,13 @@
 
     &.active {
       clip-path: inset(0%);
-      transition: clip-path 1s ease-out;
+      transition: clip-path 0.5s ease-out;
 
       picture,
       img {
         transform: scale(1);
         opacity: 1;
-        transition: transform 1s ease-out, opacity 1s ease-out;
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
       }
     }
   }
@@ -232,6 +232,29 @@
       left: 0;
       right: 0;
       z-index: -1;
+    }
+  }
+}
+
+@include media-width($md) {
+  .products {
+    &__container {
+      display: flex;
+      flex-direction: column;
+    }
+    &__inner {
+      flex-direction: column;
+    }
+    &__image {
+      max-height: 18.75rem;
+
+      picture,
+      img {
+        display: block;
+        width: auto;
+        object-fit: contain;
+        object-position: center center;
+      }
     }
   }
 }
