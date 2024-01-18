@@ -3,6 +3,11 @@
 		display: grid;
 		grid-template-columns: 1fr 4fr;
 		gap: 1.88rem;
+		min-width: 0;
+	}
+
+	&__wrapper {
+		min-width: 0;
 	}
 
 	&__image {
@@ -55,6 +60,7 @@
 		cursor: pointer;
 		transition: all 0.3s ease-in-out;
 		margin-bottom: 1.88rem;
+		min-width: 0;
 
 		&.active,
 		&:hover {
@@ -147,7 +153,6 @@
 		font-weight: 600;
 		line-height: 100%; /* 1.5rem */
 		text-transform: uppercase;
-		margin-bottom: 1.88rem;
 	}
 
 	&__content {
@@ -158,6 +163,8 @@
 		display: flex;
 		align-items: flex-start;
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.88), 1);
+		@include adaptiv-value("margin-top", toPX(1.88), toPX(1.25), 1);
+		min-width: 0;
 	}
 
 	&__inner-block {
@@ -165,7 +172,21 @@
 		flex-direction: column;
 		@include adaptiv-value("gap", toPX(1.88), toPX(1.25), 1);
 		width: 100%;
+		min-width: 0;
+		ul {
+			list-style-type: disc;
+			padding-left: 1.5rem;
 
+			li {
+				@include adaptiv-value("font-size", toPX(1), toPX(0.875), 1);
+				color: var(--Dark-Gray, #404141);
+				font-family: $font-family;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 1.5rem; /* 150% */
+				letter-spacing: -0.03219rem;
+			}
+		}
 		ol {
 			display: flex;
 			flex-direction: column;
@@ -225,20 +246,65 @@
 
 		picture,
 		img {
-			max-width: 25.5625rem;
 		}
 
-		&:after {
-			content: "";
-			display: block;
-			border-radius: 1.25rem;
-			background: rgba(217, 217, 217, 0.3);
-			height: 50%;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			z-index: -1;
+		// &:after {
+		// 	content: "";
+		// 	display: block;
+		// 	border-radius: 1.25rem;
+		// 	background: rgba(217, 217, 217, 0.3);
+		// 	height: 50%;
+		// 	position: absolute;
+		// 	bottom: 0;
+		// 	left: 0;
+		// 	right: 0;
+		// 	z-index: -1;
+		// }
+	}
+
+	&__margin {
+		@include adaptiv-value("margin-top", toPX(1.88), toPX(1.25), 1);
+		@include adaptiv-value("margin-bottom", toPX(1.88), toPX(1.25), 1);
+	}
+
+	&__slider-continer {
+		min-width: 0;
+	}
+
+	&__slider,
+	&-mobile__slider {
+		.products__subtitle {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.swiper-slide {
+			cursor: pointer;
+		}
+	}
+
+	&__nav-slider {
+		display: flex;
+		align-items: center;
+		gap: 0.62rem;
+	}
+
+	&__prev,
+	&__next {
+		cursor: pointer;
+		svg {
+			path {
+				transition: all 0.5s ease-in-out;
+			}
+		}
+		&.swiper-button-disabled {
+			svg {
+				path {
+					opacity: 0.3;
+					transition: all 0.5s ease-in-out;
+				}
+			}
 		}
 	}
 }
@@ -311,4 +377,19 @@
 			}
 		}
 	}
+}
+
+// Assets class
+
+.mb125 {
+	margin-bottom: 1.25rem;
+}
+.mt125 {
+	margin-top: 1.25rem;
+}
+.mt188 {
+	margin-top: 1.88rem;
+}
+.mb188 {
+	margin-bottom: 1.88rem;
 }
