@@ -1,25 +1,25 @@
 {
-  "projectName": "Skygen",
-  "menuItems": [
-    {
-      "label": "Стартова сторінка",
-      "url": "/Skygen/"
-    },
-    {
-      "label": "Головна сторінка",
-      "url": "/Skygen/page.html"
-    },
-    {
-      "label": "commercial",
-      "url": "/Skygen/commercial.html"
-    },
-    {
-      "label": "Сторінка-банер",
-      "url": "/Skygen/select.html"
-    },
-    {
-      "label": "Каталог",
-      "url": "/Skygen/window-catalog.html"
-    }
-  ]
+	"projectName": "Skygen",
+	"menuItems": [
+		{
+			"label": "Стартова сторінка",
+			"url": "/Skygen/"
+		},
+		{
+			"label": "Головна сторінка",
+			"url": "/Skygen/page.html"
+		},
+		{
+			"label": "Комерційна сторінка",
+			"url": "/Skygen/commercial.html"
+		},
+		{
+			"label": "Сторінка банер",
+			"url": "/Skygen/select.html"
+		},
+		{
+			"label": "Каталог вікон",
+			"url": "/Skygen/window-catalog.html"
+		}
+	]
 }
