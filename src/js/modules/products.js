@@ -7,9 +7,11 @@ import 'swiper/css/pagination';
 
 export function productsInit() {
 	if (window.innerWidth > 992) {
+		lazyLoad()
 		productsNav()
 		productTabs()
 	} else {
+		lazyLoad()
 		productsNav()
 		productMobileSort()
 		productMobileContent()
@@ -267,7 +269,7 @@ export function productsSlider() {
 	productsSliders.forEach(function (slider) {
 		let navigationButtons
 		let subtitle = slider.querySelector('.products__subtitle')
-		
+
 		const nav = slider.querySelector('.products__nav-slider')
 		if (nav) {
 			navigationButtons = {
@@ -275,7 +277,7 @@ export function productsSlider() {
 				btnPrev: nav.querySelector('.products__prev')
 			}
 		} else {
-			navigationButtons = createNavigation(subtitle)
+			navigationButtons = createNavigation(slider.parentNode)
 		}
 
 		mySwiper = new Swiper(slider, {
@@ -362,4 +364,13 @@ function resetHeight(lists) {
 	lists.forEach((list) => {
 		list.style.maxHeight = '0px'
 	})
+}
+
+export function lazyLoad() {
+	document.addEventListener("DOMContentLoaded", function () {
+		var images = document.querySelectorAll("img");
+		images.forEach(function (img) {
+			img.setAttribute("loading", "lazy");
+		});
+	});
 }

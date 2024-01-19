@@ -479,6 +479,34 @@ export function mainAnimations() {
 
 export function productsAnimations() {
 	createScrollTriggerAbout('about1');
+
+	const imageSelector = document.querySelector('.products__image')
+	const imageSelectorIMG = document.querySelector('.products__image img')
+	document.addEventListener('DOMContentLoaded', () => {
+		setTimeout(() => {
+			imageSelector.classList.remove('active')
+		}, 500)
+	})
+
+	gsap.set(imageSelector, { clipPath: 'inset(10%)' })
+	gsap.set(imageSelectorIMG, { scale: 1.4, top: 'auto', bottom: '-20%', height: '120%', autoAlpha: 0, opacity: 0 })
+
+	let tl = gsap.timeline({
+		scrollTrigger: {
+			trigger: '.products',
+			start: 'top top+=50%',
+			onEnter: () => {
+				imageSelector.classList.add('active')
+			},
+			once: true,
+		},
+		defaults: {
+			ease: gOpts.ease
+		},
+	})
+	tl
+		.to(imageSelector, { clipPath: 'inset(0%)', duration: 1, ease: 'expo.out' }, '<=.2')
+		.to(imageSelectorIMG, { scale: 1, duration: 1, autoAlpha: 1, opacity: 1, ease: 'expo.out', clearProps: 'transform' }, '<=.2')
 }
 
 export function mainAnimate() {
