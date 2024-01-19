@@ -1,3 +1,10 @@
+import Swiper from "swiper";
+import { Navigation, Pagination, Autoplay, Mousewheel } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 export function productsInit() {
 	if (window.innerWidth > 992) {
 		productsNav()
@@ -75,6 +82,9 @@ export function productTabs() {
 				e.preventDefault();
 				const tabId = this.getAttribute("data-content");
 				showTab(tabId);
+				setTimeout(() => {
+					productsSlider();
+				}, 50)
 			});
 		});
 
@@ -200,6 +210,12 @@ export function productMobileContent() {
 							inline: 'nearest',
 						});
 					}, 500)
+					setTimeout(() => {
+						productsSlider();
+					}, 50)
+					setTimeout(() => {
+						productsSliderMobile();
+					}, 50)
 
 				} else {
 					content.style.maxHeight = '0px';
@@ -211,6 +227,133 @@ export function productMobileContent() {
 			}
 		})
 	})
+}
+
+let mySwiper
+
+export function createNavigation(subtitle) {
+
+	const navigation = document.createElement('div')
+	const btnNext = document.createElement('div')
+	const btnPrev = document.createElement('div')
+
+	navigation.classList.add('products__nav-slider')
+	btnNext.classList.add('products__next')
+	btnPrev.classList.add('products__prev')
+
+
+	const svgNext = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3.03906L17 13.0391L7 23.0391" stroke="black" stroke-width="2"></path></svg>';
+	const svgPrev = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 3.03906L7 13.0391L17 23.0391" stroke="black" stroke-width="2"></path></svg>';
+	const parser = new DOMParser()
+	const svgN = parser.parseFromString(svgNext, 'image/svg+xml').documentElement
+	const svgP = parser.parseFromString(svgPrev, 'image/svg+xml').documentElement
+	btnPrev.appendChild(svgP)
+	btnNext.appendChild(svgN)
+
+	navigation.appendChild(btnPrev)
+	navigation.appendChild(btnNext)
+
+	subtitle.appendChild(navigation)
+
+	return {
+		btnNext: btnNext,
+		btnPrev: btnPrev
+	}
+}
+
+export function productsSlider() {
+	const productsSliders = document.querySelectorAll('.products__slider')
+
+	productsSliders.forEach(function (slider) {
+		let navigationButtons
+		let subtitle = slider.querySelector('.products__subtitle')
+		const nav = slider.querySelector('.products__nav-slider')
+		if (nav) {
+			navigationButtons = {
+				btnNext: nav.querySelector('.products__next'),
+				btnPrev: nav.querySelector('.products__prev')
+			}
+		} else {
+			navigationButtons = createNavigation(subtitle)
+		}
+
+		mySwiper = new Swiper(slider, {
+			slidesPerView: 1,
+			spaceBetween: 30,
+			observeParents: true,
+			observer: true,
+			observeSlideChildren: true,
+
+			breakpoints: {
+				992: {
+					slidesPerView: 2,
+				}
+			},
+			modules: [Navigation],
+			navigation: {
+				nextEl: navigationButtons.btnNext,
+				prevEl: navigationButtons.btnPrev,
+			}
+		});
+	});
+}
+
+export function productsSliderMobile() {
+	const productsSliders = document.querySelectorAll('.products-mobile__slider')
+
+	productsSliders.forEach((slider) => {
+		const slides = slider.querySelectorAll('.products__content-image')
+		const inner = slider.querySelector('.products__inner')
+		if (inner) {
+			inner.classList.remove('products__inner')
+		}
+
+		slides.forEach((slide) => {
+			slide.classList.add('swiper-slide')
+		})
+	})
+
+	productsSliders.forEach(function (slider) {
+		let navigationButtons
+		let subtitle = slider.querySelector('.products__subtitle')
+		const nav = slider.querySelector('.products__nav-slider')
+		if (nav) {
+			navigationButtons = {
+				btnNext: nav.querySelector('.products__next'),
+				btnPrev: nav.querySelector('.products__prev')
+			}
+		} else {
+			navigationButtons = createNavigation(subtitle)
+		}
+
+		mySwiper = new Swiper(slider, {
+			slidesPerView: 1,
+			spaceBetween: 30,
+			observeParents: true,
+			observer: true,
+			observeSlideChildren: true,
+
+			breakpoints: {
+				992: {
+					slidesPerView: 2,
+				}
+			},
+			modules: [Navigation],
+			navigation: {
+				nextEl: navigationButtons.btnNext,
+				prevEl: navigationButtons.btnPrev,
+			}
+		});
+	});
+}
+
+export function productsSliderUpdate() {
+	const productsSliders = document.querySelectorAll('.products__slider')
+
+	productsSliders.forEach(function (slider) {
+		slider.updateSlides();
+	});
+
 }
 
 function resetHeight(lists) {
