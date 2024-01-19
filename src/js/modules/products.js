@@ -231,7 +231,7 @@ export function productMobileContent() {
 
 let mySwiper
 
-export function createNavigation(subtitle) {
+export function createNavigation(slider) {
 
 	const navigation = document.createElement('div')
 	const btnNext = document.createElement('div')
@@ -253,7 +253,7 @@ export function createNavigation(subtitle) {
 	navigation.appendChild(btnPrev)
 	navigation.appendChild(btnNext)
 
-	subtitle.appendChild(navigation)
+	slider.appendChild(navigation)
 
 	return {
 		btnNext: btnNext,
@@ -267,6 +267,7 @@ export function productsSlider() {
 	productsSliders.forEach(function (slider) {
 		let navigationButtons
 		let subtitle = slider.querySelector('.products__subtitle')
+		
 		const nav = slider.querySelector('.products__nav-slider')
 		if (nav) {
 			navigationButtons = {
@@ -316,6 +317,7 @@ export function productsSliderMobile() {
 	productsSliders.forEach(function (slider) {
 		let navigationButtons
 		let subtitle = slider.querySelector('.products__subtitle')
+		let subtitleAbsolute = slider.querySelector('.absolute__nav')
 		const nav = slider.querySelector('.products__nav-slider')
 		if (nav) {
 			navigationButtons = {
@@ -323,7 +325,7 @@ export function productsSliderMobile() {
 				btnPrev: nav.querySelector('.products__prev')
 			}
 		} else {
-			navigationButtons = createNavigation(subtitle)
+			navigationButtons = createNavigation(slider)
 		}
 
 		mySwiper = new Swiper(slider, {
