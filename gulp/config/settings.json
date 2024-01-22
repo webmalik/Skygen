@@ -1,29 +1,33 @@
 {
-	"projectName": "Skygen",
-	"menuItems": [
-		{
-			"label": "Стартова сторінка",
-			"url": "/Skygen/"
-		},
-		{
-			"label": "Головна сторінка",
-			"url": "/Skygen/page.html"
-		},
-		{
-			"label": "Комерційна сторінка",
-			"url": "/Skygen/commercial.html"
-		},
-		{
-			"label": "Сторінка банер",
-			"url": "/Skygen/select.html"
-		},
-		{
-			"label": "Каталог вікон",
-			"url": "/Skygen/window-catalog.html"
-		},
-		{
-			"label": "Каталог інше",
-			"url": "/Skygen/other-catalog.html"
-		}
-	]
+  "projectName": "Skygen",
+  "menuItems": [
+    {
+      "label": "Стартова сторінка",
+      "url": "/Skygen/"
+    },
+    {
+      "label": "Головна сторінка",
+      "url": "/Skygen/page.html"
+    },
+    {
+      "label": "Комерційна сторінка",
+      "url": "/Skygen/commercial.html"
+    },
+    {
+      "label": "Сторінка банер",
+      "url": "/Skygen/select.html"
+    },
+    {
+      "label": "Каталог вікон",
+      "url": "/Skygen/window-catalog.html"
+    },
+    {
+      "label": "Каталог інше",
+      "url": "/Skygen/other-catalog.html"
+    },
+    {
+      "label": "Каталог-двері",
+      "url": "/Skygen/door-catalog.html"
+    }
+  ]
 }

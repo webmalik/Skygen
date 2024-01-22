@@ -1,0 +1,77 @@
+<section class="door-catalog">
+	<section class="hero">
+		<div class="hero__image">
+			<img src="@img/door-hero.png" alt="Hero" />
+			<img src="@img/door-hero.png" alt="" class="hero__mobile" />
+		</div>
+		<div class="hero__content">
+			<div class="container">
+				<h1 class="hero__title title title--large">
+					door catalog
+				</h1>
+				<a href="#" class="hero__button button open__modal" data-modal="catalog">
+					get catalog
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="about mt" id="about">
+		<div class="container">
+			<div class="about__wrapper">
+				<div class="about__title about1__title title title--medium">
+					ABOUT US
+				</div>
+				<div class="about__inner">
+					<div class="about__text about1__text">
+						<p class="text text--indent">
+							Driven by innovation and craftsmanship, SKYGEN gained its trust as the most reliable windows and
+							doors supplier across
+							Canada and United States. Working side by side with designers, general contractors, builders,
+							architects and construction companies, we deliver impeccable service and solutions for everybody.
+						</p>
+					</div>
+					<div class="about__text about1__text">
+						<p class="text text--indent">
+							Our client is always our top priority. Each project has its own unique story and needs a
+							personalized approach. We
+							strive to be that companion who is always there for you. Let us take care of every detail, from
+							manufacturing your
+							customized design to installing it.
+						</p>
+					</div>
+				</div>
+				<div class="about__image about1__image">
+					<img src="@img/door-banner.png" alt="" />
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="products mt">
+		<div class="container">
+			<div class="catalog__inner win__inner">
+				<div class="catalog__header title title--medium">
+					<span>door</span>
+					<p>catalog</p>
+				</div>
+				<div class="catalog__text text text--indent">
+					SKYGEN has solutions for every project. Discover the most extensive door selection across Canada. For
+					every project,
+					there's a SKYGEN solution. Explore the most comprehensive door selection available on the market.
+				</div>
+			</div>
+			<div class="products__container">
+				<div class="products__image"></div>
+				@@include('door/nav.html', {})
+				<div class="products__wrapper">
+					<!-- ENTRANCE -->
+					@@include('door/entrance/entrance-1.html', {})
+					@@include('door/entrance/entrance-2.html', {})
+					@@include('door/entrance/entrance-3.html', {})
+					@@include('door/entrance/entrance-4.html', {})
+					@@include('door/entrance/entrance-5.html', {})
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
