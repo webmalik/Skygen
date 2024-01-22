@@ -10,6 +10,7 @@ const page = document.querySelector('.page')
 const select = document.querySelector('.select')
 const commercial = document.querySelector('.commercial')
 const windowProducts = document.querySelector('.window-catalog')
+const otherProducts = document.querySelector('.other-catalog')
 
 //Animations variables
 
@@ -62,6 +63,11 @@ if (commercial) {
 }
 
 if (windowProducts) {
+	wmAnimations.productsAnimations();
+	wmProducts.productsInit();
+}
+
+if (otherProducts) {
 	wmAnimations.productsAnimations();
 	wmProducts.productsInit();
 }

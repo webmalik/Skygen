@@ -20,6 +20,10 @@
 		{
 			"label": "Каталог вікон",
 			"url": "/Skygen/window-catalog.html"
+		},
+		{
+			"label": "Каталог інше",
+			"url": "/Skygen/other-catalog.html"
 		}
 	]
 }
