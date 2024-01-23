@@ -101,10 +101,17 @@ export function productTabs() {
 				if (image) {
 					image.style.display = "none"
 				}
+				wrapper.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+					inline: 'nearest',
+				});
 				setTimeout(() => {
 					wrapper.classList.add('active')
-				}, 50)
+				}, 150)
 			}, 300)
+
+
 		}
 
 		function showTab(tabId) {

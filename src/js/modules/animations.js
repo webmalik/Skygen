@@ -674,6 +674,7 @@ export function mainSwiper() {
 	const mainSlider = document.querySelector('.win__slider');
 	const catalogItems = main.querySelectorAll('.catalog__item');
 	const catalogWrapper = main.querySelector('.catalog__wrapper');
+	let prevSlide = 1;
 
 	const mainSliderElement = new Swiper(mainSlider, {
 		modules: [Mousewheel],
@@ -694,7 +695,7 @@ export function mainSwiper() {
 			end: '5% top',
 			onEnter: () => {
 				mainSliderElement.mousewheel.enable();
-				mainSliderElement.slideTo(0)
+				//mainSliderElement.slideTo(0)
 				lenisS.stop();
 			},
 			onLeave: () => {
@@ -715,10 +716,13 @@ export function mainSwiper() {
 		if (window.innerWidth < 992) {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
-		if (activeIndex === mainSliderElement.slides.length - 1) {
+		if (activeIndex === mainSliderElement.slides.length - 1 || (activeIndex === 0 && prevSlide === 1)) {
 			setTimeout(() => {
 				lenisS.start();
 			}, 1000)
+			prevSlide = -1
+		} else {
+			prevSlide = activeIndex;
 		}
 	});
 
@@ -731,6 +735,7 @@ export function doorSwiper() {
 	const mainSlider = document.querySelector('.doo__slider');
 	const catalogItems = main.querySelectorAll('.catalog__item');
 	const catalogWrapper = main.querySelector('.catalog__wrapper');
+	let prevSlide = 1;
 
 	const mainSliderElement = new Swiper(mainSlider, {
 		modules: [Mousewheel],
@@ -752,7 +757,7 @@ export function doorSwiper() {
 
 			onEnter: () => {
 				mainSliderElement.mousewheel.enable();
-				mainSliderElement.slideTo(0)
+				//mainSliderElement.slideTo(0)
 				lenisS.stop();
 			},
 			onLeave: () => {
@@ -771,10 +776,13 @@ export function doorSwiper() {
 		if (window.innerWidth < 992) {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
-		if (activeIndex === mainSliderElement.slides.length - 1) {
+		if (activeIndex === mainSliderElement.slides.length - 1 || (activeIndex === 0 && prevSlide === 1)) {
 			setTimeout(() => {
 				lenisS.start();
 			}, 1000)
+			prevSlide = -1
+		} else {
+			prevSlide = activeIndex;
 		}
 	});
 
@@ -787,6 +795,7 @@ export function otherSwiper() {
 	const mainSlider = document.querySelector('.ot__slider');
 	const catalogItems = main.querySelectorAll('.catalog__item');
 	const catalogWrapper = main.querySelector('.catalog__wrapper');
+	let prevSlide = 1;
 
 	const mainSliderElement = new Swiper(mainSlider, {
 		modules: [Mousewheel],
@@ -807,7 +816,7 @@ export function otherSwiper() {
 			end: '5% top',
 			onEnter: () => {
 				mainSliderElement.mousewheel.enable();
-				mainSliderElement.slideTo(0)
+				//mainSliderElement.slideTo(0)
 				lenisS.stop();
 			},
 			onLeave: () => {
@@ -826,10 +835,13 @@ export function otherSwiper() {
 		if (window.innerWidth < 992) {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
-		if (activeIndex === mainSliderElement.slides.length - 1) {
+		if (activeIndex === mainSliderElement.slides.length - 1 || (activeIndex === 0 && prevSlide === 1)) {
 			setTimeout(() => {
 				lenisS.start();
 			}, 1000)
+			prevSlide = 1
+		} else {
+			prevSlide = activeIndex;
 		}
 	});
 
@@ -842,6 +854,7 @@ export function doorSwiperCom() {
 	const mainSlider = document.querySelector('.doo__slider');
 	const catalogItems = main.querySelectorAll('.catalog__item');
 	const catalogWrapper = main.querySelector('.catalog__wrapper');
+	let prevSlide = 1;
 
 	const mainSliderElement = new Swiper(mainSlider, {
 		modules: [Mousewheel],
@@ -862,7 +875,7 @@ export function doorSwiperCom() {
 			end: '5% top',
 			onEnter: () => {
 				mainSliderElement.mousewheel.enable();
-				mainSliderElement.slideTo(0)
+				//mainSliderElement.slideTo(0)
 				lenisS.stop();
 			},
 			onLeave: () => {
@@ -881,10 +894,13 @@ export function doorSwiperCom() {
 		if (window.innerWidth < 992) {
 			gsap.to(catalogWrapper, { xPercent: activeIndex * -100, duration: 0.9 })
 		}
-		if (activeIndex === mainSliderElement.slides.length - 1) {
+		if (activeIndex === mainSliderElement.slides.length - 1 || (activeIndex === 0 && prevSlide === 1)) {
 			setTimeout(() => {
 				lenisS.start();
 			}, 1000)
+			prevSlide = -1
+		} else {
+			prevSlide = activeIndex;
 		}
 	});
 
