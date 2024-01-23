@@ -6,34 +6,100 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export function productsInit() {
+	lazyLoad()
+	productsNav()
+	setTimeout(() => {
+		productsSlider();
+	}, 50)
 	if (window.innerWidth > 992) {
-		lazyLoad()
-		productsNav()
 		productTabs()
+		scrollToImage()
 	} else {
-		lazyLoad()
-		productsNav()
 		productMobileSort()
 		productMobileContent()
+		setTimeout(() => {
+			productsSliderMobile();
+		}, 50)
 	}
+	setTimeout(() => {
+		fixNavTop()
+	}, 150)
+
 }
 
-export function productsNav() {
+export function productsNav(startIndex = 0) {
+	const urlParams = new URLSearchParams(window.location.search)
+	const id = urlParams.get('id')
+
 	const items = document.querySelectorAll('.products__item')
 	const lists = document.querySelectorAll('.products__list')
+	const wrapper = document.querySelector('.products__image')
+	if (window.innerWidth > 992) {
+		if (id) {
+			startIndex = id
+			setTimeout(() => {
+				wrapper.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center',
+					inline: 'nearest',
+				});
+			}, 500)
+			showTab(items[startIndex].nextElementSibling.firstElementChild.getAttribute("data-content"))
+		} else {
+			showTab(tabButtons[0].getAttribute("data-content"));
+		}
+	} else {
+		let links
+		if (id) {
+			startIndex = id
+			links = items[startIndex].nextElementSibling.querySelectorAll('.products__link')
+			setTimeout(() => {
+				const maxH = links[0].nextElementSibling.scrollHeight + links[0].parentNode.scrollHeight + 300
+				links[0].parentNode.style.maxHeight = maxH + 'px';
+				links[0].nextElementSibling.style.maxHeight = links[0].nextElementSibling.scrollHeight + 'px';
+				links[0].nextElementSibling.classList.add('active')
+				links[0].classList.add('active')
+				const image = links[0].nextElementSibling.querySelector('.products__image')
+				image.classList.add('active')
+			}, 100)
+			setTimeout(() => {
+				wrapper.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center',
+					inline: 'nearest',
+				});
+			}, 500)
+		} else {
+			links = document.querySelectorAll('.products__link')
+			setTimeout(() => {
+				const maxH = links[0].nextElementSibling.scrollHeight + links[0].parentNode.scrollHeight + 300
+				links[0].parentNode.style.maxHeight = maxH + 'px';
+				links[0].nextElementSibling.style.maxHeight = links[0].nextElementSibling.scrollHeight + 'px';
+				links[0].nextElementSibling.classList.add('active')
+				links[0].classList.add('active')
+				const image = links[0].nextElementSibling.querySelector('.products__image')
+				image.classList.add('active')
+			}, 100)
+		}
+	}
 
 	resetHeight(lists)
 
-	lists[0].style.maxHeight = lists[0].scrollHeight + 'px'
-	items[0].classList.add('active')
-	items[0].nextElementSibling.classList.add('active')
-
+	lists[startIndex].style.maxHeight = lists[0].scrollHeight + 'px'
+	items[startIndex].classList.add('active')
+	items[startIndex].nextElementSibling.classList.add('active')
 
 	items.forEach((item) => {
 		item.addEventListener('click', (e) => {
 			e.preventDefault()
 			const list = item.nextElementSibling
 			list.classList.toggle('active')
+			if (item.classList.contains('active')) {
+				item.classList.remove('active')
+				list.classList.remove('active')
+				list.style.maxHeight = '0px'
+				return
+			}
 			lists.forEach((otherList) => {
 				if (list !== otherList) {
 					otherList.classList.remove('active')
@@ -53,6 +119,7 @@ export function productsNav() {
 					}
 				}
 			})
+
 			items.forEach((it) => {
 				it.classList.remove('active')
 			})
@@ -74,76 +141,95 @@ export function productsNav() {
 	})
 }
 
+export function fixNavTop() {
+	const navTops = document.querySelectorAll('.nav-top');
+
+	navTops.forEach((nav) => {
+		const pag = nav.querySelector('.products__nav-slider')
+		if (!pag) {
+			nav.classList.remove('nav-top');
+		}
+	})
+}
+
+export function scrollToImage() {
+	const wrapper = document.querySelector('.products__image')
+	const items = document.querySelectorAll('.products__link')
+
+	items.forEach((item) => {
+		item.addEventListener('click', () => {
+			wrapper.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start',
+				inline: 'nearest',
+			});
+		})
+	})
+
+
+}
+
+const tabButtons = document.querySelectorAll(".products__link");
+const tabContents = document.querySelectorAll(".products__content");
+
+export function showImage(content) {
+	const image = content.querySelector('.products__image-item')
+	const wrapper = document.querySelector('.products__image')
+
+	wrapper.classList.remove('active')
+
+	setTimeout(() => {
+		wrapper.innerHTML = image.innerHTML
+		if (image) {
+			image.style.display = "none"
+		}
+		setTimeout(() => {
+			wrapper.classList.add('active')
+		}, 150)
+	}, 300)
+
+
+}
+
+export function showTab(tabId) {
+	tabContents.forEach(function (content) {
+		if (content.getAttribute("data-content") === tabId) {
+			content.style.opacity = 0;
+			content.style.display = "block";
+			content.classList.add('active');
+			showImage(content);
+			setTimeout(function () {
+				content.style.opacity = 1;
+			}, 50);
+		} else {
+			content.style.opacity = 0;
+			content.style.display = "none";
+			setTimeout(function () {
+				content.classList.remove('active');
+				content.style.opacity = 0;
+			}, 50);
+		}
+	});
+	tabButtons.forEach(function (button) {
+		if (button.getAttribute("data-content") === tabId) {
+			button.classList.add("active");
+		} else {
+			button.classList.remove("active");
+		}
+	});
+
+}
+
 export function productTabs() {
 	document.addEventListener("DOMContentLoaded", function () {
-		const tabButtons = document.querySelectorAll(".products__link");
-		const tabContents = document.querySelectorAll(".products__content");
-
 		tabButtons.forEach(function (button) {
 			button.addEventListener("click", function (e) {
 				e.preventDefault();
 				const tabId = this.getAttribute("data-content");
 				showTab(tabId);
-				setTimeout(() => {
-					productsSlider();
-				}, 50)
 			});
 		});
 
-		function showImage(content) {
-			const image = content.querySelector('.products__image-item')
-			const wrapper = document.querySelector('.products__image')
-
-			wrapper.classList.remove('active')
-
-			setTimeout(() => {
-				wrapper.innerHTML = image.innerHTML
-				if (image) {
-					image.style.display = "none"
-				}
-				wrapper.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start',
-					inline: 'nearest',
-				});
-				setTimeout(() => {
-					wrapper.classList.add('active')
-				}, 150)
-			}, 300)
-
-
-		}
-
-		function showTab(tabId) {
-			tabContents.forEach(function (content) {
-				if (content.getAttribute("data-content") === tabId) {
-					content.style.opacity = 0;
-					content.style.display = "block";
-					content.classList.add('active');
-					showImage(content);
-					setTimeout(function () {
-						content.style.opacity = 1;
-					}, 50);
-				} else {
-					content.style.opacity = 0;
-					content.style.display = "none";
-					setTimeout(function () {
-						content.classList.remove('active');
-						content.style.opacity = 0;
-					}, 50);
-				}
-			});
-			tabButtons.forEach(function (button) {
-				if (button.getAttribute("data-content") === tabId) {
-					button.classList.add("active");
-				} else {
-					button.classList.remove("active");
-				}
-			});
-
-		}
-
-		showTab(tabButtons[0].getAttribute("data-content"));
 	});
 }
 
@@ -219,12 +305,7 @@ export function productMobileContent() {
 							inline: 'nearest',
 						});
 					}, 500)
-					setTimeout(() => {
-						productsSlider();
-					}, 50)
-					setTimeout(() => {
-						productsSliderMobile();
-					}, 50)
+
 
 				} else {
 					content.style.maxHeight = '0px';
