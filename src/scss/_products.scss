@@ -29,15 +29,15 @@
 
 		&.active {
 			clip-path: inset(0%);
-			transition: clip-path 0.5s ease-out;
+			transition: clip-path 0.3s ease-out;
 
 			picture,
 			img {
 				transform: scale(1);
 				opacity: 1;
 				transition:
-					transform 0.5s ease-out,
-					opacity 0.5s ease-out;
+					transform 0.3s ease-out,
+					opacity 0.3s ease-out;
 			}
 		}
 	}
@@ -103,7 +103,7 @@
 		flex-direction: column;
 		gap: 1.88rem;
 		max-height: 0;
-		transition: all 0.5s ease-in-out;
+		transition: all 0.3s ease-in-out;
 		overflow: hidden;
 
 		&.active {
@@ -112,7 +112,7 @@
 
 			.products__link {
 				transform: translateY(0);
-				transition: all 0.5s ease-in-out;
+				transition: all 0.3s ease-in-out;
 			}
 		}
 	}
@@ -131,7 +131,7 @@
 		text-transform: uppercase;
 		cursor: pointer;
 		transform: translateY(6.25rem);
-		transition: all 0.5s ease-in-out;
+		transition: all 0.3s ease-in-out;
 
 		&:hover,
 		&.active {
@@ -156,7 +156,7 @@
 	}
 
 	&__content {
-		transition: all 0.5s ease-in-out;
+		transition: all 0.3s ease-in-out;
 	}
 
 	&__inner {
@@ -319,7 +319,7 @@
 		cursor: pointer;
 		svg {
 			path {
-				transition: all 0.5s ease-in-out;
+				transition: all 0.3s ease-in-out;
 			}
 		}
 
@@ -327,7 +327,7 @@
 			svg {
 				path {
 					stroke: #20286e;
-					transition: all 0.5s ease-in-out;
+					transition: all 0.3s ease-in-out;
 				}
 			}
 		}
@@ -336,7 +336,7 @@
 				path {
 					stroke: black !important;
 					opacity: 0.3;
-					transition: all 0.5s ease-in-out;
+					transition: all 0.3s ease-in-out;
 				}
 			}
 		}
@@ -470,16 +470,16 @@
 			align-items: center;
 
 			svg {
-				transition: all 0.5s ease-in-out;
+				transition: all 0.3s ease-in-out;
 			}
 
 			&.active,
 			&:hover {
 				svg {
-					transition: all 0.5s ease-in-out;
+					transition: all 0.3s ease-in-out;
 					transform: rotate(-180deg);
 					path {
-						transition: all 0.5s ease-in-out;
+						transition: all 0.3s ease-in-out;
 						stroke: #20286e;
 					}
 				}
@@ -494,11 +494,11 @@
 			position: relative;
 			max-height: 0;
 			overflow: hidden;
-			transition: all 0.5s ease-in-out;
+			transition: all 0.3s ease-in-out;
 			will-change: max-height, padding-bottom;
 
 			&.active {
-				transition: all 0.5s ease-in-out;
+				transition: all 0.3s ease-in-out;
 				margin-bottom: 1.25rem;
 			}
 		}
