@@ -66,12 +66,34 @@ export function burgerMenu() {
 
 	if (window.innerWidth > 1070) {
 		drop.forEach((d) => {
-			d.addEventListener('mouseover', () => {
-				header.classList.add('drop');
+			d.addEventListener('click', (e) => {
+				e.preventDefault();
+				if (d.classList.contains('active')) {
+					drop.forEach((d) => { 
+						header.classList.remove('drop');
+						d.classList.remove('active');
+					})
+				} else {
+					drop.forEach((d) => { 
+						header.classList.remove('drop');
+						d.classList.remove('active');
+					})
+					d.classList.add('active');
+					header.classList.add('drop');
+				}
 			})
-			d.addEventListener('mouseleave', () => {
-				header.classList.remove('drop');
-			})
+			document.addEventListener('click', (event) => {
+
+				const isClickInsideHeader = header.contains(event.target);
+				const isClickInsideDrop = Array.from(drop).some((d) => d.contains(event.target));
+
+				if (!isClickInsideHeader && !isClickInsideDrop) {
+					header.classList.remove('drop');
+					drop.forEach((d) => {
+						d.classList.remove('active');
+					});
+				}
+				});
 		})
 
 	} else {
