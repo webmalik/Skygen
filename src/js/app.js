@@ -21,7 +21,7 @@ const otherSlider = document.querySelector('.other__slider')
 
 // Root functions
 
-wmRoot.isWebp();
+//wmRoot.isWebp();
 wmRoot.project();
 
 // Functions
