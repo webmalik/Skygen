@@ -7,6 +7,10 @@
 	&__title {
 	}
 
+	input[type="submit"] {
+		text-transform: uppercase !important;
+	}
+
 	.footer__wrapper {
 	}
 
@@ -35,6 +39,16 @@
 		input {
 			border-radius: 1.25rem;
 			border: 1px solid rgba(255, 255, 255, 0.5);
+			width: 100%;
+
+			&.wpcf7-not-valid {
+				box-shadow: 0px 0px 4px 3px rgba(255, 0, 0, 0.2);
+			}
+		}
+
+		.wpcf7-not-valid-tip {
+			padding-top: 0.62rem;
+			color: #a52727;
 		}
 
 		textarea {
@@ -59,12 +73,26 @@
 			}
 		}
 	}
+
+	&__label {
+		color: #fff;
+		font-family: $font-family;
+		font-size: 0.75rem;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 146.3%;
+		letter-spacing: -0.02413rem;
+		opacity: 0.5;
+	}
 }
 
 @include media-width($md) {
 	.contact-us {
 		.footer__wrapper {
 			gap: 1.88rem;
+		}
+		input[type="submit"] {
+			text-transform: capitalize !important;
 		}
 		.contacts {
 			padding: 1.88rem;

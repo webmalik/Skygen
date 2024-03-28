@@ -15,11 +15,6 @@ export function burgerMenu() {
 	const box = document.querySelector('.header');
 	const body = document.body;
 
-	document.addEventListener("DOMContentLoaded", function () {
-		let headroom = new Headroom(box);
-		headroom.init();
-	});
-
 	if (window.innerWidth < 992) {
 
 		links.forEach(link => {
@@ -32,11 +27,11 @@ export function burgerMenu() {
 				} else {
 					lenisS.start();
 				}
-				console.log('link')
 			})
 		})
 		links2.forEach(link => {
 			link.addEventListener('click', () => {
+				console.log('b2');
 				burger.classList.toggle('open');
 				box.classList.toggle('active');
 				body.classList.toggle('lock');
@@ -45,7 +40,6 @@ export function burgerMenu() {
 				} else {
 					lenisS.start();
 				}
-				console.log('link')
 			})
 		})
 	}
@@ -63,18 +57,20 @@ export function burgerMenu() {
 	const header = document.querySelector('.header');
 	const drop = document.querySelectorAll('.dropdown');
 
-
+	const page = document.querySelector('.page');
 	if (window.innerWidth > 1070) {
 		drop.forEach((d) => {
 			d.addEventListener('click', (e) => {
-				e.preventDefault();
+				if (page) {
+					e.preventDefault();
+				}
 				if (d.classList.contains('active')) {
-					drop.forEach((d) => { 
+					drop.forEach((d) => {
 						header.classList.remove('drop');
 						d.classList.remove('active');
 					})
 				} else {
-					drop.forEach((d) => { 
+					drop.forEach((d) => {
 						header.classList.remove('drop');
 						d.classList.remove('active');
 					})
@@ -93,13 +89,15 @@ export function burgerMenu() {
 						d.classList.remove('active');
 					});
 				}
-				});
+			});
 		})
 
 	} else {
 		drop.forEach((d) => {
 			d.addEventListener('click', (e) => {
-				e.preventDefault();
+				if (page) {
+					e.preventDefault();
+				}
 				d.classList.toggle('active');
 			})
 		})
@@ -252,6 +250,74 @@ export function modal() {
 	const open = document.querySelectorAll('.open__modal');
 	const modal = document.querySelectorAll('.modal');
 	let dataModal, window;
+	const body = document.querySelector('html');
+
+	open.forEach(function (el) {
+		el.addEventListener('click', (e) => {
+			e.preventDefault();
+			dataModal = el.getAttribute('data-modal');
+
+			modal.forEach(function (mod) {
+				if (mod.classList.contains('active')) {
+					mod.classList.remove('active');
+					body.classList.remove('lock');
+					body.classList.remove('lenis-stopped');
+					//lenisS.start();
+				}
+			});
+
+			modal.forEach(function (mod) {
+				if (mod.getAttribute('data-modal') === dataModal) {
+					window = mod;
+					window.classList.add('active');
+					body.classList.add('lock');
+					body.classList.add('lenis-stopped');
+					//lenisS.stop();
+				}
+			});
+		});
+
+		el.addEventListener('click', () => {
+			let close = window.querySelector('.modal__close');
+			let close2 = window.querySelector('.modal__close2');
+			let wrapper = window.querySelector('.modal__wrapper');
+			//window.classList.remove('close__modal--animations');
+			window.classList.add('active');
+			if (window.innerWidth > 992) {
+				body.classList.add('lock');
+				body.classList.add('lenis-stopped');
+			}
+			//lenisS.stop();
+
+			window.addEventListener('click', (e) => {
+				if (e.target != wrapper && !wrapper.contains(e.target)) {
+					//window.classList.add('close__modal--animations');
+					window.classList.remove('active');
+					if (window.innerWidth > 992) {
+						body.classList.remove('lock');
+						body.classList.remove('lenis-stopped');
+					}
+					//lenisS.start();
+				}
+			});
+			close.addEventListener('click', () => {
+				//window.classList.add('close__modal--animations');
+				window.classList.remove('active');
+				if (window.innerWidth > 992) {
+					body.classList.remove('lock');
+					body.classList.remove('lenis-stopped');
+				}
+				//lenisS.start();
+			});
+		});
+	});
+
+}
+
+export function modal_window() {
+	const open = document.querySelectorAll('.open__window');
+	const modal = document.querySelectorAll('.modal');
+	let dataModal, window;
 	const body = document.body;
 
 	open.forEach(function (el) {
@@ -263,6 +329,7 @@ export function modal() {
 				if (mod.classList.contains('active')) {
 					mod.classList.remove('active');
 					body.classList.remove('lock');
+					body.classList.remove('lenis-stopped');
 					lenisS.start();
 				}
 			});
@@ -272,32 +339,42 @@ export function modal() {
 					window = mod;
 					window.classList.add('active');
 					body.classList.add('lock');
+					body.classList.add('lenis-stopped');
 					lenisS.stop();
-
 				}
 			});
 		});
 
 		el.addEventListener('click', () => {
 			let close = window.querySelector('.modal__close');
+			let close2 = window.querySelector('.modal__close2');
 			let wrapper = window.querySelector('.modal__wrapper');
 			//window.classList.remove('close__modal--animations');
 			window.classList.add('active');
-			body.classList.add('lock');
+			if (window.innerWidth > 992) {
+				body.classList.add('lock');
+				body.classList.add('lenis-stopped');
+			}
 			lenisS.stop();
 
 			window.addEventListener('click', (e) => {
 				if (e.target != wrapper && !wrapper.contains(e.target)) {
 					//window.classList.add('close__modal--animations');
 					window.classList.remove('active');
-					body.classList.remove('lock');
+					if (window.innerWidth > 992) {
+						body.classList.remove('lock');
+						body.classList.remove('lenis-stopped');
+					}
 					lenisS.start();
 				}
 			});
 			close.addEventListener('click', () => {
 				//window.classList.add('close__modal--animations');
 				window.classList.remove('active');
-				body.classList.remove('lock');
+				if (window.innerWidth > 992) {
+					body.classList.remove('lock');
+					body.classList.remove('lenis-stopped');
+				}
 				lenisS.start();
 			});
 		});
@@ -319,9 +396,15 @@ export function pageNav() {
 	headerLinks.each(function () {
 		$(this).on('click', function (event) {
 			event.preventDefault();
+			console.log('prev');
 
 			const targetId = $(this).attr('href');
-			const targetElement = $(`${targetId}:first`);
+			let targetElement
+			if (targetId == "#") {
+				return;
+			} else {
+				targetElement = $(`${targetId}:first`);
+			}
 			const targetOffset = targetElement.offset().top;
 			window.scrollTo({
 				top: targetOffset - 100,
@@ -336,8 +419,9 @@ export function pageNav() {
 				wrapper.classList.toggle('active');
 				question[0].classList.toggle('active');
 				answer[0].classList.toggle('active');
-
 			}
+
+			lenisS.start();
 		});
 	});
 }
@@ -370,16 +454,18 @@ export function lenisScroll() {
 	if (window.innerWidth > 992) {
 		lenisS = new Lenis({
 			smoothTouch: true,
-			duration: 1.2,
+			duration: 0,
 			autoResize: true,
 		});
 	} else {
 		lenisS = new Lenis({
 			smoothTouch: true,
-			duration: 1,
+			duration: 0,
 			autoResize: true,
 		});
 	}
+
+
 
 	function raf(time) {
 		lenisS.raf(time);
@@ -396,10 +482,8 @@ export function lenisScroll() {
 			duration: 1.2,
 			autoResize: true,
 		})
-		console.log('block')
 	}
 
-	// Інші частини вашого коду
 }
 
 export function faq() {
@@ -465,4 +549,12 @@ export function backToTop() {
 		});
 		lenisS.start();
 	})
+}
+
+export function headerFix() {
+	document.addEventListener("DOMContentLoaded", function () {
+		const box = document.querySelector('.header');
+		let headroom = new Headroom(box);
+		headroom.init();
+	});
 }

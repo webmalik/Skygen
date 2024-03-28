@@ -335,3 +335,102 @@ img {
 		transition: all 0.3s ease-in-out;
 	}
 }
+
+.page__not-found {
+	cursor: pointer;
+	h1 {
+		@include adaptiv-value("font-size", toPX(4), toPX(2), 1);
+		color: var(--White, #fff);
+		font-family: $font-family;
+		font-style: normal;
+		line-height: normal;
+		text-align: center;
+		font-weight: 600;
+	}
+	h2 {
+		@include adaptiv-value("font-size", toPX(2.5), toPX(1.375), 1);
+		color: var(--White, #fff);
+		font-family: $font-family;
+		font-style: normal;
+		line-height: normal;
+		text-align: center;
+		font-weight: 400;
+
+		span {
+			font-weight: 300;
+			@include adaptiv-value("font-size", toPX(1.5), toPX(1), 1);
+		}
+	}
+}
+
+.preloader {
+	display: none;
+	background-color: #fff;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 999;
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.5s ease-in-out;
+
+	&.hide {
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.5s ease-in-out;
+	}
+
+	picture,
+	img {
+		width: 300px;
+		height: 300px;
+	}
+}
+
+.wpcf7-form-control-wrap.zl-form-control-wrap.you-file {
+	display: none !important;
+}
+
+#mfcf7_zl_multifilecontainer {
+	margin-top: 0;
+}
+
+#mfcf7_zl_add_file {
+	background: none;
+	text-transform: none;
+	border: none;
+	padding: 0;
+	color: var(--Light-Gray, #aeaeae);
+	font-family: "Gilroy";
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.0625rem;
+	letter-spacing: -0.02819rem;
+	transition: all 0.5s ease-in-out;
+}
+.fileClassSVG {
+	cursor: pointer;
+	svg {
+		path {
+			transition: all 0.5s ease-in-out;
+		}
+	}
+	&:hover {
+		svg {
+			path {
+				transition: all 0.5s ease-in-out;
+				stroke: #b8d1fb;
+			}
+		}
+
+		#mfcf7_zl_add_file {
+			color: var(--Light-Blue, #b8d1fb);
+		}
+	}
+}

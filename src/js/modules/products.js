@@ -23,7 +23,7 @@ export function productsInit() {
 	}
 	setTimeout(() => {
 		fixNavTop()
-	}, 150)
+	}, 50)
 
 }
 
@@ -54,7 +54,7 @@ export function productsNav(startIndex = 0) {
 			startIndex = id
 			links = items[startIndex].nextElementSibling.querySelectorAll('.products__link')
 			setTimeout(() => {
-				const maxH = links[0].nextElementSibling.scrollHeight + links[0].parentNode.scrollHeight + 300
+				const maxH = links[0].nextElementSibling.scrollHeight + links[0].parentNode.scrollHeight + 300;
 				links[0].parentNode.style.maxHeight = maxH + 'px';
 				links[0].nextElementSibling.style.maxHeight = links[0].nextElementSibling.scrollHeight + 'px';
 				links[0].nextElementSibling.classList.add('active')
@@ -85,7 +85,7 @@ export function productsNav(startIndex = 0) {
 
 	resetHeight(lists)
 
-	lists[startIndex].style.maxHeight = lists[0].scrollHeight + 'px'
+	lists[startIndex].style.maxHeight = lists[startIndex].scrollHeight + 'px'
 	items[startIndex].classList.add('active')
 	items[startIndex].nextElementSibling.classList.add('active')
 
@@ -359,13 +359,30 @@ export function productsSlider() {
 		let subtitle = slider.querySelector('.products__subtitle')
 
 		const nav = slider.querySelector('.products__nav-slider')
-		if (nav) {
-			navigationButtons = {
-				btnNext: nav.querySelector('.products__next'),
-				btnPrev: nav.querySelector('.products__prev')
+		let slidesCount = slider.querySelectorAll('.swiper-slide').length;
+
+		if (window.innerWidth > 992) {
+			if (slidesCount > 2) {
+				if (nav) {
+					navigationButtons = {
+						btnNext: nav.querySelector('.products__next'),
+						btnPrev: nav.querySelector('.products__prev')
+					}
+				} else {
+					navigationButtons = createNavigation(slider.parentNode)
+				}
 			}
 		} else {
-			navigationButtons = createNavigation(slider.parentNode)
+			if (slidesCount > 1) {
+				if (nav) {
+					navigationButtons = {
+						btnNext: nav.querySelector('.products__next'),
+						btnPrev: nav.querySelector('.products__prev')
+					}
+				} else {
+					navigationButtons = createNavigation(slider.parentNode)
+				}
+			}
 		}
 
 		mySwiper = new Swiper(slider, {
@@ -382,8 +399,8 @@ export function productsSlider() {
 			},
 			modules: [Navigation],
 			navigation: {
-				nextEl: navigationButtons.btnNext,
-				prevEl: navigationButtons.btnPrev,
+				nextEl: navigationButtons ? navigationButtons.btnNext : null,
+				prevEl: navigationButtons ? navigationButtons.btnPrev : null,
 			}
 		});
 	});

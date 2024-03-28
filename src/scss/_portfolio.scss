@@ -64,10 +64,21 @@
 
 		&__image-big {
 			min-height: 25rem;
+			max-height: 25rem;
+
+			picture,
+			img {
+				width: auto;
+			}
 		}
 
 		&__image-small {
 			min-height: 18.75rem;
+			max-height: 18.75rem;
+			picture,
+			img {
+				width: auto;
+			}
 		}
 	}
 }

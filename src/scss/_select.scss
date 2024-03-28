@@ -141,6 +141,7 @@
 			font-weight: 600;
 			line-height: normal;
 			text-transform: uppercase;
+			max-width: 20rem;
 		}
 
 		&-1 {
@@ -165,7 +166,7 @@
 			& > div,
 			ul {
 				&:first-child {
-					max-height: 3rem;
+					max-height: 4rem;
 				}
 			}
 		}

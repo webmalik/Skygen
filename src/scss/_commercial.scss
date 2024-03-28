@@ -195,14 +195,22 @@
 		&-hero__content {
 			align-items: flex-end;
 			bottom: 2.19rem;
+
+			.container {
+				gap: 1.25rem;
+			}
 			.hero__title {
-				font-weight: 400;
+				//font-weight: 400;
 			}
 			.hero__text {
-				display: none;
+				font-size: 1.375rem;
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;
+				text-wrap: balance;
 			}
 			.hero__button {
-				display: none;
+				//display: none;
 			}
 		}
 	}

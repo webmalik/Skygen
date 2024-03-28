@@ -21,16 +21,26 @@ const otherSlider = document.querySelector('.other__slider')
 
 // Root functions
 
-wmRoot.isWebp();
+//wmRoot.isWebp();
+// wmRoot.preloader();
 wmRoot.project();
+wmRoot.fixWP();
+wmRoot.fixP();
 
 // Functions
 wmFunctions.lenisScroll();
-wmFunctions.burgerMenu();
+wmFunctions.headerFix();
+document.addEventListener("DOMContentLoaded", function () {
+	setTimeout(() => {
+		wmFunctions.burgerMenu();
+		wmFunctions.pageNav();
+		wmFunctions.modal();
+		wmFunctions.modal_window();
+		wmRoot.catalogFiles();
+	}, 100);
+});
 wmFunctions.accordion();
 wmFunctions.faq();
-wmFunctions.modal();
-wmFunctions.pageNav();
 wmFunctions.fancy();
 wmFunctions.backToTop();
 
