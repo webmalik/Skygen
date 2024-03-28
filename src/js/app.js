@@ -22,7 +22,10 @@ const otherSlider = document.querySelector('.other__slider')
 // Root functions
 
 //wmRoot.isWebp();
+<<<<<<< HEAD
 // wmRoot.preloader();
+=======
+>>>>>>> 4e31b941ac5e4e50071b3bbcdb96c6cc6db3b151
 wmRoot.project();
 wmRoot.fixWP();
 wmRoot.fixP();
